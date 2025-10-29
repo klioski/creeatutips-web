@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Proyectos y Clientes - CreeatuTip's</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos específicos para la sección de Portafolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 300px; /* Altura fija para la consistencia visual */
+            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+            display: block;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 123, 255, 0.8); /* Fondo azul semi-transparente */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h4 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        /* Estilos para la sección de Clientes */
+        .clients-section {
+            text-align: center;
+            padding: 60px 5%;
+        }
+
+        .clients-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .client-logo {
+            width: 120px;
+            height: 100px;
+            /* Placeholder para el logo real */
+            background-color: #e9ecef;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+
+        /* Asegurarse de que el color de fondo para la sección de clientes es diferente */
+        .clients-section.bg-light {
+            background-color: var(--light-bg);
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html"><img src="img/logo.png" alt="Logo de CreeatuTip's" class="logo-img"></a>
+    </div>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="productos.html">Productos</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="contacto.html" class="cta-button">¡Cotiza Ahora!</a>
+    </nav>
+</header>
+
+<main class="internal-page">
+    <section class="page-title">
+        <h1>Proyectos que Inspiran y Dejan Huella</h1>
+        <p>Una muestra de la calidad y versatilidad de nuestros trabajos en diferentes técnicas.</p>
+    </section>
+
+    <section class="portfolio-works section-padding">
+        <h2>Nuestros Mejores Trabajos Recientes</h2>
+
+        <div class="portfolio-grid">
+
+            <div class="portfolio-item">
+                <div class="portfolio-overlay">
+                    <h4>Playera Corporativa</h4>
+                    <p>Técnica: DTF (Full Color)</p>
+                    <p>Artículo: Algodón Premium</p>
+                </div>
+                <div class="client-logo">FOTO PENDIENTE (DTF)</div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-overlay">
+                    <h4>Termo para Evento</h4>
+                    <p>Técnica: Grabado Láser</p>
+                    <p>Artículo: Acero Inoxidable</p>
+                </div>
+                <div class="client-logo">FOTO PENDIENTE (LÁSER)</div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-overlay">
+                    <h4>Taza Promocional</h4>
+                    <p>Técnica: Sublimación</p>
+                    <p>Artículo: Taza Cerámica</p>
+                </div>
+                <div class="client-logo">FOTO PENDIENTE (SUBLIMACIÓN)</div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-overlay">
+                    <h4>Gorra de Uniforme</h4>
+                    <p>Técnica: Bordado</p>
+                    <p>Artículo: Gorra Estructurada</p>
+                </div>
+                <div class="client-logo">FOTO PENDIENTE (BORDADO)</div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-overlay">
+                    <h4>Publicidad Exterior</h4>
+                    <p>Técnica: Gran Formato</p>
+                    <p>Artículo: Lona Vinílica</p>
+                </div>
+                <div class="client-logo">FOTO PENDIENTE (GRAN FORMATO)</div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-overlay">
+                    <h4>Llaveros Premium</h4>
+                    <p>Técnica: Grabado Láser</p>
+                    <p>Artículo: Metal</p>
+                </div>
+                <div class="client-logo">FOTO PENDIENTE (LÁSER ACCESORIO)</div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="clients-section bg-light">
+        <h2>Nuestros Clientes Confían en la Calidad CreeatuTip's</h2>
+        <p>Hemos colaborado con empresas y emprendedores de diversos sectores, llevando sus marcas al siguiente nivel.</p>
+
+        <div class="clients-logos">
+            <div class="client-logo">Logo Cliente A</div>
+            <div class="client-logo">Logo Cliente B</div>
+            <div class="client-logo">Logo Cliente C</div>
+            <div class="client-logo">Logo Cliente D</div>
+            <div class="client-logo">Logo Cliente E</div>
+            <div class="client-logo">Logo Cliente F</div>
+        </div>
+    </section>
+
+    <section class="about-summary">
+        <h2>¿Quieres ser nuestro próximo caso de éxito?</h2>
+        <p>Déjanos asesorarte para crear un artículo promocional tan impactante como estos.</p>
+        <br>
+        <a href="contacto.html" class="btn btn-primary">¡Comencemos a Crear!</a>
+    </section>
+
+</main>
+
+<footer>
+</footer>
+</body>
+</html>

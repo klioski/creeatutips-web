@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto y Cotización - CreeatuTip's</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="index.html"><img src="img/logo.png" alt="Logo de CreeatuTip's" class="logo-img"></a>
+    </div>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="productos.html">Productos</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="contacto.html" class="cta-button">¡Cotiza Ahora!</a>
+    </nav>
+</header>
+
+<main class="internal-page">
+    <section class="page-title">
+        <h1>Estamos Listos para tu Proyecto</h1>
+        <p>Envíanos tus requerimientos y te enviaremos una cotización detallada a la brevedad.</p>
+    </section>
+
+    <section class="contact-form section-padding">
+        <h2>Formulario de Solicitud de Cotización</h2>
+
+        <form action="YOUR_ENDPOINT" method="POST" class="form-grid">
+
+            <div class="form-group">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" placeholder="ejemplo@empresa.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="Opcional">
+            </div>
+
+            <div class="form-group">
+                <label for="servicio">Servicio/Técnica de Interés:</label>
+                <select id="servicio" name="servicio" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="dtf">DTF / Serigrafía</option>
+                    <option value="sublimacion">Sublimación</option>
+                    <option value="laser">Grabado Láser</option>
+                    <option value="bordado">Bordado</option>
+                    <option value="gran_formato">Impresión Gran Formato</option>
+                    <option value="otro">Otro / No estoy seguro</option>
+                </select>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="proyecto_detalle">Describe tu Proyecto (Artículo, Cantidad, Diseño):</label>
+                <textarea id="proyecto_detalle" name="proyecto_detalle" rows="6" required></textarea>
+            </div>
+
+            <div class="form-group full-width">
+                <button type="submit" class="btn btn-primary">Enviar Solicitud de Cotización</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="contact-info section-padding bg-light">
+        <h2>Nuestros Datos de Contacto</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <h4>Llámanos</h4>
+                <p>+52 1 2345 6789</p>
+                <p>(Atención de Lunes a Viernes, 9am - 6pm)</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <h4>Escríbenos</h4>
+                <p>cotizaciones@creeatutips.com</p>
+                <p>ventas@creeatutips.com</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <h4>Ubicación</h4>
+                <p>Dirección de Taller/Oficina (Opcional)</p>
+                <p>Ciudad, País</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+</footer>
+</body>
+</html>

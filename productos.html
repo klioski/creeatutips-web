@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos - CreeatuTip's</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos específicos para la sección de Productos */
+        .product-category {
+            margin-bottom: 50px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 30px;
+        }
+
+        .product-category h3 {
+            background-color: var(--light-bg);
+            padding: 15px;
+            color: var(--primary-color);
+            border-left: 5px solid var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .product-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-list li {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .product-list li i {
+            font-size: 1.5em;
+            color: var(--primary-color);
+        }
+
+        .product-list li strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html"><img src="img/logo.png" alt="Logo de CreeatuTip's" class="logo-img"></a>
+    </div>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="productos.html">Productos</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="contacto.html" class="cta-button">¡Cotiza Ahora!</a>
+    </nav>
+</header>
+
+<main class="internal-page">
+    <section class="page-title">
+        <h1>Catálogo de Artículos Base</h1>
+        <p>Selecciona el producto que deseas personalizar. Aplicamos la técnica que mejor se adapte a cada material.</p>
+    </section>
+
+    <section class="products-catalog section-padding">
+        <h2>Nuestras Categorías Principales</h2>
+
+        <div class="product-category">
+            <h3><i class="fas fa-tshirt"></i> Ropa y Accesorios</h3>
+            <ul class="product-list">
+                <li><i class="fas fa-arrow-right"></i> <strong>Playeras:</strong> Algodón, Dry-Fit, Cuello Redondo, Polo.</li>
+                <li><i class="fas fa-arrow-right"></i> <strong>Sudaderas:</strong> Con Capucha, Cuello Redondo, Chaquetas.</li>
+                <li><i class="fas fa-arrow-right"></i> <strong>Gorras:</strong> Tipo Trucker, Béisbol, Visera Plana.</li>
+                <li><i class="fas fa-arrow-right"></i> <strong>Bolsas y Mochilas:</strong> Ecológicas, de Tela, Deportivas.</li>
+            </ul>
+        </div>
+
+        <div class="product-category">
+            <h3><i class="fas fa-mug-hot"></i> Termos, Tazas y Cilindros</h3>
+            <ul class="product-list">
+                <li><i class="fas fa-arrow-right"></i> <strong>Tazas:</strong> Cerámicas (11 oz, 15 oz), Mágicas, Tipo Tarro.</li>
+                <li><i class="fas fa-arrow-right"></i> <strong>Termos:</strong> De Acero Inoxidable, Doble Pared, Botella Deportiva.</li>
+                <li><i class="fas fa-arrow-right"></i> <strong>Cilindros:</strong> De Plástico (Diversos Colores y Capacidades).</li>
+                <li><i class="fas fa-arrow-right"></i> <strong>Shakers:</strong> Para Gimnasio y Suplementos.</li>
+            </ul>
+        </div>
+
+        <div class="product-category">
+            <h3><i class="fas fa-pen"></i> Oficina y Accesorios</h3>
+            <ul class="product-list">
+                <li><i class="fas fa-arrow-right"></i> <strong>Plumas:</strong> Plástico, Metálicas, Ecológicas, con Stylus.</li>
+                <li><i class="fas fa-arrow-right"></i> <strong>Libretas:</strong> Tipo Moleskine, Bloc de Notas, Carpetas.</li>
+                <li><i class="fas fa-arrow-right"></i> <strong>Llaveros:</strong> Metálicos, de Acrílico, de Goma.</li>
+                <li><i class="fas fa-arrow-right"></i> <strong>USB y Tecnología:</strong> Memorias USB Personalizadas, Power Banks.</li>
+            </ul>
+        </div>
+
+        <div class="product-category">
+            <h3><i class="fas fa-image"></i> Publicidad y Exhibición</h3>
+            <ul class="product-list">
+                <li><i class="fas fa-arrow-right"></i> <strong>Lonas:</strong> Vinílica, Mesh, Blackout (diferentes medidas).</li>
+                <li><i class="fas fa-arrow-right"></i> <strong>Roll-Ups y Banners:</strong> Estructuras Retráctiles de Fácil Montaje.</li>
+                <li><i class="fas fa-arrow-right"></i> <strong>Viniles:</strong> Adhesivos, de Corte, Microperforados para Ventanas.</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <section class="about-summary">
+        <h2>¿Listo para dar vida a tus productos?</h2>
+        <p>Contáctanos con el producto y la cantidad deseada para comenzar tu cotización.</p>
+        <br>
+        <a href="contacto.html" class="btn btn-primary">Ir a Cotizar</a>
+    </section>
+
+</main>
+
+<footer>
+</footer>
+</body>
+</html>

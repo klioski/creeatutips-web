@@ -1,0 +1,706 @@
+/* --- VARIABLES Y RESET BÁSICO --- */
+:root {
+    /* Paleta Basada en el Logo (Lila/Azul, AZUL CLARO, Magenta) */
+    --primary-color: #5D54A4;   /* Lila/Azul oscuro (Institucional: para Títulos y Fondo de Pie de Página) */
+    --secondary-color: #00BFFF;  /* AZUL CLARO VIBRANTE (Acento: para Botones y Elementos Destacados) */
+    --tertiary-color: #E91E63;  /* Magenta (Acento Secundario: para Líneas y Elementos de Diseño) */
+    --text-color: #333;         /* Gris oscuro para el cuerpo del texto */
+    --light-bg: #f5f5f7;        /* Gris muy claro, casi blanco */
+    --white: #ffffff;
+    --black: #000000;
+
+    /* Tipografías de Google Fonts */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+/* --- ESTILOS GENERALES DE CONTENIDO --- */
+.section-padding {
+    padding: 60px 5%;
+}
+
+.bg-light {
+    background-color: var(--light-bg);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    margin-bottom: 20px;
+}
+
+/* Alineación: Todo centrado, excepto el texto del cuerpo para mejor lectura */
+.page-title, .services-summary, .about-summary, .clients-section, .contact-form, .portfolio-works, .products-catalog {
+    text-align: center;
+}
+
+/* Asegura que el texto corrido esté alineado a la izquierda para mejor legibilidad (no justificado) */
+.about-content p, .technique-card p, .product-list li, .portfolio-overlay p {
+    text-align: left;
+}
+
+/* --- HEADER / MENÚ DE NAVEGACIÓN --- */
+header {
+    background-color: var(--white);
+    border-bottom: 1px solid #eee;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 65px;
+    width: auto;
+    display: block;
+}
+
+nav a {
+    margin-left: 20px;
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--secondary-color);
+}
+
+/* --- ESTILOS DE BOTONES (CTAs) --- */
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+    font-family: var(--font-heading);
+}
+
+.btn-primary, .cta-button {
+    background-color: var(--secondary-color); /* AZUL CLARO */
+    color: var(--white);
+    border: 2px solid var(--secondary-color);
+}
+
+.btn-primary:hover, .cta-button:hover {
+    background-color: transparent;
+    border-color: lightskyblue;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--primary-color);;
+    color: var(--white);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: transparent;
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.btn-tertiary {
+    background-color: var(--primary-color); /* Lila/Azul */
+    color: var(--white);
+    border: 2px solid var(--primary-color);
+}
+.btn-tertiary:hover {
+    background-color: #4a4584;
+    border-color: #4a4584;
+    transform: translateY(-2px);
+}
+
+
+/* --- HERO SECTION (index.html) - CLÁSICO Y EMOCIONAL --- */
+.hero {
+    /* TODO EN UNA SOLA LÍNEA DE BACKGROUND PARA EVITAR ERRORES */
+    background: linear-gradient(rgba(45, 41, 79, 0.75), rgba(45, 41, 79, 0.75)), url('../img/hero-background.jpg') center / cover no-repeat;
+    color: var(--white);
+    text-align: center;
+    padding: 120px 5%;
+}
+
+.hero h1 {
+    font-size: 3.2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-hero-button {
+    margin: 0 10px;
+}
+
+
+/* --- SERVICIOS RESUMEN (index.html) --- */
+.services-summary {
+    padding: 80px 5%;
+}
+
+.services-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-item {
+    flex-basis: 22%;
+    min-width: 220px;
+    padding: 30px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.service-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--tertiary-color); /* Magenta en el hover */
+}
+
+.service-item i {
+    font-size: 3.5em;
+    color: var(--secondary-color); /* AZUL CLARO en los iconos */
+    margin-bottom: 15px;
+}
+
+/* --- ACERCA DE RESUMEN (index.html) --- */
+.about-summary {
+    background-color: var(--primary-color); /* Lila/Azul */
+    color: var(--white);
+    padding: 80px 5%;
+}
+
+.about-summary h2 {
+    color: var(--secondary-color); /* AZUL CLARO */
+}
+
+.about-summary .mission-text {
+    font-size: 1.1em;
+    margin: 0 auto 30px;
+    max-width: 700px;
+    text-align: center;
+}
+
+/* --- NOSOTROS (nosotros.html) --- */
+.page-title {
+    background-color: var(--light-bg);
+    padding: 40px 5%;
+    border-bottom: 1px solid #ddd;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-content p {
+    margin-bottom: 15px;
+}
+
+.mission-vision {
+    background-color: var(--light-bg);
+}
+
+.mv-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.mv-item {
+    flex-basis: 45%;
+    max-width: 500px;
+    padding: 30px;
+    text-align: center;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.mv-item i {
+    font-size: 2.5em;
+    color: var(--tertiary-color); /* Magenta */
+    margin-bottom: 15px;
+}
+
+
+/* --- VISUALIZADOR INTERACTIVO (servicios.html) --- */
+.visualizer-integration {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 40px;
+    background-color: var(--light-bg);
+    border-radius: 10px;
+}
+.visualizer-integration h2 {
+    color: var(--primary-color);
+}
+
+.visualizer-container {
+    position: relative;
+    /* REDUCCIÓN DE TAMAÑO: Lo hacemos más compacto */
+    max-width: 400px;
+    margin: 30px auto 30px;
+    display: inline-block;
+}
+
+/* Imagen Base y Superposición */
+.product-base-image, .design-overlay-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    /* Sombra más sutil */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-base-image {
+    z-index: 1;
+    /* PEQUEÑO AJUSTE: Asegura que la playera base siempre sea visible */
+    opacity: 1 !important;
+}
+
+.design-overlay-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    z-index: 2;
+}
+
+.design-overlay-image.active-design {
+    opacity: 1;
+}
+
+/* ... (El resto de los estilos de los botones .technique-selector se mantienen igual) ... */
+
+/* --- Controles / Botones de Técnica (Diseño más elegante) --- */
+.technique-selector {
+    margin-top: 40px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.05); /* Fondo semitransparente para destacarlos */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.technique-btn {
+    background-color: transparent;
+    color: var(--primary-color); /* Color primario */
+    border: 1px solid var(--primary-color);
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: var(--font-heading);
+    font-size: 0.95em;
+}
+
+.technique-btn:hover {
+    background-color: var(--white);
+    border-color: var(--secondary-color); /* AZUL CLARO en el borde al pasar el mouse */
+}
+
+.technique-btn.active {
+    background-color: var(--secondary-color); /* AZUL CLARO para la opción activa */
+    color: var(--white);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5); /* Resplandor suave del color activo */
+    transform: translateY(-2px);
+}
+
+
+/* --- SERVICIOS Y TÉCNICAS (servicios.html) --- */
+.technique-card {
+    background-color: var(--white);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.technique-card h3 {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--tertiary-color); /* Magenta como línea divisoria */
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.technique-card i {
+    margin-right: 10px;
+}
+
+.materials-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.materials-list li {
+    background-color: var(--light-bg);
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.materials-list li:hover {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border-color: var(--secondary-color);
+}
+
+/* --- CONTACTO (contacto.html) --- */
+.form-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 40px auto 0;
+    text-align: left;
+}
+
+.form-group {
+    width: 48%;
+    margin-bottom: 20px;
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-family: var(--font-heading);
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    font-family: var(--font-body);
+}
+
+.contact-info {
+    text-align: center;
+}
+
+.info-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.info-item {
+    flex-basis: 30%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: var(--white);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.info-item i {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+
+/* --- PORTAFOLIO (portafolio.html) --- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.portfolio-item:hover {
+    transform: scale(1.03);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(93, 84, 164, 0.85); /* Lila corporativo con transparencia */
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s;
+    padding: 20px;
+    text-align: center;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.portfolio-overlay h4 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+    font-family: var(--font-heading);
+}
+
+.clients-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.client-logo {
+    width: 130px;
+    height: 100px;
+    background-color: var(--white);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    color: #6c757d;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* --- PRODUCTOS (productos.html) --- */
+.product-category {
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.product-category h3 {
+    background-color: var(--white);
+    padding: 15px;
+    color: var(--primary-color);
+    border-left: 5px solid var(--tertiary-color); /* Magenta en el borde lateral */
+    margin-bottom: 25px;
+    font-size: 1.5em;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.product-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.product-list li {
+    background: var(--light-bg);
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+}
+
+.product-list li i {
+    font-size: 1.5em;
+    color: var(--secondary-color); /* AZUL CLARO en los iconos de lista */
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #222;
+    color: white;
+    padding: 40px 5% 10px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding-bottom: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content h4 {
+    border-bottom: 2px solid var(--tertiary-color); /* Magenta en las líneas del footer */
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    font-family: var(--font-heading);
+}
+
+.footer-links a, .footer-social a {
+    display: block;
+    color: #ccc;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+
+.footer-social a {
+    display: inline-block;
+    font-size: 1.5em;
+    margin-right: 15px;
+}
+
+.footer-links a:hover, .footer-social a:hover {
+    color: var(--secondary-color); /* AZUL CLARO al hacer hover */
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
+/* --- RESPONSIVIDAD (Ajustes para móviles) --- */
+@media (max-width: 992px) {
+    .hero h1 {
+        font-size: 2.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 10px 5%;
+    }
+
+    nav {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    nav a {
+        margin: 5px 10px;
+        display: inline-block;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .services-grid, .mv-container, .info-grid, .footer-content {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+
+    .service-item, .mv-item, .info-item {
+        max-width: 90%;
+        flex-basis: 100%;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    .footer-content {
+        text-align: center;
+    }
+
+    .footer-links, .footer-social {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-links a {
+        display: inline-block;
+        margin: 0 10px;
+    }
+}

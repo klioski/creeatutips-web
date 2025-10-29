@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios y Técnicas de Personalización - CreeatuTip's</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos específicos para la sección de Técnicas */
+        .technique-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .technique-card h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .materials-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .materials-list li {
+            background-color: var(--light-bg);
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html"><img src="img/logo.png" alt="Logo de CreeatuTip's" class="logo-img"></a>
+    </div>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="productos.html">Productos</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="contacto.html" class="cta-button">¡Cotiza Ahora!</a>
+    </nav>
+</header>
+
+<main class="internal-page">
+    <section class="page-title">
+        <h1>Descubre Todo Nuestro Poder de Personalización</h1>
+        <p>Dominamos la más amplia gama de técnicas para asegurar que tu artículo promocional sea perfecto.</p>
+    </section>
+
+    <section class="services-detail section-padding">
+        <section class="services-detail section-padding">
+
+            <div class="visualizer-integration">
+                <h2>Experimenta Nuestras Técnicas al Instante</h2>
+                <p>Usa nuestro visualizador para ver las diferencias de acabado entre **DTF, Grabado Láser y Bordado**.</p>
+
+                <div class="visualizer-container">
+                    <img id="productImage" src="img/base_playera.png" alt="Playera base para personalización" class="product-base-image">
+                    <img id="designOverlay" src="img/logo_dtf.png" alt="Diseño de prueba" class="design-overlay-image active-design">
+
+                    <div class="technique-selector">
+                        <button class="technique-btn active" data-technique="dtf">
+                            <i class="fas fa-magic"></i> DTF (Full Color)
+                        </button>
+                        <button class="technique-btn" data-technique="laser">
+                            <i class="fas fa-vector-square"></i> Grabado Láser
+                        </button>
+                        <button class="technique-btn" data-technique="bordado">
+                            <i class="fas fa-thread"></i> Bordado
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <h2>Nuestras Técnicas Clave</h2>
+        </section>
+
+
+        <div class="technique-card">
+            <h3><i class="fas fa-tshirt"></i> DTF, Serigrafía y Vinil Textil</h3>
+            <p>La solución perfecta para prendas de vestir y accesorios. Ofrecemos **DTF (Direct to Film)** para diseños complejos y full color con alta durabilidad, **Serigrafía** para grandes volúmenes y tintas especiales, y **Vinil** para acabados metálicos o reflectivos.</p>
+            <h4>Artículos y Materiales:</h4>
+            <ul class="materials-list">
+                <li>Playeras de Algodón</li>
+                <li>Sudaderas</li>
+                <li>Uniformes</li>
+                <li>Gorras y Bolsas de Tela</li>
+                <li>Accesorios de Vinil</li>
+            </ul>
+        </div>
+
+        <div class="technique-card bg-light">
+            <h3><i class="fas fa-vector-square"></i> Grabado Láser de Alta Precisión</h3>
+            <p>El grabado láser ofrece un acabado premium, indeleble y elegante. Ideal para artículos corporativos o regalos de alta gama. La precisión del láser nos permite reproducir logotipos y textos finos sobre diversas superficies.</p>
+            <h4>Artículos y Materiales:</h4>
+            <ul class="materials-list">
+                <li>Termos y Cilindros Metálicos</li>
+                <li>Plumas de Metal</li>
+                <li>Llaveros de Acero Inoxidable</li>
+                <li>Artículos de Madera y Piel</li>
+                <li>Algunos Plásticos de Alta Densidad</li>
+            </ul>
+        </div>
+
+        <div class="technique-card">
+            <h3><i class="fas fa-mug-hot"></i> Sublimación</h3>
+            <p>La técnica que garantiza la transferencia de imágenes en **full color** con resolución fotográfica. La tinta se incrusta en el material, asegurando que el diseño no se despegue ni se borre con el uso o los lavados.</p>
+            <h4>Artículos y Materiales:</h4>
+            <ul class="materials-list">
+                <li>Tazas Cerámicas (Blancas y de Color)</li>
+                <li>Termos y Cilindros (con recubrimiento)</li>
+                <li>Mouse Pads</li>
+                <li>Textiles de Poliéster</li>
+            </ul>
+        </div>
+
+        <div class="technique-card bg-light">
+            <h3><i class="fas fa-magic"></i> Bordados</h3>
+            <p>El bordado aporta textura y un acabado de lujo a tus prendas. Es la opción más duradera y resistente, perfecta para uniformes, gorras corporativas y prendas que buscan destacar la calidad.</p>
+            <h4>Artículos y Materiales:</h4>
+            <ul class="materials-list">
+                <li>Polos y Camisas</li>
+                <li>Gorras Estructuradas</li>
+                <li>Chamarras y Chalecos</li>
+                <li>Escudos y Parches</li>
+            </ul>
+        </div>
+
+        <div class="technique-card">
+            <h3><i class="fas fa-print"></i> Impresión en Gran Formato</h3>
+            <p>Cubrimos tus necesidades de publicidad exterior e interior. Impresión digital de alta resolución para eventos, ferias y puntos de venta.</p>
+            <h4>Artículos Principales:</h4>
+            <ul class="materials-list">
+                <li>Lonas y Vallas</li>
+                <li>Banners y Roll-Ups</li>
+                <li>Vinil Adhesivo y Microperforado</li>
+                <li>Stands y Exhibidores</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="about-summary" style="background-color: var(--secondary-color);">
+        <h2>¿No sabes qué técnica elegir? ¡Nosotros te Asesoramos!</h2>
+        <p>Contáctanos para que nuestro equipo técnico te guíe a la mejor solución para tu proyecto y presupuesto.</p>
+        <br>
+        <a href="contacto.html" class="btn btn-tertiary">Solicitar Asesoría Personalizada</a>
+    </section>
+
+</main>
+
+<footer>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
