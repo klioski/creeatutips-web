@@ -34,7 +34,8 @@
     <section class="contact-form section-padding">
         <h2>Formulario de Solicitud de Cotización</h2>
 
-        <form action="YOUR_ENDPOINT" method="POST" class="form-grid">
+        <!--<form action="YOUR_ENDPOINT" method="POST" class="form-grid">-->
+        <form id="contact-form" action="#" method="POST" class="form-grid">
 
             <div class="form-group">
                 <label for="nombre">Nombre Completo:</label>
@@ -100,6 +101,19 @@
     </section>
 
 </main>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script type="text/javascript">
+    // REEMPLAZA "TU_PUBLIC_KEY_AQUI" con tu User ID/Public Key real de EmailJS
+    (function() {
+        emailjs.init({
+            publicKey: "8r-oD-L2aiymcgxtn",
+        });
+    })();
+</script>
+
+<script src="js/contacto.js"></script>
 
 <footer>
 </footer>
