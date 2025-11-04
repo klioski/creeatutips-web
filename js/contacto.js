@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contact-form');
 
     // REEMPLAZA estos placeholders con tus IDs reales de EmailJS
-    const SERVICE_ID = "service_yqr16l6";
+    const SERVICE_ID = "service_du3r5mm";
     const TEMPLATE_ID = "template_cil9z3k";
     // NOTA: La Public Key ya se inicializó en el HTML.
 
