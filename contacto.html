@@ -9,6 +9,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- CSS Adicional para Ocultar Contenedores y Corregir Tamaño/Alineación de Elementos -->
+    <style>
+        .hidden-group {
+            display: none !important;
+        }
+
+        /* CORRECCIÓN DE ALINEACIÓN: Usamos Flexbox para asegurar que la etiqueta y el campo se apilen de forma consistente en cada grupo. */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            width: 100%; /* Asegura que cada columna use su espacio completo */
+        }
+
+        /* CORRECCIÓN DE TAMAÑO CRÍTICA: Asegura que inputs, selects y textarea ocupen el 100% del ancho de su contenedor (.form-group) */
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="number"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Fuerza a que los grupos que deben ser anchos ocupen 100% del grid (dos columnas) */
+        .form-grid .full-width {
+            grid-column: 1 / -1; /* Ocupa todas las columnas del grid */
+        }
+    </style>
+
 </head>
 <body>
 <header>
@@ -34,7 +68,6 @@
     <section class="contact-form section-padding">
         <h2>Formulario de Solicitud de Cotización</h2>
 
-        <!--<form action="YOUR_ENDPOINT" method="POST" class="form-grid">-->
         <form id="contact-form" action="#" method="POST" class="form-grid">
 
             <div class="form-group">
@@ -53,6 +86,25 @@
             </div>
 
             <div class="form-group">
+                <label for="piezas">Piezas:</label>
+                <input type="number" id="piezas" name="piezas" placeholder="Cantidad aproximada" required min="1">
+            </div>
+
+            <!-- CAMPO ARTÍCULO (El trigger principal) -->
+            <div class="form-group">
+                <label for="articulo">Articulos:</label>
+                <select id="articulo" name="articulo" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="playera">Playera</option>
+                    <option value="sudadera">Sudadera</option>
+                    <option value="termos">Termos</option>
+                    <option value="tazas">Tazas</option>
+                    <option value="mdf">MDF</option>
+                    <option value="otro">Otro / No estoy seguro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="servicio">Servicio/Técnica de Interés:</label>
                 <select id="servicio" name="servicio" required>
                     <option value="">Selecciona una opción</option>
@@ -65,8 +117,64 @@
                 </select>
             </div>
 
+            <!-- ANTES: CONTENEDOR PARA OPCIONES DINÁMICAS. AHORA ELIMINADO. -->
+
+            <!-- Opciones para Playera: AHORA HIJO DIRECTO del form-grid -->
+            <div id="opciones-playera" class="form-group hidden-group full-width">
+                <label for="tipo_playera">Tipo de Playera:</label>
+                <select id="tipo_playera" name="tipo_playera">
+                    <option value="">-- Selecciona el corte --</option>
+                    <option value="cuello_redondo_manga_corta">Cuello Redondo (Manga Corta)</option>
+                    <option value="cuello_v">Cuello V</option>
+                    <option value="manga_larga">Manga Larga</option>
+                    <option value="polo">Tipo Polo</option>
+                    <option value="dryMC">Dry Fit manga corta</option>
+                    <option value="dryML">Dry Fit manga larga</option>
+                </select>
+            </div>
+
+            <div id="opciones-tela" class="form-group hidden-group full-width">
+                <label for="tela_playera">Tipo de Tela:</label>
+                <select id="tela_playera" name="tela_playera">
+                    <option value="">-- Selecciona el tipo de tela --</option>
+                    <option value="algodon100">100% Algodon</option>
+                    <option value="algodonpoliester">50% Algodon 50% poliester</option>
+                    <option value="algodonpein">Algodon Peinado 100%</option>
+                    <option value="poliester">Poliester</option>
+                </select>
+            </div>
+
+            <div id="idcolor" class="form-group hidden-group full-width">
+                <label for="Color">Color:</label>
+                <input type="text" id="Color" name="color" placeholder="Ej: Negro" required>
+            </div>
+
+            <!-- Opciones para Sudadera: AHORA HIJO DIRECTO del form-grid -->
+            <div id="opciones-sudadera" class="form-group hidden-group full-width">
+                <label for="tipo_sudadera">Estilo de Sudadera:</label>
+                <select id="tipo_sudadera" name="tipo_sudadera">
+                    <option value="">-- Selecciona el estilo --</option>
+                    <option value="sin_gorro">Sencilla sin Gorro (Crewneck)</option>
+                    <option value="con_gorro">Con Gorro (Hoodie)</option>
+                    <option value="con_cierre">Con Gorro y Cierre (Zipper Hoodie)</option>
+                </select>
+            </div>
+
+            <!-- Opciones para Termos: AHORA HIJO DIRECTO del form-grid -->
+            <div id="opciones-termos" class="form-group hidden-group full-width">
+                <label for="tipo_termo">Material / Tipo de Termo:</label>
+                <select id="tipo_termo" name="tipo_termo">
+                    <option value="">-- Selecciona el tipo --</option>
+                    <option value="acero_sublimable">Acero Inoxidable Sublimable</option>
+                    <option value="plastico">Plástico Reutilizable</option>
+                    <option value="aluminio">Aluminio Deportivo</option>
+                </select>
+            </div>
+
+            <!-- FIN DE CAMPOS DINÁMICOS -->
+
             <div class="form-group full-width">
-                <label for="proyecto_detalle">Describe tu Proyecto (Artículo, Cantidad, Diseño):</label>
+                <label for="proyecto_detalle">Describe tu Proyecto (Artículos, Colores, Tallas, Ubicación del Diseño):</label>
                 <textarea id="proyecto_detalle" name="proyecto_detalle" rows="6" required></textarea>
             </div>
 
@@ -82,20 +190,19 @@
             <div class="info-item">
                 <i class="fas fa-phone"></i>
                 <h4>Llámanos</h4>
-                <p>+52 1 2345 6789</p>
-                <p>(Atención de Lunes a Viernes, 9am - 6pm)</p>
+                <p><a href="tel:+525593652128">+52 55 9365 2128</a></p>
+                <p>(Atención de Lunes a Sabado, 9am - 9pm)</p>
             </div>
             <div class="info-item">
                 <i class="fas fa-envelope"></i>
                 <h4>Escríbenos</h4>
-                <p>cotizaciones@creeatutips.com</p>
-                <p>ventas@creeatutips.com</p>
+                <p>creeatutips@gmail.com</p>
             </div>
             <div class="info-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <h4>Ubicación</h4>
-                <p>Dirección de Taller/Oficina (Opcional)</p>
-                <p>Ciudad, País</p>
+                <i class="fab fa-whatsapp" style="color: #25D366;"></i> <!-- Clase fab fa-whatsapp y color verde -->
+                <h4>Escríbenos por WhatsApp</h4>
+                <!-- Enlace directo a WhatsApp (usar número sin símbolos) -->
+                <p><a href="https://wa.me/525539652128" target="_blank">+52 55 3965 2128</a></p>
             </div>
         </div>
     </section>
@@ -105,7 +212,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script type="text/javascript">
-    // REEMPLAZA "TU_PUBLIC_KEY_AQUI" con tu User ID/Public Key real de EmailJS
+    // REEMPLAZA "8r-oD-L2aiymcgxtn" con tu User ID/Public Key real de EmailJS si no es el correcto
     (function() {
         emailjs.init({
             publicKey: "8r-oD-L2aiymcgxtn",
