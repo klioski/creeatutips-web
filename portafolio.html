@@ -3,210 +3,719 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio de Proyectos y Clientes - CreeatuTip's</title>
+    <title>Portafolio de Proyectos - CreeatuTip's</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/portafolio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
     <style>
-        /*!* Estilos específicos para la sección de Portafolio *!*/
-        /*.portfolio-grid {*/
-        /*    display: grid;*/
-        /*    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
-        /*    gap: 25px;*/
-        /*    margin-top: 40px;*/
-        /*}*/
+        /* ===== HERO ===== */
+        .portfolio-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #5D54A4 70%, #E91E63 100%);
+            color: white;
+            text-align: center;
+            padding: 90px 5% 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        .portfolio-hero::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 350px; height: 350px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+        }
+        .portfolio-hero h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
+        }
+        .portfolio-hero p {
+            font-size: 1.1em;
+            opacity: 0.88;
+            max-width: 580px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
 
-        /*.portfolio-item {*/
-        /*    position: relative;*/
-        /*    overflow: hidden;*/
-        /*    border-radius: 8px;*/
-        /*    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*/
-        /*    transition: transform 0.3s;*/
-        /*}*/
+        /* ===== FILTROS ===== */
+        .filter-section {
+            padding: 50px 5% 10px;
+            text-align: center;
+        }
+        .filter-section h2 {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-bottom: 8px;
+        }
+        .filter-section > p {
+            color: #777;
+            margin-bottom: 28px;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 10px 22px;
+            border-radius: 25px;
+            border: 2px solid #ddd;
+            background: white;
+            cursor: pointer;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.88em;
+            color: #666;
+            transition: all 0.25s;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .filter-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        .filter-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 14px rgba(93,84,164,0.35);
+        }
 
-        /*.portfolio-item:hover {*/
-        /*    transform: translateY(-5px);*/
-        /*}*/
+        /* ===== GRID ===== */
+        .portfolio-section {
+            padding: 40px 5% 70px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
 
-        /*.portfolio-item img {*/
-        /*    width: 100%;*/
-        /*    height: 300px; !* Altura fija para la consistencia visual *!*/
-        /*    object-fit: cover; !* Asegura que la imagen cubra el área sin distorsionarse *!*/
-        /*    display: block;*/
-        /*}*/
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
 
-        /*.portfolio-overlay {*/
-        /*    position: absolute;*/
-        /*    top: 0;*/
-        /*    left: 0;*/
-        /*    width: 100%;*/
-        /*    height: 100%;*/
-        /*    background-color: rgba(0, 123, 255, 0.8); !* Fondo azul semi-transparente *!*/
-        /*    color: white;*/
-        /*    display: flex;*/
-        /*    flex-direction: column;*/
-        /*    justify-content: center;*/
-        /*    align-items: center;*/
-        /*    opacity: 0;*/
-        /*    transition: opacity 0.3s;*/
-        /*    padding: 20px;*/
-        /*    text-align: center;*/
-        /*}*/
+        /* ===== ITEM ===== */
+        .portfolio-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            background: #f0f0f8;
+            aspect-ratio: 1 / 1;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        .portfolio-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.16);
+        }
+        .portfolio-item.hidden { display: none; }
 
-        /*.portfolio-item:hover .portfolio-overlay {*/
-        /*    opacity: 1;*/
-        /*}*/
+        .portfolio-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+        .portfolio-item:hover img { transform: scale(1.06); }
 
-        /*.portfolio-overlay h4 {*/
-        /*    margin: 0;*/
-        /*    font-size: 1.5em;*/
-        /*}*/
+        /* Placeholder cuando no hay imagen */
+        .portfolio-placeholder {
+            width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .portfolio-placeholder i { font-size: 3em; opacity: 0.4; }
+        .portfolio-placeholder span { font-size: 0.8em; color: #aaa; text-align: center; padding: 0 16px; }
 
-        /*!* Estilos para la sección de Clientes *!*/
-        /*.clients-section {*/
-        /*    text-align: center;*/
-        /*    padding: 60px 5%;*/
-        /*}*/
+        /* Overlay al hover */
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(30,20,60,0.9) 0%, rgba(30,20,60,0.4) 60%, transparent 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+        .portfolio-overlay h4 {
+            font-family: var(--font-heading);
+            font-size: 1em;
+            font-weight: 700;
+            margin: 0 0 4px;
+        }
+        .portfolio-overlay p {
+            font-size: 0.8em;
+            opacity: 0.8;
+            margin: 0;
+        }
+        .portfolio-overlay .item-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: 0.72em;
+            margin-bottom: 8px;
+            width: fit-content;
+        }
 
-        /*.clients-logos {*/
-        /*    display: flex;*/
-        /*    flex-wrap: wrap;*/
-        /*    justify-content: center;*/
-        /*    gap: 40px;*/
-        /*    margin-top: 30px;*/
-        /*}*/
+        /* Icono de zoom */
+        .zoom-icon {
+            position: absolute;
+            top: 12px; right: 12px;
+            background: rgba(255,255,255,0.9);
+            color: var(--primary-color);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .portfolio-item:hover .zoom-icon { opacity: 1; }
 
-        /*.client-logo {*/
-        /*    width: 120px;*/
-        /*    height: 100px;*/
-        /*    !* Placeholder para el logo real *!*/
-        /*    background-color: #e9ecef;*/
-        /*    border: 1px solid #ccc;*/
-        /*    border-radius: 5px;*/
-        /*    display: flex;*/
-        /*    justify-content: center;*/
-        /*    align-items: center;*/
-        /*    font-size: 0.8em;*/
-        /*    color: #6c757d;*/
-        /*}*/
+        /* Contador de resultados */
+        .results-count {
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            margin: 20px 0 0;
+        }
 
-        /*!* Asegurarse de que el color de fondo para la sección de clientes es diferente *!*/
-        /*.clients-section.bg-light {*/
-        /*    background-color: var(--light-bg);*/
-        /*}*/
+        /* ===== CÓMO AGREGAR FOTOS (instrucción colapsable) ===== */
+        .add-photos-hint {
+            background: #fffbf0;
+            border: 1px dashed #f0c040;
+            border-radius: 10px;
+            padding: 16px 22px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .add-photos-hint i { color: #d4a017; font-size: 1.2em; margin-top: 2px; flex-shrink: 0; }
+        .add-photos-hint p { margin: 0; font-size: 0.88em; color: #7a6010; line-height: 1.6; }
+        .add-photos-hint strong { color: #5a4000; }
+
+        /* ===== CLIENTES ===== */
+        .clients-section {
+            background: #f8f9fc;
+            padding: 60px 5%;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+        .clients-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        .clients-section > p {
+            color: #777;
+            margin-bottom: 36px;
+        }
+        .clients-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .client-logo {
+            width: 140px; height: 90px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s;
+        }
+        .client-logo:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+        .client-logo img {
+            max-width: 110px; max-height: 65px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.65;
+            transition: filter 0.3s, opacity 0.3s;
+        }
+        .client-logo img:hover { filter: grayscale(0%); opacity: 1; }
+
+        /* ===== CTA ===== */
+        .portfolio-cta {
+            text-align: center;
+            padding: 70px 5%;
+            background: linear-gradient(135deg, #5D54A4, #2d294f);
+            color: white;
+        }
+        .portfolio-cta h2 { font-size: 2em; margin-bottom: 12px; }
+        .portfolio-cta p { opacity: 0.85; margin-bottom: 28px; }
+        .portfolio-cta .btn { background: var(--secondary-color); color: white; border: 2px solid var(--secondary-color); }
+        .portfolio-cta .btn:hover { background: transparent; color: var(--secondary-color); }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 8, 30, 0.93);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            padding: 20px;
+        }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .lightbox-inner {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+        .lightbox-inner img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            display: block;
+        }
+        .lightbox-caption {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+            text-align: center;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -48px; right: 0;
+            background: rgba(255,255,255,0.12);
+            border: none;
+            color: white;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 576px) {
+            .portfolio-hero h1 { font-size: 1.9em; }
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo">
-        <a href="index.html"><img src="img/logo.png" alt="Logo de CreeatuTip's" class="logo-img"></a>
+        <a href="index.html"><img src="img/logo.png" alt="Logo de CreeatuTip's" class="logo-img" width="130" height="65"></a>
     </div>
-    <nav>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav">
         <a href="index.html">Inicio</a>
         <a href="nosotros.html">Nosotros</a>
         <a href="servicios.html">Servicios</a>
         <a href="productos.html">Productos</a>
-        <a href="portafolio.html">Portafolio</a>
+        <a href="portafolio.html" class="nav-active">Portafolio</a>
         <a href="contacto.html" class="cta-button">¡Cotiza Ahora!</a>
     </nav>
 </header>
 
-<main class="internal-page">
-    <section class="page-title">
-        <h1>Proyectos que Inspiran y Dejan Huella</h1>
-        <p>Una muestra de la calidad y versatilidad de nuestros trabajos en diferentes técnicas.</p>
+<main>
+
+    <!-- HERO -->
+    <section class="portfolio-hero">
+        <h1>Proyectos que Inspiran</h1>
+        <p>Cada pieza cuenta una historia. Aquí mostramos algunas de las que más nos enorgullecen.</p>
     </section>
 
-    <section class="portfolio-works section-padding">
-        <h2>Nuestros Mejores Trabajos Recientes</h2>
+    <!-- FILTROS + GALERÍA -->
+    <section class="filter-section">
+        <h2>Nuestros Trabajos</h2>
+        <p>Filtra por técnica para ver proyectos específicos.</p>
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-th"></i> Todos
+            </button>
+            <button class="filter-btn" data-filter="dtf">
+                <i class="fas fa-tshirt"></i> DTF
+            </button>
+            <button class="filter-btn" data-filter="laser">
+                <i class="fas fa-vector-square"></i> Grabado Láser
+            </button>
+            <button class="filter-btn" data-filter="sublimacion">
+                <i class="fas fa-mug-hot"></i> Sublimación
+            </button>
+            <button class="filter-btn" data-filter="bordado">
+                <i class="fas fa-scissors"></i> Bordado
+            </button>
+            <button class="filter-btn" data-filter="gran-formato">
+                <i class="fas fa-print"></i> Gran Formato
+            </button>
+            <button class="filter-btn" data-filter="vinil">
+                <i class="fas fa-cut"></i> Corte en Acrílico
+            </button>
+            <button class="filter-btn" data-filter="dtfuv">
+                <i class="fas fa-sun"></i> DTF UV
+            </button>
+        </div>
+    </section>
 
-        <div class="portfolio-grid">
+    <section class="portfolio-section">
 
-            <div class="portfolio-item">
+        <!-- INSTRUCCIÓN PARA AGREGAR FOTOS -->
+        <div class="add-photos-hint">
+            <i class="fas fa-lightbulb"></i>
+            <p>
+                <strong>¿Cómo agregar tus fotos?</strong> Guarda tus imágenes en la carpeta <strong>img/portfolio/</strong>
+                y en el HTML cambia <code>src="img/portfolio/TU-FOTO.jpg"</code> en cada tarjeta.
+                También puedes agregar nuevas tarjetas copiando el bloque de una existente.
+                Tamaño recomendado: <strong>800×800 px</strong> o mayor.
+            </p>
+        </div>
+
+        <div class="portfolio-grid" id="portfolio-grid">
+
+            <!--
+            ╔══════════════════════════════════════════════╗
+            ║  PLANTILLA PARA AGREGAR NUEVAS FOTOS         ║
+            ║                                              ║
+            ║  Copia este bloque y cambia:                 ║
+            ║   • data-category: dtf | laser | sublimacion ║
+            ║                    bordado | gran-formato   ║
+            ║                    vinil | dtfuv            ║
+            ║   • src: ruta a tu foto                      ║
+            ║   • alt, h4, p: nombre y descripción         ║
+            ╚══════════════════════════════════════════════╝
+            -->
+
+            <!-- ITEM 1 — DTF -->
+            <div class="portfolio-item" data-category="dtf">
+                <img src="img/portfolio/dtf-playera.jpg"
+                     alt="Playera Corporativa con impresión DTF"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-tshirt"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/dtf-playera.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
+                    <span class="item-tag">DTF</span>
                     <h4>Playera Corporativa</h4>
-                    <p>Técnica: DTF (Full Color)</p>
-                    <p>Artículo: Algodón Premium</p>
+                    <p>Algodón Peinado 100% · Full Color</p>
                 </div>
-                <div class="client-logo">FOTO PENDIENTE (DTF)</div>
             </div>
 
-            <div class="portfolio-item">
+            <!-- ITEM 2 — GRABADO LÁSER -->
+            <div class="portfolio-item" data-category="laser">
+                <img src="img/portfolio/laser-termo.jpg"
+                     alt="Termo con grabado láser"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-vector-square"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/laser-termo.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
+                    <span class="item-tag">Grabado Láser</span>
                     <h4>Termo para Evento</h4>
-                    <p>Técnica: Grabado Láser</p>
-                    <p>Artículo: Acero Inoxidable</p>
+                    <p>Acero Inoxidable · Acabado Premium</p>
                 </div>
-                <div class="client-logo">FOTO PENDIENTE (LÁSER)</div>
             </div>
 
-            <div class="portfolio-item">
+            <!-- ITEM 3 — SUBLIMACIÓN -->
+            <div class="portfolio-item" data-category="sublimacion">
+                <img src="img/portfolio/sublimacion-taza.jpg"
+                     alt="Taza con sublimación full color"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-mug-hot"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/sublimacion-taza.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
+                    <span class="item-tag">Sublimación</span>
                     <h4>Taza Promocional</h4>
-                    <p>Técnica: Sublimación</p>
-                    <p>Artículo: Taza Cerámica</p>
+                    <p>Taza Cerámica · Resolución Fotográfica</p>
                 </div>
-                <div class="client-logo">FOTO PENDIENTE (SUBLIMACIÓN)</div>
             </div>
 
-            <div class="portfolio-item">
+            <!-- ITEM 4 — BORDADO -->
+            <div class="portfolio-item" data-category="bordado">
+                <img src="img/portfolio/bordado-gorra.jpg"
+                     alt="Gorra estructurada con bordado corporativo"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-scissors"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/bordado-gorra.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
+                    <span class="item-tag">Bordado</span>
                     <h4>Gorra de Uniforme</h4>
-                    <p>Técnica: Bordado</p>
-                    <p>Artículo: Gorra Estructurada</p>
+                    <p>Gorra Estructurada · Acabado de Lujo</p>
                 </div>
-                <div class="client-logo">FOTO PENDIENTE (BORDADO)</div>
             </div>
 
-            <div class="portfolio-item">
+            <!-- ITEM 5 — GRAN FORMATO -->
+            <div class="portfolio-item" data-category="gran-formato">
+                <img src="img/portfolio/granformato-lona.jpg"
+                     alt="Lona de gran formato para evento"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-print"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/granformato-lona.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
+                    <span class="item-tag">Gran Formato</span>
                     <h4>Publicidad Exterior</h4>
-                    <p>Técnica: Gran Formato</p>
-                    <p>Artículo: Lona Vinílica</p>
+                    <p>Lona Vinílica · Alta Resolución</p>
                 </div>
-                <div class="client-logo">FOTO PENDIENTE (GRAN FORMATO)</div>
             </div>
 
-            <div class="portfolio-item">
+            <!-- ITEM 6 — GRABADO LÁSER -->
+            <div class="portfolio-item" data-category="laser">
+                <img src="img/portfolio/laser-llavero.jpg"
+                     alt="Llaveros metálicos con grabado láser"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-key"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/laser-llavero.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
+                    <span class="item-tag">Grabado Láser</span>
                     <h4>Llaveros Premium</h4>
-                    <p>Técnica: Grabado Láser</p>
-                    <p>Artículo: Metal</p>
+                    <p>Metal · Acero Inoxidable</p>
                 </div>
-                <div class="client-logo">FOTO PENDIENTE (LÁSER ACCESORIO)</div>
+            </div>
+
+            <!-- ITEM 7 — CORTE EN ACRÍLICO -->
+            <div class="portfolio-item" data-category="vinil">
+                <img src="img/portfolio/acrilico-letras.jpg"
+                     alt="Letras en acrílico para señalética"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-cut"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/acrilico-letras.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                <div class="portfolio-overlay">
+                    <span class="item-tag">Corte en Acrílico</span>
+                    <h4>Señalética Corporativa</h4>
+                    <p>Acrílico de Colores · Acabado Premium</p>
+                </div>
+            </div>
+
+            <!-- ITEM 8 — DTF UV -->
+            <div class="portfolio-item" data-category="dtfuv">
+                <img src="img/portfolio/dtfuv-termos.jpg"
+                     alt="Termos personalizados con DTF UV"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-sun"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/dtfuv-termos.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                <div class="portfolio-overlay">
+                    <span class="item-tag">DTF UV</span>
+                    <h4>Termos Personalizados</h4>
+                    <p>Acero Inoxidable · Full Color UV</p>
+                </div>
+            </div>
+
+            <!-- ════ AGREGA MÁS FOTOS AQUÍ copiando el bloque de arriba ════ -->
+
+        </div>
+
+        <p class="results-count" id="results-count"></p>
+    </section>
+
+    <!-- CLIENTES -->
+    <section class="clients-section">
+        <h2>Empresas que Confían en Nosotros</h2>
+        <p>Hemos colaborado con empresas y emprendedores de diversos sectores, llevando sus marcas al siguiente nivel.</p>
+        <div class="clients-logos">
+            <div class="client-logo">
+                <img src="img/clientes/cliente-1.png" alt="Cliente 1" loading="lazy"
+                     onerror="this.parentElement.innerHTML='<span style=\'color:#ccc;font-size:0.75em\'>Logo próximamente</span>'">
+            </div>
+            <div class="client-logo">
+                <img src="img/clientes/cliente-2.png" alt="Cliente 2" loading="lazy"
+                     onerror="this.parentElement.innerHTML='<span style=\'color:#ccc;font-size:0.75em\'>Logo próximamente</span>'">
+            </div>
+            <div class="client-logo">
+                <img src="img/clientes/cliente-3.png" alt="Cliente 3" loading="lazy"
+                     onerror="this.parentElement.innerHTML='<span style=\'color:#ccc;font-size:0.75em\'>Logo próximamente</span>'">
+            </div>
+            <div class="client-logo">
+                <img src="img/clientes/cliente-4.png" alt="Cliente 4" loading="lazy"
+                     onerror="this.parentElement.innerHTML='<span style=\'color:#ccc;font-size:0.75em\'>Logo próximamente</span>'">
+            </div>
+            <div class="client-logo">
+                <img src="img/clientes/cliente-5.png" alt="Cliente 5" loading="lazy"
+                     onerror="this.parentElement.innerHTML='<span style=\'color:#ccc;font-size:0.75em\'>Logo próximamente</span>'">
+            </div>
+            <div class="client-logo">
+                <img src="img/clientes/cliente-6.png" alt="Cliente 6" loading="lazy"
+                     onerror="this.parentElement.innerHTML='<span style=\'color:#ccc;font-size:0.75em\'>Logo próximamente</span>'">
             </div>
         </div>
-
     </section>
 
-    <section class="clients-section bg-light">
-        <h2>Nuestros Clientes Confían en la Calidad CreeatuTip's</h2>
-        <p>Hemos colaborado con empresas y emprendedores de diversos sectores, llevando sus marcas al siguiente nivel.</p>
-
-        <div class="clients-logos">
-            <div class="client-logo">Logo Cliente A</div>
-            <div class="client-logo">Logo Cliente B</div>
-            <div class="client-logo">Logo Cliente C</div>
-            <div class="client-logo">Logo Cliente D</div>
-            <div class="client-logo">Logo Cliente E</div>
-            <div class="client-logo">Logo Cliente F</div>
-        </div>
-    </section>
-
-    <section class="about-summary">
+    <!-- CTA -->
+    <section class="portfolio-cta">
         <h2>¿Quieres ser nuestro próximo caso de éxito?</h2>
-        <p>Déjanos asesorarte para crear un artículo promocional tan impactante como estos.</p>
-        <br>
-        <a href="contacto.html" class="btn btn-primary">¡Comencemos a Crear!</a>
+        <p>Déjanos asesorarte para crear algo tan impactante como lo que ves aquí.</p>
+        <a href="contacto.html" class="btn">¡Comencemos a Crear!</a>
     </section>
 
 </main>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+    <div class="lightbox-inner">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">
+            <i class="fas fa-times"></i>
+        </button>
+        <img src="" alt="" id="lightbox-img">
+        <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+</div>
+
 <footer>
+    <div class="footer-content">
+        <div class="footer-info">
+            <h4>CreeatuTip's</h4>
+            <p>Soluciones integrales en artículos promocionales.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <a href="servicios.html">Técnicas</a>
+            <a href="portafolio.html">Portafolio</a>
+            <a href="contacto.html">Contacto</a>
+        </div>
+        <div class="footer-social">
+            <h4>Síguenos</h4>
+            <a href="https://www.facebook.com/share/1Cbu7zKQBa/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/creeatutips?igsh=M3o4aG5yaXQ2NjRr" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="tel:+525593652128"><i class="fas fa-phone"></i></a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 CreeatuTip's. Todos los derechos reservados.</p>
+    </div>
 </footer>
+
+<script>
+    // ── Filtros ──
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.portfolio-item');
+    const resultsCount = document.getElementById('results-count');
+
+    function updateCount() {
+        const visible = document.querySelectorAll('.portfolio-item:not(.hidden)').length;
+        resultsCount.textContent = visible + ' proyecto' + (visible !== 1 ? 's' : '') + ' mostrado' + (visible !== 1 ? 's' : '');
+    }
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.dataset.filter;
+            items.forEach(item => {
+                if (filter === 'all' || item.dataset.category === filter) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+            updateCount();
+        });
+    });
+    updateCount();
+
+    // ── Lightbox ──
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+
+    function openLightbox(src, alt, caption) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt;
+        lightboxCaption.textContent = caption || '';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Solo abrir lightbox en ítems con imagen real (no placeholder)
+    items.forEach(item => {
+        item.addEventListener('click', () => {
+            const img = item.querySelector('img');
+            if (img && img.style.display !== 'none' && img.complete && img.naturalWidth > 0) {
+                const overlay = item.querySelector('.portfolio-overlay');
+                const title = overlay ? overlay.querySelector('h4').textContent : '';
+                const desc = overlay ? overlay.querySelector('p').textContent : '';
+                openLightbox(img.src, img.alt, title + ' · ' + desc);
+            }
+        });
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+<script src="js/main.js"></script>
 </body>
 </html>

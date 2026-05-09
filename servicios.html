@@ -8,41 +8,348 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <!--<link rel="stylesheet" href="css/servicios.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
     <style>
-        /* Estilos específicos para la sección de Técnicas */
-        .technique-card {
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        /* ===== HERO ===== */
+        .services-hero {
+            background: linear-gradient(135deg, #2d294f 0%, #5D54A4 60%, #00BFFF 100%);
+            color: white;
+            text-align: center;
+            padding: 90px 5% 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+        }
+        .services-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; left: -40px;
+            width: 250px; height: 250px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+        }
+        .services-hero h1 {
+            font-size: 2.8em; margin-bottom: 15px;
+            font-weight: 700; position: relative; z-index: 1;
+        }
+        .services-hero p {
+            font-size: 1.15em; opacity: 0.9;
+            max-width: 600px; margin: 0 auto;
+            position: relative; z-index: 1;
         }
 
-        .technique-card h3 {
+        /* ===== TABS ===== */
+        .techniques-tabs-section {
+            padding: 70px 5%;
+            background: #f8f9fc;
+            border-bottom: 1px solid #e8ecf1;
+        }
+        .techniques-tabs-section > h2 {
+            text-align: center;
             color: var(--primary-color);
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+            font-size: 1.9em; margin-bottom: 8px;
+        }
+        .techniques-tabs-section > p {
+            text-align: center; color: #777;
+            margin-bottom: 36px; font-size: 1em;
+        }
+        .tab-buttons {
+            display: flex; gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap; margin-bottom: 36px;
+        }
+        .tab-btn {
+            padding: 11px 20px;
+            border-radius: 30px;
+            border: 2px solid #ddd;
+            background: white; cursor: pointer;
+            font-family: var(--font-heading);
+            font-weight: 600; font-size: 0.85em;
+            transition: all 0.25s;
+            display: flex; align-items: center; gap: 8px;
+            color: #555;
+        }
+        .tab-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
+        .tab-btn.active { color: white; border-color: transparent; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.15); }
+        .tab-btn[data-tab="dtf"].active      { background: #00BFFF; }
+        .tab-btn[data-tab="laser"].active    { background: #5D54A4; }
+        .tab-btn[data-tab="sublim"].active   { background: #E91E63; }
+        .tab-btn[data-tab="bordado"].active  { background: #7c3aed; }
+        .tab-btn[data-tab="formato"].active  { background: #0ea5e9; }
+        .tab-btn[data-tab="vinil"].active    { background: #16a34a; }
+        .tab-btn[data-tab="dtfuv"].active   { background: #f59e0b; }
+
+        /* ===== PANELS ===== */
+        .tab-panels { max-width: 1000px; margin: 0 auto; }
+        .tab-panel {
+            display: none;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px; align-items: center;
+            background: white; border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.09);
+            animation: fadeUp 0.35s ease;
+        }
+        .tab-panel.active { display: grid; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        .materials-list {
-            list-style-type: none;
-            padding-left: 0;
-            margin-top: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
+        /* Video wrapper */
+        .tab-video-wrapper {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            background: #1a1a2e;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .tab-video-wrapper iframe {
+            width: 100%; height: 100%;
+            border: none;
+            display: block;
+        }
+        /* Placeholder cuando no hay video */
+        .video-placeholder {
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 14px; color: rgba(255,255,255,0.5);
+            padding: 20px; text-align: center;
+        }
+        .video-placeholder i { font-size: 3.5em; opacity: 0.5; }
+        .video-placeholder p { font-size: 0.8em; line-height: 1.5; margin: 0; }
+        .video-placeholder code {
+            background: rgba(255,255,255,0.1);
+            padding: 3px 8px; border-radius: 4px;
+            font-size: 0.85em; color: #7dd3fc;
         }
 
-        .materials-list li {
-            background-color: var(--light-bg);
-            padding: 5px 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            font-size: 0.9em;
+        /* Info del panel */
+        .tab-panel-info { display: flex; flex-direction: column; gap: 16px; }
+        .tab-panel-info .tab-label {
+            font-size: 0.75em; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            padding: 4px 12px; border-radius: 20px;
+            color: white; display: inline-block; width: fit-content;
+        }
+        .tab-panel-info h3 { font-size: 1.6em; color: #1a1a2e; margin: 0; line-height: 1.2; }
+        .tab-panel-info p { color: #555; font-size: 0.95em; line-height: 1.7; margin: 0; }
+        .tab-materials-title {
+            font-size: 0.8em; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.06em;
+            color: #999; margin-bottom: 8px;
+        }
+        .tab-chips {
+            list-style: none; padding: 0;
+            display: flex; flex-wrap: wrap; gap: 8px;
+        }
+        .tab-chips li {
+            background: #f0f0f8; border: 1px solid #e0e0ee;
+            border-radius: 20px; padding: 5px 14px;
+            font-size: 0.82em; color: #444;
+        }
+        .tab-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            margin-top: 4px; padding: 12px 24px;
+            border-radius: 8px; font-family: var(--font-heading);
+            font-weight: 700; font-size: 0.9em; color: white;
+            transition: opacity 0.2s, transform 0.2s; width: fit-content;
+        }
+        .tab-cta:hover { opacity: 0.85; transform: translateY(-2px); color: white; }
+
+        /* Colores por técnica */
+        .tab-panel[data-panel="dtf"]     .tab-label, .tab-panel[data-panel="dtf"]     .tab-cta { background: #00BFFF; }
+        .tab-panel[data-panel="dtf"]     .video-placeholder { background: linear-gradient(135deg, #0090c4, #00BFFF); }
+        .tab-panel[data-panel="laser"]   .tab-label, .tab-panel[data-panel="laser"]   .tab-cta { background: #5D54A4; }
+        .tab-panel[data-panel="laser"]   .video-placeholder { background: linear-gradient(135deg, #4a4384, #5D54A4); }
+        .tab-panel[data-panel="sublim"]  .tab-label, .tab-panel[data-panel="sublim"]  .tab-cta { background: #E91E63; }
+        .tab-panel[data-panel="sublim"]  .video-placeholder { background: linear-gradient(135deg, #c0154f, #E91E63); }
+        .tab-panel[data-panel="bordado"] .tab-label, .tab-panel[data-panel="bordado"] .tab-cta { background: #7c3aed; }
+        .tab-panel[data-panel="bordado"] .video-placeholder { background: linear-gradient(135deg, #6028c4, #7c3aed); }
+        .tab-panel[data-panel="formato"] .tab-label, .tab-panel[data-panel="formato"] .tab-cta { background: #0ea5e9; }
+        .tab-panel[data-panel="formato"] .video-placeholder { background: linear-gradient(135deg, #0280b8, #0ea5e9); }
+        .tab-panel[data-panel="vinil"]   .tab-label, .tab-panel[data-panel="vinil"]   .tab-cta { background: #16a34a; }
+        .tab-panel[data-panel="vinil"]   .video-placeholder { background: linear-gradient(135deg, #0f6b30, #16a34a); }
+        .tab-panel[data-panel="dtfuv"]   .tab-label, .tab-panel[data-panel="dtfuv"]   .tab-cta { background: #f59e0b; }
+        .tab-panel[data-panel="dtfuv"]   .video-placeholder { background: linear-gradient(135deg, #b45309, #f59e0b); }
+
+        /* ===== FLIP CARDS ===== */
+        .process-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .process-header { text-align: center; margin-bottom: 60px; }
+        .process-header h2 { font-size: 2em; color: var(--primary-color); margin-bottom: 10px; }
+        .process-header p { color: #666; font-size: 1.05em; }
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+        }
+        .card-wrap { perspective: 1000px; height: 300px; }
+        .flip-card {
+            width: 100%; height: 100%;
+            position: relative; transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .card-wrap:hover .flip-card, .flip-card.flipped { transform: rotateY(180deg); }
+        .card-front, .card-back {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden; -webkit-backface-visibility: hidden;
+            border-radius: 12px; overflow: hidden;
+        }
+        .card-front {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: flex; border: 1px solid #eee;
+        }
+        .card-accent { width: 7px; flex-shrink: 0; border-radius: 12px 0 0 12px; }
+        .card-body {
+            padding: 24px 20px;
+            display: flex; flex-direction: column;
+            justify-content: space-between; flex: 1; position: relative;
+        }
+        .card-number {
+            font-size: 3.5em; font-weight: 700;
+            font-family: var(--font-heading); line-height: 1;
+            opacity: 0.12; position: absolute;
+            right: 16px; top: 12px; color: inherit;
+        }
+        .card-icon-title { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .card-icon {
+            width: 46px; height: 46px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3em; color: white; flex-shrink: 0;
+        }
+        .card-icon-title h3 {
+            font-size: 1em; font-weight: 700;
+            color: #1a1a2e; margin: 0;
+            font-family: var(--font-heading);
+        }
+        .card-desc { font-size: 0.85em; color: #555; line-height: 1.6; flex: 1; }
+        .card-hint {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 0.74em; color: #bbb;
+            margin-top: 12px; font-style: italic;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+            display: flex; flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 20px; color: white;
+        }
+        .card-back-title {
+            font-weight: 700; font-family: var(--font-heading);
+            margin-bottom: 12px; opacity: 0.85;
+            letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.75em;
+        }
+        .card-materials {
+            list-style: none; padding: 0; margin: 0;
+            display: flex; flex-wrap: wrap; gap: 7px;
+            flex: 1; align-content: flex-start;
+        }
+        .card-materials li {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px; padding: 4px 12px; font-size: 0.78em;
+        }
+        .card-back-cta {
+            display: inline-block; margin-top: 16px;
+            background: white; border-radius: 6px;
+            padding: 9px 18px; font-weight: 700;
+            font-family: var(--font-heading); font-size: 0.82em;
+            text-align: center; transition: opacity 0.2s;
+        }
+        .card-back-cta:hover { opacity: 0.85; }
+
+        /* Colores flip cards */
+        .card-wrap:nth-child(1) .card-accent,.card-wrap:nth-child(1) .card-number { color: #00BFFF; }
+        .card-wrap:nth-child(1) .card-accent { background: #00BFFF; }
+        .card-wrap:nth-child(1) .card-icon   { background: #00BFFF; }
+        .card-wrap:nth-child(1) .card-back   { background: linear-gradient(135deg, #0090c4, #00BFFF); }
+        .card-wrap:nth-child(1) .card-back-cta { color: #0090c4; }
+
+        .card-wrap:nth-child(2) .card-accent { background: #5D54A4; }
+        .card-wrap:nth-child(2) .card-number { color: #5D54A4; }
+        .card-wrap:nth-child(2) .card-icon   { background: #5D54A4; }
+        .card-wrap:nth-child(2) .card-back   { background: linear-gradient(135deg, #4a4384, #5D54A4); }
+        .card-wrap:nth-child(2) .card-back-cta { color: #5D54A4; }
+
+        .card-wrap:nth-child(3) .card-accent { background: #E91E63; }
+        .card-wrap:nth-child(3) .card-number { color: #E91E63; }
+        .card-wrap:nth-child(3) .card-icon   { background: #E91E63; }
+        .card-wrap:nth-child(3) .card-back   { background: linear-gradient(135deg, #c0154f, #E91E63); }
+        .card-wrap:nth-child(3) .card-back-cta { color: #c0154f; }
+
+        .card-wrap:nth-child(4) .card-accent { background: #7c3aed; }
+        .card-wrap:nth-child(4) .card-number { color: #7c3aed; }
+        .card-wrap:nth-child(4) .card-icon   { background: #7c3aed; }
+        .card-wrap:nth-child(4) .card-back   { background: linear-gradient(135deg, #6028c4, #7c3aed); }
+        .card-wrap:nth-child(4) .card-back-cta { color: #6028c4; }
+
+        .card-wrap:nth-child(5) .card-accent { background: #0ea5e9; }
+        .card-wrap:nth-child(5) .card-number { color: #0ea5e9; }
+        .card-wrap:nth-child(5) .card-icon   { background: #0ea5e9; }
+        .card-wrap:nth-child(5) .card-back   { background: linear-gradient(135deg, #0280b8, #0ea5e9); }
+        .card-wrap:nth-child(5) .card-back-cta { color: #0280b8; }
+
+        .card-wrap:nth-child(6) .card-accent { background: #16a34a; }
+        .card-wrap:nth-child(6) .card-number { color: #16a34a; }
+        .card-wrap:nth-child(6) .card-icon   { background: #16a34a; }
+        .card-wrap:nth-child(6) .card-back   { background: linear-gradient(135deg, #0f6b30, #16a34a); }
+        .card-wrap:nth-child(6) .card-back-cta { color: #0f6b30; }
+
+        .card-wrap:nth-child(7) .card-accent { background: #f59e0b; }
+        .card-wrap:nth-child(7) .card-number { color: #f59e0b; }
+        .card-wrap:nth-child(7) .card-icon   { background: #f59e0b; }
+        .card-wrap:nth-child(7) .card-back   { background: linear-gradient(135deg, #b45309, #f59e0b); }
+        .card-wrap:nth-child(7) .card-back-cta { color: #b45309; }
+
+        /* ===== CTA BOTTOM ===== */
+        .services-cta {
+            text-align: center; padding: 70px 5%;
+            background: linear-gradient(135deg, #5D54A4, #2d294f);
+            color: white;
+        }
+        .services-cta h2 { font-size: 2em; margin-bottom: 12px; }
+        .services-cta p { opacity: 0.85; margin-bottom: 30px; font-size: 1.05em; }
+        .services-cta .btn { background: var(--secondary-color); color: white; border: 2px solid var(--secondary-color); }
+        .services-cta .btn:hover { background: transparent; color: var(--secondary-color); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .techniques-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .services-hero h1 { font-size: 1.9em; }
+            .tab-panel { grid-template-columns: 1fr; padding: 24px; }
+            .techniques-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .card-wrap { height: auto; perspective: none; }
+            .flip-card { transform: none !important; height: auto; }
+            .card-front, .card-back {
+                position: static; backface-visibility: visible;
+                -webkit-backface-visibility: visible;
+                transform: none !important; height: auto;
+            }
+            .card-back { border-radius: 0 0 12px 12px; border-top: none; }
+            .card-front { border-radius: 12px 12px 0 0; }
+            .card-hint { display: none; }
+        }
+        @media (max-width: 480px) {
+            .techniques-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -50,126 +357,583 @@
 
 <header>
     <div class="logo">
-        <a href="index.html"><img src="img/logo.png" alt="Logo de CreeatuTip's" class="logo-img"></a>
+        <a href="index.html"><img src="img/logo.png" alt="Logo de CreeatuTip's" class="logo-img" width="130" height="65"></a>
     </div>
-    <nav>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav">
         <a href="index.html">Inicio</a>
         <a href="nosotros.html">Nosotros</a>
-        <a href="servicios.html">Servicios</a>
+        <a href="servicios.html" class="nav-active">Servicios</a>
         <a href="productos.html">Productos</a>
         <a href="portafolio.html">Portafolio</a>
         <a href="contacto.html" class="cta-button">¡Cotiza Ahora!</a>
     </nav>
 </header>
 
-<main class="internal-page">
-    <section class="page-title">
-        <h1>Descubre Todo Nuestro Poder de Personalización</h1>
-        <p>Dominamos la más amplia gama de técnicas para asegurar que tu artículo promocional sea perfecto.</p>
+<main>
+
+    <!-- HERO -->
+    <section class="services-hero">
+        <h1>Nuestro Poder de Personalización</h1>
+        <p>7 técnicas dominadas. Un solo objetivo: que tu marca impacte.</p>
     </section>
 
-    <section class="services-detail section-padding">
-        <section class="services-detail section-padding">
+    <!-- TABS CON VIDEO -->
+    <section class="techniques-tabs-section">
+        <h2>Mira Cómo lo Hacemos</h2>
+        <p>Selecciona una técnica y ve el proceso en video.</p>
 
-            <div class="visualizer-integration">
-                <h2>Experimenta Nuestras Técnicas al Instante</h2>
-                <p>Usa nuestro visualizador para ver las diferencias de acabado entre **DTF, Grabado Láser y Bordado**.</p>
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="dtf">
+                <i class="fas fa-tshirt"></i> DTF
+            </button>
+            <button class="tab-btn" data-tab="laser">
+                <i class="fas fa-vector-square"></i> Grabado Láser
+            </button>
+            <button class="tab-btn" data-tab="sublim">
+                <i class="fas fa-mug-hot"></i> Sublimación
+            </button>
+            <button class="tab-btn" data-tab="bordado">
+                <i class="fas fa-scissors"></i> Bordado
+            </button>
+            <button class="tab-btn" data-tab="formato">
+                <i class="fas fa-print"></i> Gran Formato
+            </button>
+            <button class="tab-btn" data-tab="vinil">
+                <i class="fas fa-cut"></i> Corte en Acrílico
+            </button>
+            <button class="tab-btn" data-tab="dtfuv">
+                <i class="fas fa-sun"></i> DTF UV
+            </button>
+        </div>
 
-                <div class="visualizer-container">
-                    <img id="productImage" src="img/base_playera.png" alt="Playera base para personalización" class="product-base-image">
-                    <img id="designOverlay" src="img/logo_dtf.png" alt="Diseño de prueba" class="design-overlay-image active-design">
+        <div class="tab-panels">
 
-                    <div class="technique-selector">
-                        <button class="technique-btn active" data-technique="dtf">
-                            <i class="fas fa-magic"></i> DTF (Full Color)
-                        </button>
-                        <button class="technique-btn" data-technique="laser">
-                            <i class="fas fa-vector-square"></i> Grabado Láser
-                        </button>
-                        <button class="technique-btn" data-technique="bordado">
-                            <i class="fas fa-thread"></i> Bordado
-                        </button>
+            <!-- ══════════════════════════════════════════════════════
+                 CÓMO PONER TU VIDEO DE YOUTUBE:
+                 1. Abre tu video en YouTube
+                 2. Copia la URL: https://www.youtube.com/watch?v=XXXXXXXX
+                 3. El ID es la parte después de "v=" → XXXXXXXX
+                 4. Reemplaza  TU_VIDEO_DTF_ID  (y los demás) con ese ID
+            ══════════════════════════════════════════════════════ -->
+
+            <!-- DTF -->
+            <div class="tab-panel active" data-panel="dtf">
+                <div class="tab-video-wrapper">
+                    <!-- Reemplaza TU_VIDEO_DTF_ID con el ID de tu video de YouTube -->
+                    <!-- Ejemplo: si tu URL es youtube.com/watch?v=abc123, pon abc123 -->
+                    <div class="video-placeholder">
+                        <i class="fab fa-youtube"></i>
+                        <p>Pega aquí tu video de DTF.<br>
+                        Reemplaza <code>TU_VIDEO_DTF_ID</code> con el ID de tu video de YouTube en el código HTML.</p>
+                    </div>
+                    <!-- DESCOMENTA Y USA ESTO cuando tengas el ID:
+                    <iframe
+                        src="https://www.youtube.com/embed/TU_VIDEO_DTF_ID?rel=0&modestbranding=1"
+                        title="Proceso DTF - CreeatuTips"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    -->
+                </div>
+                <div class="tab-panel-info">
+                    <span class="tab-label">Técnica 01</span>
+                    <h3>DTF, Serigrafía y Vinil Textil</h3>
+                    <p>Impresión directa en tela con colores vibrantes y alta durabilidad. Perfecta para prendas y uniformes con diseños full color sin límite de colores.</p>
+                    <div>
+                        <p class="tab-materials-title">Artículos frecuentes</p>
+                        <ul class="tab-chips">
+                            <li>Playeras de Algodón</li>
+                            <li>Sudaderas</li>
+                            <li>Uniformes</li>
+                            <li>Gorras</li>
+                            <li>Bolsas de Tela</li>
+                        </ul>
+                    </div>
+                    <a href="contacto.html" class="tab-cta">Cotizar DTF <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- LÁSER -->
+            <div class="tab-panel" data-panel="laser">
+                <div class="tab-video-wrapper">
+                    <div class="video-placeholder">
+                        <i class="fab fa-youtube"></i>
+                        <p>Pega aquí tu video de Grabado Láser.<br>
+                        Reemplaza <code>TU_VIDEO_LASER_ID</code> con el ID de tu video.</p>
+                    </div>
+                    <!-- DESCOMENTA Y USA ESTO cuando tengas el ID:
+                    <iframe
+                        src="https://www.youtube.com/embed/TU_VIDEO_LASER_ID?rel=0&modestbranding=1"
+                        title="Proceso Grabado Láser - CreeatuTips"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    -->
+                </div>
+                <div class="tab-panel-info">
+                    <span class="tab-label">Técnica 02</span>
+                    <h3>Grabado Láser de Alta Precisión</h3>
+                    <p>Acabado premium, indeleble y elegante. Ideal para artículos corporativos y regalos de alta gama. Logotipos y textos finos sobre metal, madera y más.</p>
+                    <div>
+                        <p class="tab-materials-title">Artículos frecuentes</p>
+                        <ul class="tab-chips">
+                            <li>Termos Metálicos</li>
+                            <li>Plumas de Metal</li>
+                            <li>Llaveros</li>
+                            <li>Artículos de Madera</li>
+                            <li>Artículos de Piel</li>
+                        </ul>
+                    </div>
+                    <a href="contacto.html" class="tab-cta">Cotizar Grabado Láser <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- SUBLIMACIÓN -->
+            <div class="tab-panel" data-panel="sublim">
+                <div class="tab-video-wrapper">
+                    <div class="video-placeholder">
+                        <i class="fab fa-youtube"></i>
+                        <p>Pega aquí tu video de Sublimación.<br>
+                        Reemplaza <code>TU_VIDEO_SUBLIM_ID</code> con el ID de tu video.</p>
+                    </div>
+                    <!-- DESCOMENTA Y USA ESTO cuando tengas el ID:
+                    <iframe
+                        src="https://www.youtube.com/embed/TU_VIDEO_SUBLIM_ID?rel=0&modestbranding=1"
+                        title="Proceso Sublimación - CreeatuTips"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    -->
+                </div>
+                <div class="tab-panel-info">
+                    <span class="tab-label">Técnica 03</span>
+                    <h3>Sublimación Full Color</h3>
+                    <p>Resolución fotográfica que no se desprende ni borra con el uso. La tinta se incrusta en el material para un acabado permanente y resistente al sol.</p>
+                    <div>
+                        <p class="tab-materials-title">Artículos frecuentes</p>
+                        <ul class="tab-chips">
+                            <li>Tazas Cerámicas</li>
+                            <li>Termos Sublimables</li>
+                            <li>Mouse Pads</li>
+                            <li>Textiles de Poliéster</li>
+                        </ul>
+                    </div>
+                    <a href="contacto.html" class="tab-cta">Cotizar Sublimación <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- BORDADO -->
+            <div class="tab-panel" data-panel="bordado">
+                <div class="tab-video-wrapper">
+                    <div class="video-placeholder">
+                        <i class="fab fa-youtube"></i>
+                        <p>Pega aquí tu video de Bordado.<br>
+                        Reemplaza <code>TU_VIDEO_BORDADO_ID</code> con el ID de tu video.</p>
+                    </div>
+                    <!-- DESCOMENTA Y USA ESTO cuando tengas el ID:
+                    <iframe
+                        src="https://www.youtube.com/embed/TU_VIDEO_BORDADO_ID?rel=0&modestbranding=1"
+                        title="Proceso Bordado - CreeatuTips"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    -->
+                </div>
+                <div class="tab-panel-info">
+                    <span class="tab-label">Técnica 04</span>
+                    <h3>Bordados</h3>
+                    <p>Textura real y acabado de lujo que no destiñe ni se daña. La opción más duradera para uniformes corporativos y prendas de alta calidad.</p>
+                    <div>
+                        <p class="tab-materials-title">Artículos frecuentes</p>
+                        <ul class="tab-chips">
+                            <li>Polos y Camisas</li>
+                            <li>Gorras Estructuradas</li>
+                            <li>Chamarras</li>
+                            <li>Escudos y Parches</li>
+                        </ul>
+                    </div>
+                    <a href="contacto.html" class="tab-cta">Cotizar Bordado <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- GRAN FORMATO -->
+            <div class="tab-panel" data-panel="formato">
+                <div class="tab-video-wrapper">
+                    <div class="video-placeholder">
+                        <i class="fab fa-youtube"></i>
+                        <p>Pega aquí tu video de Gran Formato.<br>
+                        Reemplaza <code>TU_VIDEO_FORMATO_ID</code> con el ID de tu video.</p>
+                    </div>
+                    <!-- DESCOMENTA Y USA ESTO cuando tengas el ID:
+                    <iframe
+                        src="https://www.youtube.com/embed/TU_VIDEO_FORMATO_ID?rel=0&modestbranding=1"
+                        title="Proceso Gran Formato - CreeatuTips"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    -->
+                </div>
+                <div class="tab-panel-info">
+                    <span class="tab-label">Técnica 05</span>
+                    <h3>Impresión en Gran Formato</h3>
+                    <p>Alta resolución para publicidad exterior e interior. Ideal para eventos, ferias y puntos de venta que necesitan impacto visual a gran escala.</p>
+                    <div>
+                        <p class="tab-materials-title">Artículos frecuentes</p>
+                        <ul class="tab-chips">
+                            <li>Lonas y Vallas</li>
+                            <li>Banners y Roll-Ups</li>
+                            <li>Vinil Adhesivo</li>
+                            <li>Stands y Exhibidores</li>
+                        </ul>
+                    </div>
+                    <a href="contacto.html" class="tab-cta">Cotizar Gran Formato <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- CORTE EN ACRÍLICO -->
+            <div class="tab-panel" data-panel="vinil">
+                <div class="tab-video-wrapper">
+                    <div class="video-placeholder">
+                        <i class="fab fa-youtube"></i>
+                        <p>Pega aquí tu video de Corte en Acrílico.<br>
+                        Reemplaza <code>TU_VIDEO_ACRILICO_ID</code> con el ID de tu video.</p>
+                    </div>
+                    <!-- DESCOMENTA Y USA ESTO cuando tengas el ID:
+                    <iframe
+                        src="https://www.youtube.com/embed/TU_VIDEO_ACRILICO_ID?rel=0&modestbranding=1"
+                        title="Proceso Corte en Acrílico - CreeatuTips"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    -->
+                </div>
+                <div class="tab-panel-info">
+                    <span class="tab-label">Técnica 06</span>
+                    <h3>Corte en Acrílico</h3>
+                    <p>Figuras, letras y logotipos cortados en acrílico con acabado translúcido o de colores sólidos. Ideal para señalética premium, rótulos, trofeos y decoración de interiores con presencia visual de alto impacto.</p>
+                    <div>
+                        <p class="tab-materials-title">Artículos frecuentes</p>
+                        <ul class="tab-chips">
+                            <li>Letras y Logos en Acrílico</li>
+                            <li>Señalética Interior</li>
+                            <li>Trofeos y Reconocimientos</li>
+                            <li>Rótulos Corporativos</li>
+                            <li>Decoración de Espacios</li>
+                            <li>Llaveros Acrílicos</li>
+                        </ul>
+                    </div>
+                    <a href="contacto.html" class="tab-cta">Cotizar Corte en Acrílico <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- DTF UV -->
+            <div class="tab-panel" data-panel="dtfuv">
+                <div class="tab-video-wrapper">
+                    <div class="video-placeholder">
+                        <i class="fab fa-youtube"></i>
+                        <p>Pega aquí tu video de DTF UV.<br>
+                        Reemplaza <code>TU_VIDEO_DTFUV_ID</code> con el ID de tu video.</p>
+                    </div>
+                    <!-- DESCOMENTA Y USA ESTO cuando tengas el ID:
+                    <iframe
+                        src="https://www.youtube.com/embed/TU_VIDEO_DTFUV_ID?rel=0&modestbranding=1"
+                        title="Proceso DTF UV - CreeatuTips"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    -->
+                </div>
+                <div class="tab-panel-info">
+                    <span class="tab-label">Técnica 07</span>
+                    <h3>DTF UV — Impresión en Superficies Rígidas</h3>
+                    <p>Impresión full color directa sobre superficies rígidas con tinta curada por luz UV. Colores vivos, acabado duradero y resistente al agua. Sin necesidad de calor — funciona sobre metal, vidrio, madera, acrílico y más.</p>
+                    <div>
+                        <p class="tab-materials-title">Artículos frecuentes</p>
+                        <ul class="tab-chips">
+                            <li>Termos y Vasos</li>
+                            <li>Plumas y Bolígrafos</li>
+                            <li>Libretas y Agendas</li>
+                            <li>Llaveros Metálicos</li>
+                            <li>Artículos de Madera</li>
+                            <li>Chapas y Distintivos</li>
+                        </ul>
+                    </div>
+                    <a href="contacto.html" class="tab-cta">Cotizar DTF UV <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FLIP CARDS -->
+    <section class="process-section">
+        <div class="process-header">
+            <h2>Las 7 Técnicas que Dominamos</h2>
+            <p>Pasa el cursor sobre cada tarjeta para ver en qué artículos aplicamos cada técnica.</p>
+        </div>
+
+        <div class="techniques-grid">
+
+            <div class="card-wrap">
+                <div class="flip-card">
+                    <div class="card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <span class="card-number">01</span>
+                            <div>
+                                <div class="card-icon-title">
+                                    <div class="card-icon"><i class="fas fa-tshirt"></i></div>
+                                    <h3>DTF, Serigrafía y Vinil Textil</h3>
+                                </div>
+                                <p class="card-desc">Full color con alta durabilidad en prendas y uniformes. Sin límite de colores ni detalles.</p>
+                            </div>
+                            <div class="card-hint"><i class="fas fa-sync-alt"></i> Voltear para ver artículos</div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <p class="card-back-title">Artículos que personalizamos</p>
+                        <ul class="card-materials">
+                            <li>Playeras de Algodón</li>
+                            <li>Sudaderas</li>
+                            <li>Uniformes</li>
+                            <li>Gorras y Bolsas</li>
+                        </ul>
+                        <a href="contacto.html" class="card-back-cta">Cotizar DTF</a>
                     </div>
                 </div>
             </div>
-            <h2>Nuestras Técnicas Clave</h2>
-        </section>
 
+            <div class="card-wrap">
+                <div class="flip-card">
+                    <div class="card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <span class="card-number">02</span>
+                            <div>
+                                <div class="card-icon-title">
+                                    <div class="card-icon"><i class="fas fa-vector-square"></i></div>
+                                    <h3>Grabado Láser de Alta Precisión</h3>
+                                </div>
+                                <p class="card-desc">Acabado premium e indeleble sobre metal, madera y piel. Ideal para regalos corporativos.</p>
+                            </div>
+                            <div class="card-hint"><i class="fas fa-sync-alt"></i> Voltear para ver artículos</div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <p class="card-back-title">Artículos que personalizamos</p>
+                        <ul class="card-materials">
+                            <li>Termos Metálicos</li>
+                            <li>Plumas de Metal</li>
+                            <li>Llaveros</li>
+                            <li>Madera y Piel</li>
+                        </ul>
+                        <a href="contacto.html" class="card-back-cta">Cotizar Grabado Láser</a>
+                    </div>
+                </div>
+            </div>
 
-        <div class="technique-card">
-            <h3><i class="fas fa-tshirt"></i> DTF, Serigrafía y Vinil Textil</h3>
-            <p>La solución perfecta para prendas de vestir y accesorios. Ofrecemos **DTF (Direct to Film)** para diseños complejos y full color con alta durabilidad, **Serigrafía** para grandes volúmenes y tintas especiales, y **Vinil** para acabados metálicos o reflectivos.</p>
-            <h4>Artículos y Materiales:</h4>
-            <ul class="materials-list">
-                <li>Playeras de Algodón</li>
-                <li>Sudaderas</li>
-                <li>Uniformes</li>
-                <li>Gorras y Bolsas de Tela</li>
-                <li>Accesorios de Vinil</li>
-            </ul>
-        </div>
+            <div class="card-wrap">
+                <div class="flip-card">
+                    <div class="card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <span class="card-number">03</span>
+                            <div>
+                                <div class="card-icon-title">
+                                    <div class="card-icon"><i class="fas fa-mug-hot"></i></div>
+                                    <h3>Sublimación</h3>
+                                </div>
+                                <p class="card-desc">Full color fotográfico que se incrusta en el material. Permanente, resistente al lavado y al sol.</p>
+                            </div>
+                            <div class="card-hint"><i class="fas fa-sync-alt"></i> Voltear para ver artículos</div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <p class="card-back-title">Artículos que personalizamos</p>
+                        <ul class="card-materials">
+                            <li>Tazas Cerámicas</li>
+                            <li>Termos Sublimables</li>
+                            <li>Mouse Pads</li>
+                            <li>Textiles Poliéster</li>
+                        </ul>
+                        <a href="contacto.html" class="card-back-cta">Cotizar Sublimación</a>
+                    </div>
+                </div>
+            </div>
 
-        <div class="technique-card bg-light">
-            <h3><i class="fas fa-vector-square"></i> Grabado Láser de Alta Precisión</h3>
-            <p>El grabado láser ofrece un acabado premium, indeleble y elegante. Ideal para artículos corporativos o regalos de alta gama. La precisión del láser nos permite reproducir logotipos y textos finos sobre diversas superficies.</p>
-            <h4>Artículos y Materiales:</h4>
-            <ul class="materials-list">
-                <li>Termos y Cilindros Metálicos</li>
-                <li>Plumas de Metal</li>
-                <li>Llaveros de Acero Inoxidable</li>
-                <li>Artículos de Madera y Piel</li>
-                <li>Algunos Plásticos de Alta Densidad</li>
-            </ul>
-        </div>
+            <div class="card-wrap">
+                <div class="flip-card">
+                    <div class="card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <span class="card-number">04</span>
+                            <div>
+                                <div class="card-icon-title">
+                                    <div class="card-icon"><i class="fas fa-scissors"></i></div>
+                                    <h3>Bordados</h3>
+                                </div>
+                                <p class="card-desc">Textura real y acabado de lujo. La opción más duradera para uniformes y prendas premium.</p>
+                            </div>
+                            <div class="card-hint"><i class="fas fa-sync-alt"></i> Voltear para ver artículos</div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <p class="card-back-title">Artículos que personalizamos</p>
+                        <ul class="card-materials">
+                            <li>Polos y Camisas</li>
+                            <li>Gorras Estructuradas</li>
+                            <li>Chamarras</li>
+                            <li>Escudos y Parches</li>
+                        </ul>
+                        <a href="contacto.html" class="card-back-cta">Cotizar Bordado</a>
+                    </div>
+                </div>
+            </div>
 
-        <div class="technique-card">
-            <h3><i class="fas fa-mug-hot"></i> Sublimación</h3>
-            <p>La técnica que garantiza la transferencia de imágenes en **full color** con resolución fotográfica. La tinta se incrusta en el material, asegurando que el diseño no se despegue ni se borre con el uso o los lavados.</p>
-            <h4>Artículos y Materiales:</h4>
-            <ul class="materials-list">
-                <li>Tazas Cerámicas (Blancas y de Color)</li>
-                <li>Termos y Cilindros (con recubrimiento)</li>
-                <li>Mouse Pads</li>
-                <li>Textiles de Poliéster</li>
-            </ul>
-        </div>
+            <div class="card-wrap">
+                <div class="flip-card">
+                    <div class="card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <span class="card-number">05</span>
+                            <div>
+                                <div class="card-icon-title">
+                                    <div class="card-icon"><i class="fas fa-print"></i></div>
+                                    <h3>Impresión en Gran Formato</h3>
+                                </div>
+                                <p class="card-desc">Alta resolución para publicidad en eventos, ferias y puntos de venta a gran escala.</p>
+                            </div>
+                            <div class="card-hint"><i class="fas fa-sync-alt"></i> Voltear para ver artículos</div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <p class="card-back-title">Artículos que personalizamos</p>
+                        <ul class="card-materials">
+                            <li>Lonas y Vallas</li>
+                            <li>Banners y Roll-Ups</li>
+                            <li>Vinil Adhesivo</li>
+                            <li>Stands y Exhibidores</li>
+                        </ul>
+                        <a href="contacto.html" class="card-back-cta">Cotizar Gran Formato</a>
+                    </div>
+                </div>
+            </div>
 
-        <div class="technique-card bg-light">
-            <h3><i class="fas fa-magic"></i> Bordados</h3>
-            <p>El bordado aporta textura y un acabado de lujo a tus prendas. Es la opción más duradera y resistente, perfecta para uniformes, gorras corporativas y prendas que buscan destacar la calidad.</p>
-            <h4>Artículos y Materiales:</h4>
-            <ul class="materials-list">
-                <li>Polos y Camisas</li>
-                <li>Gorras Estructuradas</li>
-                <li>Chamarras y Chalecos</li>
-                <li>Escudos y Parches</li>
-            </ul>
-        </div>
+            <!-- DTF UV -->
+            <div class="card-wrap">
+                <div class="flip-card">
+                    <div class="card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <span class="card-number">07</span>
+                            <div>
+                                <div class="card-icon-title">
+                                    <div class="card-icon"><i class="fas fa-sun"></i></div>
+                                    <h3>DTF UV en Superficies Rígidas</h3>
+                                </div>
+                                <p class="card-desc">Full color sobre metal, vidrio, madera y acrílico. Tinta curada con UV para acabado duradero y resistente al agua.</p>
+                            </div>
+                            <div class="card-hint"><i class="fas fa-sync-alt"></i> Voltear para ver artículos</div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <p class="card-back-title">Artículos que personalizamos</p>
+                        <ul class="card-materials">
+                            <li>Termos y Vasos</li>
+                            <li>Plumas y Bolígrafos</li>
+                            <li>Libretas y Agendas</li>
+                            <li>Llaveros Metálicos</li>
+                            <li>Chapas y Distintivos</li>
+                        </ul>
+                        <a href="contacto.html" class="card-back-cta">Cotizar DTF UV</a>
+                    </div>
+                </div>
+            </div>
 
-        <div class="technique-card">
-            <h3><i class="fas fa-print"></i> Impresión en Gran Formato</h3>
-            <p>Cubrimos tus necesidades de publicidad exterior e interior. Impresión digital de alta resolución para eventos, ferias y puntos de venta.</p>
-            <h4>Artículos Principales:</h4>
-            <ul class="materials-list">
-                <li>Lonas y Vallas</li>
-                <li>Banners y Roll-Ups</li>
-                <li>Vinil Adhesivo y Microperforado</li>
-                <li>Stands y Exhibidores</li>
-            </ul>
+            <!-- CORTE EN ACRÍLICO -->
+            <div class="card-wrap">
+                <div class="flip-card">
+                    <div class="card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <span class="card-number">06</span>
+                            <div>
+                                <div class="card-icon-title">
+                                    <div class="card-icon"><i class="fas fa-cut"></i></div>
+                                    <h3>Corte en Acrílico</h3>
+                                </div>
+                                <p class="card-desc">Figuras, letras y logos en acrílico con acabado premium. Señalética, rótulos y decoración con presencia visual de alto impacto.</p>
+                            </div>
+                            <div class="card-hint"><i class="fas fa-sync-alt"></i> Voltear para ver artículos</div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <p class="card-back-title">Artículos que personalizamos</p>
+                        <ul class="card-materials">
+                            <li>Letras en Acrílico</li>
+                            <li>Señalética Interior</li>
+                            <li>Trofeos y Reconocimientos</li>
+                            <li>Rótulos Corporativos</li>
+                            <li>Llaveros Acrílicos</li>
+                        </ul>
+                        <a href="contacto.html" class="card-back-cta">Cotizar Corte en Acrílico</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <section class="about-summary" style="background-color: var(--secondary-color);">
-        <h2>¿No sabes qué técnica elegir? ¡Nosotros te Asesoramos!</h2>
-        <p>Contáctanos para que nuestro equipo técnico te guíe a la mejor solución para tu proyecto y presupuesto.</p>
-        <br>
-        <a href="contacto.html" class="btn btn-tertiary">Solicitar Asesoría Personalizada</a>
+    <!-- CTA -->
+    <section class="services-cta">
+        <h2>¿No sabes qué técnica elegir?</h2>
+        <p>Nuestro equipo técnico te asesora sin costo para encontrar la solución ideal para tu proyecto y presupuesto.</p>
+        <a href="contacto.html" class="btn">Solicitar Asesoría Gratuita</a>
     </section>
 
 </main>
 
 <footer>
+    <div class="footer-content">
+        <div class="footer-info">
+            <h4>CreeatuTip's</h4>
+            <p>Soluciones integrales en artículos promocionales.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <a href="servicios.html">Técnicas</a>
+            <a href="portafolio.html">Portafolio</a>
+            <a href="contacto.html">Contacto</a>
+        </div>
+        <div class="footer-social">
+            <h4>Síguenos</h4>
+            <a href="https://www.facebook.com/share/1Cbu7zKQBa/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/creeatutips?igsh=M3o4aG5yaXQ2NjRr" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="tel:+525593652128"><i class="fas fa-phone"></i></a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 CreeatuTip's. Todos los derechos reservados.</p>
+    </div>
 </footer>
+
+<script>
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabPanels.forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            const panel = document.querySelector('.tab-panel[data-panel="' + btn.dataset.tab + '"]');
+            if (panel) panel.classList.add('active');
+        });
+    });
+</script>
 <script src="js/main.js"></script>
 </body>
 </html>

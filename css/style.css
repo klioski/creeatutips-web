@@ -58,9 +58,9 @@ h1, h2, h3 {
 
 /* --- HEADER / MENÚ DE NAVEGACIÓN --- */
 header {
-    background-color: var(--white);
-    border-bottom: 1px solid #eee;
-    padding: 15px 5%;
+    background-color: #1a1630;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 12px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,14 +75,14 @@ header {
 }
 
 .logo-img {
-    height: 65px;
+    height: 55px;
     width: auto;
     display: block;
 }
 
 nav a {
     margin-left: 20px;
-    color: var(--text-color);
+    color: rgba(255,255,255,0.7);
     font-weight: 500;
     padding: 5px 0;
     transition: color 0.3s;
@@ -90,6 +90,15 @@ nav a {
 
 nav a:hover {
     color: var(--secondary-color);
+}
+
+nav a.nav-active {
+    color: var(--secondary-color);
+    border-bottom-color: var(--secondary-color);
+}
+
+.menu-toggle span {
+    background-color: rgba(255,255,255,0.85);
 }
 
 /* --- ESTILOS DE BOTONES (CTAs) --- */
@@ -105,14 +114,16 @@ nav a:hover {
 }
 
 .btn-primary, .cta-button {
-    background-color: var(--secondary-color); /* AZUL CLARO */
-    color: var(--white);
+    background-color: var(--secondary-color);
+    color: #1a1630;
     border: 2px solid var(--secondary-color);
+    font-weight: 700;
 }
 
 .btn-primary:hover, .cta-button:hover {
     background-color: transparent;
-    border-color: lightskyblue;
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
     transform: translateY(-2px);
 }
 
@@ -174,19 +185,17 @@ nav a:hover {
 }
 
 .services-grid {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-top: 40px;
-    flex-wrap: wrap;
-    max-width: 1200px;
+    max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .service-item {
-    flex-basis: 22%;
-    min-width: 220px;
+    min-width: 0;
     padding: 30px 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -226,9 +235,18 @@ nav a:hover {
 
 /* --- NOSOTROS (nosotros.html) --- */
 .page-title {
-    background-color: var(--light-bg);
-    padding: 40px 5%;
-    border-bottom: 1px solid #ddd;
+    background-color: #221e3a;
+    color: white;
+    padding: 50px 5%;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.page-title h1 {
+    color: white;
+}
+
+.page-title p {
+    color: rgba(255,255,255,0.55);
 }
 
 .about-content {
@@ -335,7 +353,7 @@ nav a:hover {
 
 .technique-btn {
     background-color: transparent;
-    color: var(--primary-color); /* Color primario */
+    color: var(--primary-color);
     border: 1px solid var(--primary-color);
     padding: 10px 18px;
     border-radius: 25px;
@@ -648,6 +666,128 @@ footer {
     margin-top: 20px;
 }
 
+/* --- MENÚ HAMBURGUESA --- */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.menu-toggle.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- NAV ACTIVE STATE --- */
+nav a.nav-active {
+    color: var(--secondary-color);
+    font-weight: 700;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 3px;
+}
+
+/* --- TRUST STATS (index.html) --- */
+.trust-stats {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 50px 5%;
+    text-align: center;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.stat-item strong {
+    font-size: 2.8em;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--secondary-color);
+    line-height: 1;
+}
+
+.stat-item span {
+    font-size: 0.95em;
+    opacity: 0.85;
+}
+
+/* --- PORTAFOLIO PLACEHOLDER --- */
+.portfolio-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.portfolio-placeholder {
+    display: none;
+    width: 100%;
+    height: 300px;
+    background-color: var(--light-bg);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    color: #aaa;
+    border-radius: 8px;
+}
+
+.portfolio-placeholder i {
+    font-size: 2.5em;
+    color: #ccc;
+}
+
+.portfolio-placeholder span {
+    font-size: 0.85em;
+}
+
+/* --- CLIENT LOGO REAL --- */
+.client-logo img {
+    max-width: 100px;
+    max-height: 70px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: filter 0.3s, opacity 0.3s;
+}
+
+.client-logo img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
 /* --- RESPONSIVIDAD (Ajustes para móviles) --- */
 @media (max-width: 992px) {
     .hero h1 {
@@ -657,25 +797,77 @@ footer {
 
 @media (max-width: 768px) {
     header {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         padding: 10px 5%;
+        position: relative;
     }
 
-    nav {
-        margin-top: 10px;
+    .menu-toggle {
+        display: flex;
+    }
+
+    #main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #1a1630;
+        border-bottom: 2px solid var(--secondary-color);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        padding: 10px 5%;
+        flex-direction: column;
+        z-index: 999;
+    }
+
+    #main-nav.nav-open {
+        display: flex;
+    }
+
+    #main-nav a {
+        margin: 0;
+        padding: 14px 0;
+        border-bottom: 1px solid #f0f0f0;
+        display: block;
+        font-size: 1.05em;
+    }
+
+    #main-nav a:last-child {
+        border-bottom: none;
+    }
+
+    #main-nav a.cta-button {
+        margin-top: 8px;
         text-align: center;
+        border-radius: 5px;
+        padding: 12px;
     }
 
-    nav a {
-        margin: 5px 10px;
-        display: inline-block;
+    #main-nav a.nav-active {
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 14px;
     }
 
     .hero h1 {
         font-size: 2em;
     }
 
-    .services-grid, .mv-container, .info-grid, .footer-content {
+    .hero {
+        min-height: 60dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .mv-container, .info-grid, .footer-content {
         flex-direction: column;
         gap: 30px;
         align-items: center;
@@ -702,5 +894,13 @@ footer {
     .footer-links a {
         display: inline-block;
         margin: 0 10px;
+    }
+
+    .stats-grid {
+        gap: 30px;
+    }
+
+    .stat-item strong {
+        font-size: 2em;
     }
 }

@@ -14,11 +14,14 @@
 
 <header>
     <div class="logo">
-        <a href="index.html"><img src="img/logo.png" alt="Logo de CreeatuTip's" class="logo-img"></a>
+        <a href="index.html"><img src="img/logo.png" alt="Logo de CreeatuTip's" class="logo-img" width="130" height="65"></a>
     </div>
-    <nav>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav">
         <a href="index.html">Inicio</a>
-        <a href="nosotros.html">Nosotros</a>
+        <a href="nosotros.html" class="nav-active">Nosotros</a>
         <a href="servicios.html">Servicios</a>
         <a href="productos.html">Productos</a>
         <a href="portafolio.html">Portafolio</a>
@@ -33,8 +36,8 @@
 
     <section class="about-content section-padding">
         <h2>Quiénes Somos</h2>
-        <p>En **CreeatuTip's**, somos un equipo de **creadores y técnicos apasionados** por la personalización. Nacimos de la necesidad de ofrecer un servicio de artículos promocionales que va más allá de lo básico, dominando una amplia gama de técnicas: desde la **innovación del DTF y el grabado láser**, hasta la **tradición del bordado y la serigrafía**.</p>
-        <p>Nuestro compromiso es con tu marca: **te asesoramos** para que elijas la técnica y el artículo perfecto, asegurando que cada pieza comunique tu mensaje con la **máxima calidad y precisión**.</p>
+        <p>En CreeatuTip's, somos un equipo de creadores y técnicos apasionados por la personalización. Nacimos de la necesidad de ofrecer un servicio de artículos promocionales que va más allá de lo básico, dominando una amplia gama de técnicas: desde la innovación del DTF y el grabado láser, hasta la tradición del bordado y la serigrafía.</p>
+        <p>Nuestro compromiso es con tu marca: te asesoramos para que elijas la técnica y el artículo perfecto, asegurando que cada pieza comunique tu mensaje con la máxima calidad y precisión.</p>
     </section>
 
     <section class="mission-vision section-padding bg-light">
@@ -42,12 +45,12 @@
             <div class="mv-item">
                 <i class="fas fa-eye"></i>
                 <h3>Nuestra Visión</h3>
-                <p>Ser el socio creativo líder en Latinoamérica, reconocido por la **calidad insuperable** y la **diversidad de técnicas de personalización**, transformando cualquier idea en un artículo promocional impactante y memorable.</p>
+                <p>Ser el socio creativo líder en Latinoamérica, reconocido por la calidad insuperable y la diversidad de técnicas de personalización, transformando cualquier idea en un artículo promocional impactante y memorable.</p>
             </div>
             <div class="mv-item">
                 <i class="fas fa-bullseye"></i>
                 <h3>Nuestra Misión</h3>
-                <p>Ofrecer soluciones integrales de artículos promocionales, aplicando la **tecnología y técnicas más avanzadas** para materializar la visión de marca de nuestros clientes, garantizando **tiempos de entrega óptimos** y una **atención personalizada**.</p>
+                <p>Ofrecer soluciones integrales de artículos promocionales, aplicando la tecnología y técnicas más avanzadas para materializar la visión de marca de nuestros clientes, garantizando tiempos de entrega óptimos y una atención personalizada.</p>
             </div>
         </div>
     </section>
@@ -61,7 +64,29 @@
 
 </main>
 
+<script src="js/main.js"></script>
 <footer>
+    <div class="footer-content">
+        <div class="footer-info">
+            <h4>CreeatuTip's</h4>
+            <p>Soluciones integrales en artículos promocionales.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <a href="servicios.html">Técnicas</a>
+            <a href="portafolio.html">Clientes</a>
+            <a href="contacto.html">Contacto</a>
+        </div>
+        <div class="footer-social">
+            <h4>Síguenos</h4>
+            <a href="https://www.facebook.com/share/1Cbu7zKQBa/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/creeatutips?igsh=M3o4aG5yaXQ2NjRr" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="tel:+525593652128"><i class="fas fa-phone"></i></a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 CreeatuTip's. Todos los derechos reservados.</p>
+    </div>
 </footer>
 </body>
 </html>

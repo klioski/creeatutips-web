@@ -3,21 +3,544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CreeatuTip's | Expertos en Artículos Promocionales Personalizados</title>
+    <title>CreeatuTip's | Artículos Promocionales Personalizados</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <style>
+
+        /* ══════════════════════════════════════
+           HERO — Dark & Bold
+        ══════════════════════════════════════ */
+        .hero-new {
+            background-color: #1a1630;
+            color: white;
+            min-height: 88dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 8% 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Fondo decorativo: círculos difusos de color */
+        .hero-new::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(93,84,164,0.35) 0%, transparent 70%);
+            top: -100px; right: -100px;
+            pointer-events: none;
+        }
+        .hero-new::after {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,191,255,0.2) 0%, transparent 70%);
+            bottom: -80px; left: 30%;
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.85em;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--secondary-color);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            width: 40px; height: 2px;
+            background: var(--secondary-color);
+            display: inline-block;
+        }
+
+        .hero-new h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.8em, 7vw, 5.5em);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 0;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-new h1 .static-line {
+            display: block;
+            color: white;
+        }
+
+        /* Línea con palabra que cambia */
+        .hero-new h1 .dynamic-line {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--secondary-color);
+            position: relative;
+        }
+
+        /* Efecto typing */
+        .typing-word {
+            color: var(--secondary-color);
+            -webkit-text-stroke: 0;
+            position: relative;
+        }
+        .typing-word::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+            color: var(--secondary-color);
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.05em;
+            color: rgba(255,255,255,0.55);
+            max-width: 480px;
+            line-height: 1.7;
+            margin-top: 28px;
+            margin-bottom: 44px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-hero-primary {
+            background: var(--secondary-color);
+            color: #1a1630;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.95em;
+            letter-spacing: 0.03em;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,191,255,0.4);
+            color: #1a1630;
+        }
+
+        .btn-hero-ghost {
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            padding: 16px 36px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: border-color 0.2s, color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-hero-ghost:hover {
+            border-color: rgba(255,255,255,0.6);
+            color: white;
+        }
+
+        /* Scroll indicator */
+        .scroll-hint {
+            position: absolute;
+            bottom: 36px; left: 8%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.78em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            z-index: 1;
+        }
+        .scroll-line {
+            width: 40px; height: 1px;
+            background: rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -40px;
+            width: 40px; height: 1px;
+            background: var(--secondary-color);
+            animation: scrollMove 1.8s infinite;
+        }
+        @keyframes scrollMove {
+            to { left: 40px; }
+        }
+
+        /* ══════════════════════════════════════
+           STATS
+        ══════════════════════════════════════ */
+        .stats-strip {
+            background: #221e3a;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 40px 8%;
+        }
+        .stats-strip-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .stat-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 20px;
+            border-right: 1px solid rgba(255,255,255,0.07);
+        }
+        .stat-block:last-child { border-right: none; }
+        .stat-block strong {
+            font-family: var(--font-heading);
+            font-size: 2.6em;
+            font-weight: 900;
+            color: var(--secondary-color);
+            line-height: 1;
+        }
+        .stat-block span {
+            font-size: 0.82em;
+            color: rgba(255,255,255,0.35);
+            text-align: center;
+        }
+
+        /* ══════════════════════════════════════
+           TÉCNICAS — cards con color fuerte
+        ══════════════════════════════════════ */
+        .techniques-section {
+            background: #1a1630;
+            padding: 100px 8%;
+        }
+        .section-label {
+            font-size: 0.78em;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .section-label::before {
+            content: '';
+            width: 30px; height: 2px;
+            background: var(--secondary-color);
+        }
+        .techniques-section h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2em, 4vw, 3em);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 10px;
+            max-width: 600px;
+            line-height: 1.1;
+        }
+        .techniques-section .section-sub {
+            color: rgba(255,255,255,0.4);
+            font-size: 1em;
+            margin-bottom: 60px;
+            max-width: 500px;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            max-width: 1100px;
+        }
+
+        .tech-card {
+            position: relative;
+            padding: 36px 30px;
+            background: #271f45;
+            border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+            transition: background 0.3s;
+            cursor: default;
+        }
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 0;
+            transition: height 0.3s ease;
+        }
+        .tech-card:hover { background: #2e2850; }
+        .tech-card:hover::before { height: 100%; }
+
+        /* Colores de acento por técnica */
+        .tech-card:nth-child(1)::before { background: #00BFFF; }
+        .tech-card:nth-child(2)::before { background: #5D54A4; }
+        .tech-card:nth-child(3)::before { background: #E91E63; }
+        .tech-card:nth-child(4)::before { background: #7c3aed; }
+        .tech-card:nth-child(5)::before { background: #0ea5e9; }
+        .tech-card:nth-child(6)::before { background: #16a34a; }
+
+        .tech-num {
+            font-family: var(--font-heading);
+            font-size: 0.72em;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: rgba(255,255,255,0.15);
+            margin-bottom: 20px;
+        }
+        .tech-icon {
+            font-size: 1.8em;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .tech-card:nth-child(1) .tech-icon { color: #00BFFF; }
+        .tech-card:nth-child(2) .tech-icon { color: #5D54A4; }
+        .tech-card:nth-child(3) .tech-icon { color: #E91E63; }
+        .tech-card:nth-child(4) .tech-icon { color: #7c3aed; }
+        .tech-card:nth-child(5) .tech-icon { color: #0ea5e9; }
+        .tech-card:nth-child(6) .tech-icon { color: #16a34a; }
+
+        .tech-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1em;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .tech-card p {
+            font-size: 0.85em;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .techniques-cta {
+            margin-top: 50px;
+        }
+        .btn-outline-light {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            color: white;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .btn-outline-light:hover {
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+            background: rgba(0,191,255,0.06);
+        }
+
+        /* ══════════════════════════════════════
+           POR QUÉ NOSOTROS
+        ══════════════════════════════════════ */
+        .why-section {
+            background: #221e3a;
+            padding: 100px 8%;
+        }
+        .why-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .why-text .section-label { color: var(--secondary-color); }
+        .why-text .section-label::before { background: var(--secondary-color); }
+        .why-text h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2em, 3.5vw, 2.8em);
+            font-weight: 900;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .why-text h2 em {
+            font-style: normal;
+            color: var(--secondary-color);
+        }
+        .why-text p {
+            color: rgba(255,255,255,0.45);
+            line-height: 1.8;
+            font-size: 1em;
+            margin-bottom: 36px;
+        }
+        .btn-dark {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: rgba(255,255,255,0.08);
+            color: white;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.12);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.9em;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+        .btn-dark:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .why-pillars {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .pillar {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 28px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .pillar:last-child { border-bottom: none; }
+        .pillar-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            background: rgba(93,84,164,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1em;
+            color: var(--secondary-color);
+            transition: background 0.2s;
+        }
+        .pillar:hover .pillar-icon {
+            background: var(--primary-color);
+            color: white;
+        }
+        .pillar-text h4 {
+            font-family: var(--font-heading);
+            font-size: 1em;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px;
+        }
+        .pillar-text p {
+            font-size: 0.88em;
+            color: rgba(255,255,255,0.4);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ══════════════════════════════════════
+           CTA FINAL — oscuro e impactante
+        ══════════════════════════════════════ */
+        .cta-final {
+            background: #1a1630;
+            padding: 100px 8%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            width: 700px; height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(93,84,164,0.25) 0%, transparent 65%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .cta-final h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2em, 4vw, 3.2em);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-final h2 span {
+            color: var(--secondary-color);
+        }
+        .cta-final p {
+            color: rgba(255,255,255,0.5);
+            font-size: 1.05em;
+            margin-bottom: 44px;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-final-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ══════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════ */
+        @media (max-width: 992px) {
+            .tech-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-inner  { grid-template-columns: 1fr; gap: 50px; }
+            .stats-strip-inner { grid-template-columns: repeat(2, 1fr); }
+            .stat-block:nth-child(2) { border-right: none; }
+        }
+        @media (max-width: 600px) {
+            .hero-new { padding: 100px 6% 70px; }
+            .hero-new h1 { font-size: 2.5em; }
+            .tech-grid { grid-template-columns: 1fr; gap: 2px; }
+            .stats-strip-inner { grid-template-columns: repeat(2, 1fr); }
+            .stat-block { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 16px; }
+            .stat-block:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.07); }
+            .techniques-section, .why-section, .cta-final { padding: 70px 6%; }
+        }
+    </style>
 </head>
 <body>
 
 <header>
     <div class="logo">
-        <a href="index.html"><img src="img/logo.png" alt="Logo de CreeatuTip's" class="logo-img"></a>
+        <a href="index.html"><img src="img/logo.png" alt="Logo de CreeatuTip's" class="logo-img" width="130" height="65"></a>
     </div>
-    <nav>
-        <a href="index.html">Inicio</a>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav">
+        <a href="index.html" class="nav-active">Inicio</a>
         <a href="nosotros.html">Nosotros</a>
         <a href="servicios.html">Servicios</a>
         <a href="productos.html">Productos</a>
@@ -28,46 +551,167 @@
 
 <main>
 
-    <section class="hero">
-        <h1>Tu Marca, Hecha Artículo. Impacto Garantizado.</h1>
-        <p>Somos CreeatuTip's: Dominamos cada técnica para llevar tus artículos promocionales al siguiente nivel.</p>
-        <a href="contacto.html" class="btn btn-primary cta-hero-button">¡Cotiza tu Proyecto Ahora!</a>
-        <a href="servicios.html" class="btn btn-secondary cta-hero-button-secondary">Ver Servicios y Técnicas</a>
+    <!-- ══ HERO ══ -->
+    <section class="hero-new">
+        <p class="hero-eyebrow">CreeatuTip's — Artículos Promocionales</p>
+        <h1>
+            <span class="static-line">Tu marca,</span>
+            <span class="static-line">hecha en</span>
+            <span class="dynamic-line"><span class="typing-word" id="typing-word">DTF</span>.</span>
+        </h1>
+        <p class="hero-subtitle">
+            Dominamos 7 técnicas de personalización para que cada artículo que entregues comunique quién eres, con calidad que se nota.
+        </p>
+        <div class="hero-actions">
+            <a href="contacto.html" class="btn-hero-primary">
+                Cotiza tu proyecto <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="servicios.html" class="btn-hero-ghost">
+                Ver técnicas <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+        <div class="scroll-hint">
+            <div class="scroll-line"></div>
+            Scroll
+        </div>
     </section>
 
-    <section class="services-summary">
-        <h2>Nuestras Técnicas de Personalización</h2>
-        <div class="services-grid">
-            <div class="service-item">
-                <i class="fas fa-tshirt"></i>
-                <h3>DTF & Serigrafía</h3>
-                <p>Impresión textil de alta durabilidad y colores vibrantes en prendas.</p>
+    <!-- ══ STATS ══ -->
+    <div class="stats-strip">
+        <div class="stats-strip-inner">
+            <div class="stat-block">
+                <strong id="stat1">0+</strong>
+                <span>Proyectos entregados</span>
             </div>
-            <div class="service-item">
-                <i class="fas fa-mug-hot"></i>
-                <h3>Sublimación</h3>
-                <p>Personalización full color en tazas, termos y artículos cerámicos o poliéster.</p>
+            <div class="stat-block">
+                <strong id="stat2">0+</strong>
+                <span>Años de experiencia</span>
             </div>
-            <div class="service-item">
-                <i class="fas fa-vector-square"></i>
-                <h3>Grabado Láser</h3>
-                <p>Precisión y elegancia en metal, madera y piel para un acabado premium.</p>
+            <div class="stat-block">
+                <strong id="stat3">0</strong>
+                <span>Técnicas dominadas</span>
             </div>
-            <div class="service-item">
-                <i class="fas fa-paint-roller"></i>
-                <h3>Gran Formato</h3>
-                <p>Impresión de lonas, viniles y roll-ups para eventos y publicidad.</p>
+            <div class="stat-block">
+                <strong id="stat4">0%</strong>
+                <span>Satisfacción garantizada</span>
             </div>
         </div>
-        <br>
-        <a href="servicios.html" class="btn btn-secondary">Ver Todas las Técnicas</a>
+    </div>
+
+    <!-- ══ TÉCNICAS ══ -->
+    <section class="techniques-section">
+        <p class="section-label">Lo que hacemos</p>
+        <h2>7 técnicas.<br>Una sola dirección.</h2>
+        <p class="section-sub">Desde textil hasta metal. Del detalle más fino al gran formato. Tenemos la técnica exacta para tu proyecto.</p>
+
+        <div class="tech-grid">
+            <div class="tech-card">
+                <p class="tech-num">01</p>
+                <i class="fas fa-tshirt tech-icon"></i>
+                <h3>DTF & Serigrafía</h3>
+                <p>Full color con alta durabilidad en prendas. Sin límite de colores ni detalles.</p>
+            </div>
+            <div class="tech-card">
+                <p class="tech-num">02</p>
+                <i class="fas fa-vector-square tech-icon"></i>
+                <h3>Grabado Láser</h3>
+                <p>Precisión y elegancia en metal, madera y piel. Acabado premium e indeleble.</p>
+            </div>
+            <div class="tech-card">
+                <p class="tech-num">03</p>
+                <i class="fas fa-mug-hot tech-icon"></i>
+                <h3>Sublimación</h3>
+                <p>Imagen fotográfica que se incrusta en el material. Permanente y resistente.</p>
+            </div>
+            <div class="tech-card">
+                <p class="tech-num">04</p>
+                <i class="fas fa-scissors tech-icon"></i>
+                <h3>Bordado</h3>
+                <p>Textura real y acabado de lujo. La técnica más duradera para uniformes premium.</p>
+            </div>
+            <div class="tech-card">
+                <p class="tech-num">05</p>
+                <i class="fas fa-print tech-icon"></i>
+                <h3>Gran Formato</h3>
+                <p>Lonas, banners y roll-ups de alta resolución para eventos y publicidad.</p>
+            </div>
+            <div class="tech-card">
+                <p class="tech-num">06</p>
+                <i class="fas fa-cut tech-icon"></i>
+                <h3>Corte en Acrílico</h3>
+                <p>Figuras, letras y logos en acrílico para señalética, rótulos y decoración premium.</p>
+            </div>
+            <div class="tech-card">
+                <p class="tech-num">07</p>
+                <i class="fas fa-sun tech-icon"></i>
+                <h3>DTF UV</h3>
+                <p>Full color sobre termos, vasos, plumas y libretas. Tinta curada con UV sin calor.</p>
+            </div>
+        </div>
+
+        <div class="techniques-cta">
+            <a href="servicios.html" class="btn-outline-light">
+                Explorar cada técnica <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     </section>
 
+    <!-- ══ POR QUÉ NOSOTROS ══ -->
+    <section class="why-section">
+        <div class="why-inner">
+            <div class="why-text">
+                <p class="section-label">Por qué elegirnos</p>
+                <h2>Creatividad seria.<br><em>Resultados reales.</em></h2>
+                <p>No somos un catálogo de productos genéricos. Somos un equipo que entiende tu marca, domina las técnicas y se asegura de que cada pieza que entregues deje huella.</p>
+                <a href="nosotros.html" class="btn-dark">
+                    Conoce nuestra historia <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="why-pillars">
+                <div class="pillar">
+                    <div class="pillar-icon"><i class="fas fa-medal"></i></div>
+                    <div class="pillar-text">
+                        <h4>Calidad que se ve y se siente</h4>
+                        <p>Cada técnica aplicada con los materiales correctos y el acabado que tu marca merece.</p>
+                    </div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon"><i class="fas fa-comments"></i></div>
+                    <div class="pillar-text">
+                        <h4>Asesoría personalizada</h4>
+                        <p>Te orientamos para elegir la técnica y el artículo ideal para tu presupuesto y objetivo.</p>
+                    </div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon"><i class="fas fa-clock"></i></div>
+                    <div class="pillar-text">
+                        <h4>Tiempos de entrega puntuales</h4>
+                        <p>Cumplimos fechas porque sabemos que tus eventos y campañas no esperan.</p>
+                    </div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="pillar-text">
+                        <h4>6 técnicas bajo un solo techo</h4>
+                        <p>Sin intermediarios. Todo lo hacemos nosotros, con control total del proceso y la calidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section class="about-summary">
-        <h2>Transformamos Ideas en Artículos Únicos</h2>
-        <p class="mission-text">En **CreeatuTip's**, somos tu socio creativo. Nuestro compromiso es la **calidad insuperable** y la **diversidad de técnicas**. Te asesoramos para que tu artículo promocional no solo sea un regalo, sino una herramienta de marketing efectiva.</p>
-        <a href="nosotros.html" class="btn btn-tertiary">Conoce Nuestra Misión y Visión</a>
+    <!-- ══ CTA FINAL ══ -->
+    <section class="cta-final">
+        <h2>¿Listo para que tu marca<br><span>deje huella?</span></h2>
+        <p>Cuéntanos tu proyecto y te enviamos una cotización sin compromiso.</p>
+        <div class="cta-final-actions">
+            <a href="contacto.html" class="btn-hero-primary">
+                Solicitar cotización <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="portafolio.html" class="btn-hero-ghost">
+                Ver trabajos realizados
+            </a>
+        </div>
     </section>
 
 </main>
@@ -81,19 +725,76 @@
         <div class="footer-links">
             <h4>Enlaces Rápidos</h4>
             <a href="servicios.html">Técnicas</a>
-            <a href="portafolio.html">Clientes</a>
+            <a href="portafolio.html">Portafolio</a>
             <a href="contacto.html">Contacto</a>
         </div>
         <div class="footer-social">
             <h4>Síguenos</h4>
-            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="tel:+521234567890"><i class="fas fa-phone"></i></a>
+            <a href="https://www.facebook.com/share/1Cbu7zKQBa/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/creeatutips?igsh=M3o4aG5yaXQ2NjRr" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="tel:+525593652128"><i class="fas fa-phone"></i></a>
         </div>
     </div>
     <div class="footer-bottom">
         <p>&copy; 2025 CreeatuTip's. Todos los derechos reservados.</p>
     </div>
 </footer>
+
+<script src="js/main.js"></script>
+<script>
+    // ── Efecto typing en el hero ──
+    const words = ['DTF.', 'Láser.', 'Bordado.', 'Sublimación.', 'Acrílico.', 'DTF UV.'];
+    const el = document.getElementById('typing-word');
+    let wi = 0, ci = 0, deleting = false;
+
+    function type() {
+        const word = words[wi];
+        if (!deleting) {
+            el.textContent = word.slice(0, ++ci);
+            if (ci === word.length) {
+                deleting = true;
+                setTimeout(type, 1800); 
+                return;
+            }
+        } else {
+            el.textContent = word.slice(0, --ci);
+            if (ci === 0) {
+                deleting = false;
+                wi = (wi + 1) % words.length;
+            }
+        }
+        setTimeout(type, deleting ? 60 : 100);
+    }
+    setTimeout(type, 1000);
+
+    // ── Contadores animados ──
+    const targets = [
+        { id: 'stat1', end: 500, suffix: '+' },
+        { id: 'stat2', end: 5,   suffix: '+' },
+        { id: 'stat3', end: 7,   suffix: ''  },
+        { id: 'stat4', end: 100, suffix: '%' },
+    ];
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            targets.forEach(({ id, end, suffix }) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                let current = 0;
+                const step = Math.ceil(end / 50);
+                const timer = setInterval(() => {
+                    current = Math.min(current + step, end);
+                    el.textContent = current + suffix;
+                    if (current >= end) clearInterval(timer);
+                }, 30);
+            });
+            observer.disconnect();
+        });
+    }, { threshold: 0.3 });
+
+    const statsEl = document.querySelector('.stats-strip');
+    if (statsEl) observer.observe(statsEl);
+</script>
 </body>
 </html>
