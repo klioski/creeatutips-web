@@ -10,49 +10,140 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /*!* Estilos específicos para la sección de Productos *!*/
-        /*.product-category {*/
-        /*    margin-bottom: 50px;*/
-        /*    border-bottom: 1px solid #ddd;*/
-        /*    padding-bottom: 30px;*/
-        /*}*/
+        /* ===== HERO ===== */
+        .products-hero {
+            background: linear-gradient(135deg, #1a1630 0%, #4a4384 55%, #5D54A4 100%);
+            color: white;
+            text-align: center;
+            padding: 90px 5% 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        .products-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+        }
+        .products-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; left: -40px;
+            width: 250px; height: 250px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+        }
+        .products-hero h1 {
+            font-size: 2.8em; margin-bottom: 15px;
+            font-weight: 700; position: relative; z-index: 1;
+        }
+        .products-hero p {
+            font-size: 1.15em; opacity: 0.9;
+            max-width: 600px; margin: 0 auto;
+            position: relative; z-index: 1;
+        }
 
-        /*.product-category h3 {*/
-        /*    background-color: var(--light-bg);*/
-        /*    padding: 15px;*/
-        /*    color: var(--primary-color);*/
-        /*    border-left: 5px solid var(--secondary-color);*/
-        /*    margin-bottom: 20px;*/
-        /*    font-size: 1.5em;*/
-        /*}*/
+        /* ===== CATEGORY GRID ===== */
+        .products-catalog { background: #f8f9fc; }
+        .products-catalog > h2 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 1.9em;
+            margin-bottom: 40px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px 28px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+            border-top: 4px solid transparent;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+        }
+        .product-card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .product-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3em; color: white; flex-shrink: 0;
+        }
+        .product-card h3 {
+            font-size: 1.15em; margin: 0;
+            color: #1a1a2e;
+        }
+        .product-chips {
+            list-style: none; padding: 0; margin: 0;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .product-chips li {
+            font-size: 0.92em;
+            color: #555;
+            line-height: 1.5;
+            padding-left: 18px;
+            position: relative;
+        }
+        .product-chips li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 8px;
+            width: 7px; height: 7px;
+            border-radius: 50%;
+        }
+        .product-chips li strong { color: #1a1a2e; }
 
-        /*.product-list {*/
-        /*    list-style: none;*/
-        /*    padding: 0;*/
-        /*    display: grid;*/
-        /*    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));*/
-        /*    gap: 20px;*/
-        /*}*/
+        /* Colores por categoría */
+        .product-card[data-cat="ropa"]        { border-top-color: #00BFFF; }
+        .product-card[data-cat="ropa"] .product-icon { background: #00BFFF; }
+        .product-card[data-cat="ropa"] .product-chips li::before { background: #00BFFF; }
 
-        /*.product-list li {*/
-        /*    background: #fff;*/
-        /*    padding: 20px;*/
-        /*    border: 1px solid #eee;*/
-        /*    border-radius: 6px;*/
-        /*    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);*/
-        /*    display: flex;*/
-        /*    align-items: center;*/
-        /*    gap: 15px;*/
-        /*}*/
+        .product-card[data-cat="termos"]        { border-top-color: #E91E63; }
+        .product-card[data-cat="termos"] .product-icon { background: #E91E63; }
+        .product-card[data-cat="termos"] .product-chips li::before { background: #E91E63; }
 
-        /*.product-list li i {*/
-        /*    font-size: 1.5em;*/
-        /*    color: var(--primary-color);*/
-        /*}*/
+        .product-card[data-cat="oficina"]        { border-top-color: #5D54A4; }
+        .product-card[data-cat="oficina"] .product-icon { background: #5D54A4; }
+        .product-card[data-cat="oficina"] .product-chips li::before { background: #5D54A4; }
 
-        /*.product-list li strong {*/
-        /*    font-weight: bold;*/
-        /*}*/
+        .product-card[data-cat="acrilico-mdf"]        { border-top-color: #16a34a; }
+        .product-card[data-cat="acrilico-mdf"] .product-icon { background: #16a34a; }
+        .product-card[data-cat="acrilico-mdf"] .product-chips li::before { background: #16a34a; }
+
+        .product-card[data-cat="publicidad"]        { border-top-color: #0ea5e9; }
+        .product-card[data-cat="publicidad"] .product-icon { background: #0ea5e9; }
+        .product-card[data-cat="publicidad"] .product-chips li::before { background: #0ea5e9; }
+
+        /* ===== CTA ===== */
+        .products-cta {
+            text-align: center; padding: 70px 5%;
+            background: linear-gradient(135deg, #5D54A4, #2d294f);
+            color: white;
+        }
+        .products-cta h2 { font-size: 2em; margin-bottom: 12px; }
+        .products-cta p { opacity: 0.85; margin-bottom: 30px; font-size: 1.05em; }
+        .products-cta .btn { background: var(--secondary-color); color: white; border: 2px solid var(--secondary-color); }
+        .products-cta .btn:hover { background: transparent; color: var(--secondary-color); }
+
+        @media (max-width: 768px) {
+            .products-hero h1 { font-size: 1.9em; }
+        }
     </style>
 </head>
 <body>
@@ -75,7 +166,7 @@
 </header>
 
 <main class="internal-page">
-    <section class="page-title">
+    <section class="products-hero">
         <h1>Catálogo de Artículos Base</h1>
         <p>Selecciona el producto que deseas personalizar. Aplicamos la técnica que mejor se adapte a cada material.</p>
     </section>
@@ -83,52 +174,79 @@
     <section class="products-catalog section-padding">
         <h2>Nuestras Categorías Principales</h2>
 
-        <div class="product-category">
-            <h3><i class="fas fa-tshirt"></i> Ropa y Accesorios</h3>
-            <ul class="product-list">
-                <li><i class="fas fa-arrow-right"></i> <strong>Playeras:</strong> Algodón, Dry-Fit, Cuello Redondo, Polo.</li>
-                <li><i class="fas fa-arrow-right"></i> <strong>Sudaderas:</strong> Con Capucha, Cuello Redondo, Chaquetas.</li>
-                <li><i class="fas fa-arrow-right"></i> <strong>Gorras:</strong> Tipo Trucker, Béisbol, Visera Plana.</li>
-                <li><i class="fas fa-arrow-right"></i> <strong>Bolsas y Mochilas:</strong> Ecológicas, de Tela, Deportivas.</li>
-            </ul>
-        </div>
+        <div class="product-grid">
 
-        <div class="product-category">
-            <h3><i class="fas fa-mug-hot"></i> Termos, Tazas y Cilindros</h3>
-            <ul class="product-list">
-                <li><i class="fas fa-arrow-right"></i> <strong>Tazas:</strong> Cerámicas (11 oz, 15 oz), Mágicas, Tipo Tarro.</li>
-                <li><i class="fas fa-arrow-right"></i> <strong>Termos:</strong> De Acero Inoxidable, Doble Pared, Botella Deportiva.</li>
-                <li><i class="fas fa-arrow-right"></i> <strong>Cilindros:</strong> De Plástico (Diversos Colores y Capacidades).</li>
-                <li><i class="fas fa-arrow-right"></i> <strong>Shakers:</strong> Para Gimnasio y Suplementos.</li>
-            </ul>
-        </div>
+            <div class="product-card" data-cat="ropa">
+                <div class="product-card-header">
+                    <div class="product-icon"><i class="fas fa-tshirt"></i></div>
+                    <h3>Ropa y Accesorios</h3>
+                </div>
+                <ul class="product-chips">
+                    <li><strong>Playeras:</strong> Algodón, Dry-Fit, Cuello Redondo, Polo.</li>
+                    <li><strong>Sudaderas:</strong> Con Capucha, Cuello Redondo, Chaquetas.</li>
+                    <li><strong>Gorras:</strong> Tipo Trucker, Béisbol, Visera Plana.</li>
+                    <li><strong>Bolsas y Mochilas:</strong> Ecológicas, de Tela, Deportivas.</li>
+                </ul>
+            </div>
 
-        <div class="product-category">
-            <h3><i class="fas fa-pen"></i> Oficina y Accesorios</h3>
-            <ul class="product-list">
-                <li><i class="fas fa-arrow-right"></i> <strong>Plumas:</strong> Plástico, Metálicas, Ecológicas, con Stylus.</li>
-                <li><i class="fas fa-arrow-right"></i> <strong>Libretas:</strong> Tipo Moleskine, Bloc de Notas, Carpetas.</li>
-                <li><i class="fas fa-arrow-right"></i> <strong>Llaveros:</strong> Metálicos, de Acrílico, de Goma.</li>
-                <li><i class="fas fa-arrow-right"></i> <strong>USB y Tecnología:</strong> Memorias USB Personalizadas, Power Banks.</li>
-            </ul>
-        </div>
+            <div class="product-card" data-cat="termos">
+                <div class="product-card-header">
+                    <div class="product-icon"><i class="fas fa-mug-hot"></i></div>
+                    <h3>Termos, Tazas y Cilindros</h3>
+                </div>
+                <ul class="product-chips">
+                    <li><strong>Tazas:</strong> Cerámicas (11 oz, 15 oz), Mágicas, Tipo Tarro.</li>
+                    <li><strong>Termos:</strong> De Acero Inoxidable, Doble Pared, Botella Deportiva.</li>
+                    <li><strong>Cilindros:</strong> De Plástico (Diversos Colores y Capacidades).</li>
+                    <li><strong>Shakers:</strong> Para Gimnasio y Suplementos.</li>
+                </ul>
+            </div>
 
-        <div class="product-category">
-            <h3><i class="fas fa-image"></i> Publicidad y Exhibición</h3>
-            <ul class="product-list">
-                <li><i class="fas fa-arrow-right"></i> <strong>Lonas:</strong> Vinílica, Mesh, Blackout (diferentes medidas).</li>
-                <li><i class="fas fa-arrow-right"></i> <strong>Roll-Ups y Banners:</strong> Estructuras Retráctiles de Fácil Montaje.</li>
-                <li><i class="fas fa-arrow-right"></i> <strong>Viniles:</strong> Adhesivos, de Corte, Microperforados para Ventanas.</li>
-            </ul>
-        </div>
+            <div class="product-card" data-cat="oficina">
+                <div class="product-card-header">
+                    <div class="product-icon"><i class="fas fa-pen"></i></div>
+                    <h3>Oficina y Accesorios</h3>
+                </div>
+                <ul class="product-chips">
+                    <li><strong>Plumas:</strong> Plástico, Metálicas, Ecológicas, con Stylus.</li>
+                    <li><strong>Libretas:</strong> Tipo Moleskine, Bloc de Notas, Carpetas.</li>
+                    <li><strong>Llaveros:</strong> Metálicos, de Goma.</li>
+                    <li><strong>USB y Tecnología:</strong> Memorias USB Personalizadas, Power Banks.</li>
+                </ul>
+            </div>
 
+            <div class="product-card" data-cat="acrilico-mdf">
+                <div class="product-card-header">
+                    <div class="product-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>Acrílico y MDF</h3>
+                </div>
+                <ul class="product-chips">
+                    <li><strong>Llaveros:</strong> Acrílico de Colores, MDF Grabado.</li>
+                    <li><strong>Letras y Logotipos:</strong> Acrílico Translúcido, MDF para Pintar.</li>
+                    <li><strong>Señalética y Rótulos:</strong> Acrílico Premium, Bases en MDF.</li>
+                    <li><strong>Figuras y Trofeos:</strong> Reconocimientos en Acrílico, Decorativos en MDF.</li>
+                </ul>
+            </div>
+
+            <div class="product-card" data-cat="publicidad">
+                <div class="product-card-header">
+                    <div class="product-icon"><i class="fas fa-image"></i></div>
+                    <h3>Publicidad y Exhibición</h3>
+                </div>
+                <ul class="product-chips">
+                    <li><strong>Lonas:</strong> Vinílica, Mesh, Blackout (diferentes medidas).</li>
+                    <li><strong>Roll-Ups y Banners:</strong> Estructuras Retráctiles de Fácil Montaje.</li>
+                    <li><strong>Viniles:</strong> Adhesivos, de Corte, Microperforados para Ventanas.</li>
+                </ul>
+            </div>
+
+        </div>
     </section>
 
-    <section class="about-summary">
+    <section class="products-cta">
         <h2>¿Listo para dar vida a tus productos?</h2>
         <p>Contáctanos con el producto y la cantidad deseada para comenzar tu cotización.</p>
-        <br>
-        <a href="contacto.html" class="btn btn-primary">Ir a Cotizar</a>
+        <a href="contacto.html" class="btn">Ir a Cotizar</a>
     </section>
 
 </main>
@@ -143,19 +261,23 @@
         <div class="footer-links">
             <h4>Enlaces Rápidos</h4>
             <a href="servicios.html">Técnicas</a>
-            <a href="portafolio.html">Clientes</a>
+            <a href="portafolio.html">Portafolio</a>
             <a href="contacto.html">Contacto</a>
         </div>
         <div class="footer-social">
             <h4>Síguenos</h4>
             <a href="https://www.facebook.com/share/1Cbu7zKQBa/" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/creeatutips?igsh=M3o4aG5yaXQ2NjRr" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="tel:+525593652128"><i class="fas fa-phone"></i></a>
+            <a href="tel:+525539652128"><i class="fas fa-phone"></i></a>
         </div>
     </div>
     <div class="footer-bottom">
         <p>&copy; 2025 CreeatuTip's. Todos los derechos reservados.</p>
     </div>
 </footer>
+
+<a href="https://wa.me/525539652128?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20art%C3%ADculos%20promocionales" target="_blank" class="whatsapp-float" aria-label="Cotiza por WhatsApp" title="Cotiza por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 </body>
 </html>

@@ -1,5 +1,5 @@
 # CreeatuTip's — Documento de Contexto del Proyecto
-*Última actualización: 2026-05-09*
+*Última actualización: 2026-11-06*
 
 ---
 
@@ -60,19 +60,27 @@ Definidas en `css/style.css` línea 1:
 
 ---
 
-## 4. Las 7 técnicas
+## 4. Las 9 técnicas
 
-| # | Nombre           | data-tab / data-filter | Color CSS              | Ícono FA         |
-|---|------------------|------------------------|------------------------|------------------|
-| 01 | DTF & Serigrafía | `dtf`                 | `--primary-color`      | `fa-tshirt`      |
-| 02 | Grabado Láser    | `laser`                | (default lila)         | `fa-vector-square` |
-| 03 | Sublimación      | `sublimacion`          | (default lila)         | `fa-mug-hot`     |
-| 04 | Bordado          | `bordado`              | (default lila)         | `fa-scissors`    |
-| 05 | Gran Formato     | `gran-formato`         | (default lila)         | `fa-print`       |
-| 06 | Corte en Acrílico| `vinil` ← ojo, key interno es "vinil" | (default lila) | `fa-cut` |
-| 07 | DTF UV           | `dtfuv`                | amber `#f59e0b`        | `fa-sun`         |
+> **Actualizado 2026-11-06:** antes se contaban 7 técnicas con "DTF & Serigrafía" fusionadas en una sola. El usuario aclaró que son dos técnicas distintas (→ 8), y luego agregó "Corte en MDF" como técnica independiente del "Corte en Acrílico" (→ 9), aunque ambas usan el mismo tipo de cortadora láser. El cambio se propagó a index.html (hero, stats, grid), servicios.html (tabs, flip cards), portafolio.html (filtro) y contacto.html (select).
 
-> **Importante:** La técnica 06 se llama "Corte en Acrílico" en toda la UI, pero internamente usa `data-tab="vinil"` y `data-filter="vinil"` en el portafolio. Esto es intencional para mantener compatibilidad con el sistema de filtros existente.
+| # | Nombre           | data-tab / data-filter | Color CSS         | Ícono FA           |
+|---|------------------|-------------------------|--------------------|---------------------|
+| 01 | DTF             | `dtf`                   | `#00BFFF`          | `fa-tshirt`         |
+| 02 | Serigrafía      | `serigrafia`            | `#dc2626`          | `fa-stamp`          |
+| 03 | Grabado Láser   | `laser`                 | `#5D54A4`          | `fa-vector-square`  |
+| 04 | Sublimación     | `sublimacion` (`sublim` en tabs de servicios.html) | `#E91E63` | `fa-mug-hot` |
+| 05 | Bordado         | `bordado`                | `#7c3aed`         | `fa-scissors`       |
+| 06 | Gran Formato    | `gran-formato` (`formato` en tabs de servicios.html) | `#0ea5e9` | `fa-print` |
+| 07 | Corte en Acrílico| `vinil` en servicios.html/portafolio.html, `acrilico` en index.html ← inconsistencia histórica intencional | `#16a34a` | `fa-cut` |
+| 08 | Corte en MDF    | `mdf` (value del select en contacto.html es `mdf_corte` para no chocar con el value `mdf` del select de Artículos) | `#78350f` | `fa-layer-group` |
+| 09 | DTF UV          | `dtfuv`                  | amber `#f59e0b`   | `fa-sun`            |
+
+> **Importante:** la técnica 07 se llama "Corte en Acrílico" en toda la UI, pero usa claves internas distintas según el archivo (`vinil` vs `acrilico`). Es intencional para mantener compatibilidad con el sistema de filtros existente — no unificar sin revisar todas las referencias cruzadas.
+>
+> **index.html `.tech-grid`:** con 9 tarjetas se usa grid de 3 columnas (3×3 exacto), manteniéndolo hasta los 600px de ancho (sin el paso intermedio a 2 columnas que tenía antes) para que nunca quede una tarjeta huérfana.
+>
+> **Nota de robustez:** los colores por técnica en index.html y servicios.html se aplican por atributo (`[data-tech="x"]`, `[data-card="x"]`), no por posición (`:nth-child`). Si agregas o reordenas una tarjeta, usa el mismo patrón para que los colores no se desincronicen.
 
 ---
 
@@ -190,14 +198,18 @@ Busca el comentario con el ID (ej: `TU_VIDEO_DTF_ID`) y descomenta el `<iframe>`
 ## 8. Tareas pendientes
 
 ### Alta prioridad
-- [ ] **Fotos reales** — subir 8 fotos a `img/portfolio/` (ver tabla sección 6)
-- [ ] **Videos YouTube** — reemplazar 7 IDs de video en servicios.html
+- [ ] **Fotos reales** — subir fotos a `img/portfolio/` (ver tabla sección 6; ahora son 10 ítems/9 categorías tras agregar Serigrafía y Corte en MDF)
+- [ ] **Videos YouTube** — reemplazar los IDs de video en servicios.html para las 9 técnicas (el usuario está creando el canal de YouTube de CreeatuTips para resolver esto)
 - [ ] **Logos de clientes** — agregar PNGs en `img/clientes/`
 
 ### Media prioridad
 - [ ] **Catálogo PDF** — integrar el PDF grande de productos en productos.html. Pendiente decidir: ¿solo botón de descarga o embed de visor? ¿qué peso tiene el archivo?
-- [ ] **Formulario de contacto** — agregar "Corte en Acrílico" y "DTF UV" al select de Servicio/Técnica en contacto.html
-- [ ] **nosotros.html** — el texto menciona "serigrafía" como técnica (línea ~39); actualizar si se quiere consistencia
+
+### Resuelto (2026-11-06)
+- [x] Formulario de contacto — select de Servicio/Técnica ya incluye las 8 técnicas (DTF, Serigrafía, Láser, Sublimación, Bordado, Gran Formato, Corte en Acrílico, DTF UV)
+- [x] nosotros.html — texto actualizado, menciona las 8 técnicas explícitamente
+- [x] Bug de número de WhatsApp (no coincidía con el de teléfono) corregido
+- [x] Botón flotante de WhatsApp agregado en las 6 páginas
 
 ### Baja prioridad / Futuro
 - [ ] **Etiquetas NFC** — el usuario tiene 144 etiquetas NFC y una app para personalizarlas. Integrar al sitio cuando el concepto esté más aterrizado (se discutirá en otro chat)

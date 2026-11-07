@@ -46,6 +46,69 @@
             bottom: -80px; left: 30%;
             pointer-events: none;
         }
+        @media (prefers-reduced-motion: no-preference) {
+            .hero-new::before { animation: float-blob-1 10s ease-in-out infinite; }
+            .hero-new::after { animation: float-blob-2 13s ease-in-out infinite; }
+        }
+        @keyframes float-blob-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, 30px) scale(1.08); }
+        }
+        @keyframes float-blob-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(25px, -20px) scale(1.1); }
+        }
+
+        /* ══════════════════════════════════════
+           CINTA DESLIZANTE DE TÉCNICAS
+        ══════════════════════════════════════ */
+        .tech-marquee {
+            background: #1a1630;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            overflow: hidden;
+            padding: 18px 0;
+        }
+        .tech-marquee-track {
+            display: flex;
+            width: max-content;
+            gap: 14px;
+            animation: marquee-scroll 28s linear infinite;
+        }
+        .tech-marquee-track span {
+            font-family: var(--font-heading);
+            font-size: 0.95em;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+        .tech-marquee-track .dot {
+            color: var(--secondary-color);
+            font-weight: 400;
+        }
+        @keyframes marquee-scroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .tech-marquee-track { animation: none; }
+        }
+
+        /* ══════════════════════════════════════
+           REVELADO AL HACER SCROLL
+        ══════════════════════════════════════ */
+        @media (prefers-reduced-motion: no-preference) {
+            .tech-card, .pillar {
+                opacity: 0;
+                transform: translateY(24px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+            .tech-card.in-view, .pillar.in-view {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .hero-eyebrow {
             font-size: 0.85em;
@@ -286,7 +349,7 @@
             background: #271f45;
             border: 1px solid rgba(255,255,255,0.05);
             overflow: hidden;
-            transition: background 0.3s;
+            transition: background 0.3s, opacity 0.6s ease, transform 0.6s ease;
             cursor: default;
         }
         .tech-card::before {
@@ -299,13 +362,16 @@
         .tech-card:hover { background: #2e2850; }
         .tech-card:hover::before { height: 100%; }
 
-        /* Colores de acento por técnica */
-        .tech-card:nth-child(1)::before { background: #00BFFF; }
-        .tech-card:nth-child(2)::before { background: #5D54A4; }
-        .tech-card:nth-child(3)::before { background: #E91E63; }
-        .tech-card:nth-child(4)::before { background: #7c3aed; }
-        .tech-card:nth-child(5)::before { background: #0ea5e9; }
-        .tech-card:nth-child(6)::before { background: #16a34a; }
+        /* Colores de acento por técnica (por atributo, no por posición, para que nunca se desincronice del orden) */
+        .tech-card[data-tech="dtf"]::before          { background: #00BFFF; }
+        .tech-card[data-tech="serigrafia"]::before   { background: #dc2626; }
+        .tech-card[data-tech="laser"]::before        { background: #5D54A4; }
+        .tech-card[data-tech="sublimacion"]::before  { background: #E91E63; }
+        .tech-card[data-tech="bordado"]::before      { background: #7c3aed; }
+        .tech-card[data-tech="gran-formato"]::before { background: #0ea5e9; }
+        .tech-card[data-tech="acrilico"]::before     { background: #16a34a; }
+        .tech-card[data-tech="mdf"]::before          { background: #78350f; }
+        .tech-card[data-tech="dtfuv"]::before        { background: #f59e0b; }
 
         .tech-num {
             font-family: var(--font-heading);
@@ -320,12 +386,15 @@
             margin-bottom: 16px;
             display: block;
         }
-        .tech-card:nth-child(1) .tech-icon { color: #00BFFF; }
-        .tech-card:nth-child(2) .tech-icon { color: #5D54A4; }
-        .tech-card:nth-child(3) .tech-icon { color: #E91E63; }
-        .tech-card:nth-child(4) .tech-icon { color: #7c3aed; }
-        .tech-card:nth-child(5) .tech-icon { color: #0ea5e9; }
-        .tech-card:nth-child(6) .tech-icon { color: #16a34a; }
+        .tech-card[data-tech="dtf"] .tech-icon          { color: #00BFFF; }
+        .tech-card[data-tech="serigrafia"] .tech-icon   { color: #dc2626; }
+        .tech-card[data-tech="laser"] .tech-icon        { color: #5D54A4; }
+        .tech-card[data-tech="sublimacion"] .tech-icon  { color: #E91E63; }
+        .tech-card[data-tech="bordado"] .tech-icon      { color: #7c3aed; }
+        .tech-card[data-tech="gran-formato"] .tech-icon { color: #0ea5e9; }
+        .tech-card[data-tech="acrilico"] .tech-icon     { color: #16a34a; }
+        .tech-card[data-tech="mdf"] .tech-icon          { color: #78350f; }
+        .tech-card[data-tech="dtfuv"] .tech-icon        { color: #f59e0b; }
 
         .tech-card h3 {
             font-family: var(--font-heading);
@@ -514,7 +583,6 @@
            RESPONSIVE
         ══════════════════════════════════════ */
         @media (max-width: 992px) {
-            .tech-grid { grid-template-columns: repeat(2, 1fr); }
             .why-inner  { grid-template-columns: 1fr; gap: 50px; }
             .stats-strip-inner { grid-template-columns: repeat(2, 1fr); }
             .stat-block:nth-child(2) { border-right: none; }
@@ -560,7 +628,7 @@
             <span class="dynamic-line"><span class="typing-word" id="typing-word">DTF</span>.</span>
         </h1>
         <p class="hero-subtitle">
-            Dominamos 7 técnicas de personalización para que cada artículo que entregues comunique quién eres, con calidad que se nota.
+            Dominamos 9 técnicas de personalización para que cada artículo que entregues comunique quién eres, con calidad que se nota.
         </p>
         <div class="hero-actions">
             <a href="contacto.html" class="btn-hero-primary">
@@ -575,6 +643,30 @@
             Scroll
         </div>
     </section>
+
+    <!-- ══ CINTA DE TÉCNICAS ══ -->
+    <div class="tech-marquee">
+        <div class="tech-marquee-track">
+            <span>DTF</span><span class="dot">•</span>
+            <span>Serigrafía</span><span class="dot">•</span>
+            <span>Grabado Láser</span><span class="dot">•</span>
+            <span>Sublimación</span><span class="dot">•</span>
+            <span>Bordado</span><span class="dot">•</span>
+            <span>Gran Formato</span><span class="dot">•</span>
+            <span>Corte en Acrílico</span><span class="dot">•</span>
+            <span>Corte en MDF</span><span class="dot">•</span>
+            <span>DTF UV</span><span class="dot">•</span>
+            <span>DTF</span><span class="dot">•</span>
+            <span>Serigrafía</span><span class="dot">•</span>
+            <span>Grabado Láser</span><span class="dot">•</span>
+            <span>Sublimación</span><span class="dot">•</span>
+            <span>Bordado</span><span class="dot">•</span>
+            <span>Gran Formato</span><span class="dot">•</span>
+            <span>Corte en Acrílico</span><span class="dot">•</span>
+            <span>Corte en MDF</span><span class="dot">•</span>
+            <span>DTF UV</span><span class="dot">•</span>
+        </div>
+    </div>
 
     <!-- ══ STATS ══ -->
     <div class="stats-strip">
@@ -601,48 +693,60 @@
     <!-- ══ TÉCNICAS ══ -->
     <section class="techniques-section">
         <p class="section-label">Lo que hacemos</p>
-        <h2>7 técnicas.<br>Una sola dirección.</h2>
+        <h2>9 técnicas.<br>Una sola dirección.</h2>
         <p class="section-sub">Desde textil hasta metal. Del detalle más fino al gran formato. Tenemos la técnica exacta para tu proyecto.</p>
 
         <div class="tech-grid">
-            <div class="tech-card">
+            <div class="tech-card" data-tech="dtf">
                 <p class="tech-num">01</p>
                 <i class="fas fa-tshirt tech-icon"></i>
-                <h3>DTF & Serigrafía</h3>
-                <p>Full color con alta durabilidad en prendas. Sin límite de colores ni detalles.</p>
+                <h3>DTF</h3>
+                <p>Impresión directa a película transferida a la tela. Full color, sin límite de tonos.</p>
             </div>
-            <div class="tech-card">
+            <div class="tech-card" data-tech="serigrafia">
                 <p class="tech-num">02</p>
+                <i class="fas fa-stamp tech-icon"></i>
+                <h3>Serigrafía</h3>
+                <p>Estampado tradicional por mallas. Colores planos, máxima durabilidad en volumen.</p>
+            </div>
+            <div class="tech-card" data-tech="laser">
+                <p class="tech-num">03</p>
                 <i class="fas fa-vector-square tech-icon"></i>
                 <h3>Grabado Láser</h3>
                 <p>Precisión y elegancia en metal, madera y piel. Acabado premium e indeleble.</p>
             </div>
-            <div class="tech-card">
-                <p class="tech-num">03</p>
+            <div class="tech-card" data-tech="sublimacion">
+                <p class="tech-num">04</p>
                 <i class="fas fa-mug-hot tech-icon"></i>
                 <h3>Sublimación</h3>
                 <p>Imagen fotográfica que se incrusta en el material. Permanente y resistente.</p>
             </div>
-            <div class="tech-card">
-                <p class="tech-num">04</p>
+            <div class="tech-card" data-tech="bordado">
+                <p class="tech-num">05</p>
                 <i class="fas fa-scissors tech-icon"></i>
                 <h3>Bordado</h3>
                 <p>Textura real y acabado de lujo. La técnica más duradera para uniformes premium.</p>
             </div>
-            <div class="tech-card">
-                <p class="tech-num">05</p>
+            <div class="tech-card" data-tech="gran-formato">
+                <p class="tech-num">06</p>
                 <i class="fas fa-print tech-icon"></i>
                 <h3>Gran Formato</h3>
                 <p>Lonas, banners y roll-ups de alta resolución para eventos y publicidad.</p>
             </div>
-            <div class="tech-card">
-                <p class="tech-num">06</p>
+            <div class="tech-card" data-tech="acrilico">
+                <p class="tech-num">07</p>
                 <i class="fas fa-cut tech-icon"></i>
                 <h3>Corte en Acrílico</h3>
                 <p>Figuras, letras y logos en acrílico para señalética, rótulos y decoración premium.</p>
             </div>
-            <div class="tech-card">
-                <p class="tech-num">07</p>
+            <div class="tech-card" data-tech="mdf">
+                <p class="tech-num">08</p>
+                <i class="fas fa-layer-group tech-icon"></i>
+                <h3>Corte en MDF</h3>
+                <p>Figuras, bases y letras cortadas en madera MDF con precisión láser para displays y decoración.</p>
+            </div>
+            <div class="tech-card" data-tech="dtfuv">
+                <p class="tech-num">09</p>
                 <i class="fas fa-sun tech-icon"></i>
                 <h3>DTF UV</h3>
                 <p>Full color sobre termos, vasos, plumas y libretas. Tinta curada con UV sin calor.</p>
@@ -692,7 +796,7 @@
                 <div class="pillar">
                     <div class="pillar-icon"><i class="fas fa-layer-group"></i></div>
                     <div class="pillar-text">
-                        <h4>6 técnicas bajo un solo techo</h4>
+                        <h4>9 técnicas bajo un solo techo</h4>
                         <p>Sin intermediarios. Todo lo hacemos nosotros, con control total del proceso y la calidad.</p>
                     </div>
                 </div>
@@ -732,7 +836,7 @@
             <h4>Síguenos</h4>
             <a href="https://www.facebook.com/share/1Cbu7zKQBa/" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/creeatutips?igsh=M3o4aG5yaXQ2NjRr" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="tel:+525593652128"><i class="fas fa-phone"></i></a>
+            <a href="tel:+525539652128"><i class="fas fa-phone"></i></a>
         </div>
     </div>
     <div class="footer-bottom">
@@ -743,7 +847,7 @@
 <script src="js/main.js"></script>
 <script>
     // ── Efecto typing en el hero ──
-    const words = ['DTF.', 'Láser.', 'Bordado.', 'Sublimación.', 'Acrílico.', 'DTF UV.'];
+    const words = ['DTF.', 'Serigrafía.', 'Láser.', 'Sublimación.', 'Bordado.', 'Gran Formato.', 'Acrílico.', 'MDF.', 'DTF UV.'];
     const el = document.getElementById('typing-word');
     let wi = 0, ci = 0, deleting = false;
 
@@ -771,7 +875,7 @@
     const targets = [
         { id: 'stat1', end: 500, suffix: '+' },
         { id: 'stat2', end: 5,   suffix: '+' },
-        { id: 'stat3', end: 7,   suffix: ''  },
+        { id: 'stat3', end: 9,   suffix: ''  },
         { id: 'stat4', end: 100, suffix: '%' },
     ];
 
@@ -795,6 +899,29 @@
 
     const statsEl = document.querySelector('.stats-strip');
     if (statsEl) observer.observe(statsEl);
+
+    // ── Revelado al hacer scroll ──
+    function revealOnScroll(itemSelector, containerSelector) {
+        const items = document.querySelectorAll(itemSelector);
+        const container = document.querySelector(containerSelector);
+        if (!items.length || !container) return;
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                items.forEach((item, i) => {
+                    setTimeout(() => item.classList.add('in-view'), i * 80);
+                });
+                revealObserver.disconnect();
+            });
+        }, { threshold: 0.15 });
+        revealObserver.observe(container);
+    }
+    revealOnScroll('.tech-card', '.tech-grid');
+    revealOnScroll('.pillar', '.why-pillars');
 </script>
+
+<a href="https://wa.me/525539652128?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20art%C3%ADculos%20promocionales" target="_blank" class="whatsapp-float" aria-label="Cotiza por WhatsApp" title="Cotiza por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 </body>
 </html>

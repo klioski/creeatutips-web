@@ -80,11 +80,13 @@
         .tab-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
         .tab-btn.active { color: white; border-color: transparent; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.15); }
         .tab-btn[data-tab="dtf"].active      { background: #00BFFF; }
+        .tab-btn[data-tab="serigrafia"].active { background: #dc2626; }
         .tab-btn[data-tab="laser"].active    { background: #5D54A4; }
         .tab-btn[data-tab="sublim"].active   { background: #E91E63; }
         .tab-btn[data-tab="bordado"].active  { background: #7c3aed; }
         .tab-btn[data-tab="formato"].active  { background: #0ea5e9; }
         .tab-btn[data-tab="vinil"].active    { background: #16a34a; }
+        .tab-btn[data-tab="mdf"].active       { background: #78350f; }
         .tab-btn[data-tab="dtfuv"].active   { background: #f59e0b; }
 
         /* ===== PANELS ===== */
@@ -170,6 +172,8 @@
         /* Colores por técnica */
         .tab-panel[data-panel="dtf"]     .tab-label, .tab-panel[data-panel="dtf"]     .tab-cta { background: #00BFFF; }
         .tab-panel[data-panel="dtf"]     .video-placeholder { background: linear-gradient(135deg, #0090c4, #00BFFF); }
+        .tab-panel[data-panel="serigrafia"] .tab-label, .tab-panel[data-panel="serigrafia"] .tab-cta { background: #dc2626; }
+        .tab-panel[data-panel="serigrafia"] .video-placeholder { background: linear-gradient(135deg, #a61b1b, #dc2626); }
         .tab-panel[data-panel="laser"]   .tab-label, .tab-panel[data-panel="laser"]   .tab-cta { background: #5D54A4; }
         .tab-panel[data-panel="laser"]   .video-placeholder { background: linear-gradient(135deg, #4a4384, #5D54A4); }
         .tab-panel[data-panel="sublim"]  .tab-label, .tab-panel[data-panel="sublim"]  .tab-cta { background: #E91E63; }
@@ -180,6 +184,8 @@
         .tab-panel[data-panel="formato"] .video-placeholder { background: linear-gradient(135deg, #0280b8, #0ea5e9); }
         .tab-panel[data-panel="vinil"]   .tab-label, .tab-panel[data-panel="vinil"]   .tab-cta { background: #16a34a; }
         .tab-panel[data-panel="vinil"]   .video-placeholder { background: linear-gradient(135deg, #0f6b30, #16a34a); }
+        .tab-panel[data-panel="mdf"]     .tab-label, .tab-panel[data-panel="mdf"]     .tab-cta { background: #78350f; }
+        .tab-panel[data-panel="mdf"]     .video-placeholder { background: linear-gradient(135deg, #4a2008, #78350f); }
         .tab-panel[data-panel="dtfuv"]   .tab-label, .tab-panel[data-panel="dtfuv"]   .tab-cta { background: #f59e0b; }
         .tab-panel[data-panel="dtfuv"]   .video-placeholder { background: linear-gradient(135deg, #b45309, #f59e0b); }
 
@@ -275,48 +281,60 @@
         }
         .card-back-cta:hover { opacity: 0.85; }
 
-        /* Colores flip cards */
-        .card-wrap:nth-child(1) .card-accent,.card-wrap:nth-child(1) .card-number { color: #00BFFF; }
-        .card-wrap:nth-child(1) .card-accent { background: #00BFFF; }
-        .card-wrap:nth-child(1) .card-icon   { background: #00BFFF; }
-        .card-wrap:nth-child(1) .card-back   { background: linear-gradient(135deg, #0090c4, #00BFFF); }
-        .card-wrap:nth-child(1) .card-back-cta { color: #0090c4; }
+        /* Colores flip cards (por atributo data-card, no por posición, para que nunca se desincronice del orden) */
+        .card-wrap[data-card="dtf"] .card-accent, .card-wrap[data-card="dtf"] .card-number { color: #00BFFF; }
+        .card-wrap[data-card="dtf"] .card-accent { background: #00BFFF; }
+        .card-wrap[data-card="dtf"] .card-icon   { background: #00BFFF; }
+        .card-wrap[data-card="dtf"] .card-back   { background: linear-gradient(135deg, #0090c4, #00BFFF); }
+        .card-wrap[data-card="dtf"] .card-back-cta { color: #0090c4; }
 
-        .card-wrap:nth-child(2) .card-accent { background: #5D54A4; }
-        .card-wrap:nth-child(2) .card-number { color: #5D54A4; }
-        .card-wrap:nth-child(2) .card-icon   { background: #5D54A4; }
-        .card-wrap:nth-child(2) .card-back   { background: linear-gradient(135deg, #4a4384, #5D54A4); }
-        .card-wrap:nth-child(2) .card-back-cta { color: #5D54A4; }
+        .card-wrap[data-card="serigrafia"] .card-accent, .card-wrap[data-card="serigrafia"] .card-number { color: #dc2626; }
+        .card-wrap[data-card="serigrafia"] .card-accent { background: #dc2626; }
+        .card-wrap[data-card="serigrafia"] .card-icon   { background: #dc2626; }
+        .card-wrap[data-card="serigrafia"] .card-back   { background: linear-gradient(135deg, #a61b1b, #dc2626); }
+        .card-wrap[data-card="serigrafia"] .card-back-cta { color: #a61b1b; }
 
-        .card-wrap:nth-child(3) .card-accent { background: #E91E63; }
-        .card-wrap:nth-child(3) .card-number { color: #E91E63; }
-        .card-wrap:nth-child(3) .card-icon   { background: #E91E63; }
-        .card-wrap:nth-child(3) .card-back   { background: linear-gradient(135deg, #c0154f, #E91E63); }
-        .card-wrap:nth-child(3) .card-back-cta { color: #c0154f; }
+        .card-wrap[data-card="laser"] .card-accent, .card-wrap[data-card="laser"] .card-number { color: #5D54A4; }
+        .card-wrap[data-card="laser"] .card-accent { background: #5D54A4; }
+        .card-wrap[data-card="laser"] .card-icon   { background: #5D54A4; }
+        .card-wrap[data-card="laser"] .card-back   { background: linear-gradient(135deg, #4a4384, #5D54A4); }
+        .card-wrap[data-card="laser"] .card-back-cta { color: #5D54A4; }
 
-        .card-wrap:nth-child(4) .card-accent { background: #7c3aed; }
-        .card-wrap:nth-child(4) .card-number { color: #7c3aed; }
-        .card-wrap:nth-child(4) .card-icon   { background: #7c3aed; }
-        .card-wrap:nth-child(4) .card-back   { background: linear-gradient(135deg, #6028c4, #7c3aed); }
-        .card-wrap:nth-child(4) .card-back-cta { color: #6028c4; }
+        .card-wrap[data-card="sublimacion"] .card-accent, .card-wrap[data-card="sublimacion"] .card-number { color: #E91E63; }
+        .card-wrap[data-card="sublimacion"] .card-accent { background: #E91E63; }
+        .card-wrap[data-card="sublimacion"] .card-icon   { background: #E91E63; }
+        .card-wrap[data-card="sublimacion"] .card-back   { background: linear-gradient(135deg, #c0154f, #E91E63); }
+        .card-wrap[data-card="sublimacion"] .card-back-cta { color: #c0154f; }
 
-        .card-wrap:nth-child(5) .card-accent { background: #0ea5e9; }
-        .card-wrap:nth-child(5) .card-number { color: #0ea5e9; }
-        .card-wrap:nth-child(5) .card-icon   { background: #0ea5e9; }
-        .card-wrap:nth-child(5) .card-back   { background: linear-gradient(135deg, #0280b8, #0ea5e9); }
-        .card-wrap:nth-child(5) .card-back-cta { color: #0280b8; }
+        .card-wrap[data-card="bordado"] .card-accent, .card-wrap[data-card="bordado"] .card-number { color: #7c3aed; }
+        .card-wrap[data-card="bordado"] .card-accent { background: #7c3aed; }
+        .card-wrap[data-card="bordado"] .card-icon   { background: #7c3aed; }
+        .card-wrap[data-card="bordado"] .card-back   { background: linear-gradient(135deg, #6028c4, #7c3aed); }
+        .card-wrap[data-card="bordado"] .card-back-cta { color: #6028c4; }
 
-        .card-wrap:nth-child(6) .card-accent { background: #16a34a; }
-        .card-wrap:nth-child(6) .card-number { color: #16a34a; }
-        .card-wrap:nth-child(6) .card-icon   { background: #16a34a; }
-        .card-wrap:nth-child(6) .card-back   { background: linear-gradient(135deg, #0f6b30, #16a34a); }
-        .card-wrap:nth-child(6) .card-back-cta { color: #0f6b30; }
+        .card-wrap[data-card="gran-formato"] .card-accent, .card-wrap[data-card="gran-formato"] .card-number { color: #0ea5e9; }
+        .card-wrap[data-card="gran-formato"] .card-accent { background: #0ea5e9; }
+        .card-wrap[data-card="gran-formato"] .card-icon   { background: #0ea5e9; }
+        .card-wrap[data-card="gran-formato"] .card-back   { background: linear-gradient(135deg, #0280b8, #0ea5e9); }
+        .card-wrap[data-card="gran-formato"] .card-back-cta { color: #0280b8; }
 
-        .card-wrap:nth-child(7) .card-accent { background: #f59e0b; }
-        .card-wrap:nth-child(7) .card-number { color: #f59e0b; }
-        .card-wrap:nth-child(7) .card-icon   { background: #f59e0b; }
-        .card-wrap:nth-child(7) .card-back   { background: linear-gradient(135deg, #b45309, #f59e0b); }
-        .card-wrap:nth-child(7) .card-back-cta { color: #b45309; }
+        .card-wrap[data-card="acrilico"] .card-accent, .card-wrap[data-card="acrilico"] .card-number { color: #16a34a; }
+        .card-wrap[data-card="acrilico"] .card-accent { background: #16a34a; }
+        .card-wrap[data-card="acrilico"] .card-icon   { background: #16a34a; }
+        .card-wrap[data-card="acrilico"] .card-back   { background: linear-gradient(135deg, #0f6b30, #16a34a); }
+        .card-wrap[data-card="acrilico"] .card-back-cta { color: #0f6b30; }
+
+        .card-wrap[data-card="mdf"] .card-accent, .card-wrap[data-card="mdf"] .card-number { color: #78350f; }
+        .card-wrap[data-card="mdf"] .card-accent { background: #78350f; }
+        .card-wrap[data-card="mdf"] .card-icon   { background: #78350f; }
+        .card-wrap[data-card="mdf"] .card-back   { background: linear-gradient(135deg, #4a2008, #78350f); }
+        .card-wrap[data-card="mdf"] .card-back-cta { color: #4a2008; }
+
+        .card-wrap[data-card="dtfuv"] .card-accent, .card-wrap[data-card="dtfuv"] .card-number { color: #f59e0b; }
+        .card-wrap[data-card="dtfuv"] .card-accent { background: #f59e0b; }
+        .card-wrap[data-card="dtfuv"] .card-icon   { background: #f59e0b; }
+        .card-wrap[data-card="dtfuv"] .card-back   { background: linear-gradient(135deg, #b45309, #f59e0b); }
+        .card-wrap[data-card="dtfuv"] .card-back-cta { color: #b45309; }
 
         /* ===== CTA BOTTOM ===== */
         .services-cta {
@@ -377,7 +395,7 @@
     <!-- HERO -->
     <section class="services-hero">
         <h1>Nuestro Poder de Personalización</h1>
-        <p>7 técnicas dominadas. Un solo objetivo: que tu marca impacte.</p>
+        <p>9 técnicas dominadas. Un solo objetivo: que tu marca impacte.</p>
     </section>
 
     <!-- TABS CON VIDEO -->
@@ -388,6 +406,9 @@
         <div class="tab-buttons">
             <button class="tab-btn active" data-tab="dtf">
                 <i class="fas fa-tshirt"></i> DTF
+            </button>
+            <button class="tab-btn" data-tab="serigrafia">
+                <i class="fas fa-stamp"></i> Serigrafía
             </button>
             <button class="tab-btn" data-tab="laser">
                 <i class="fas fa-vector-square"></i> Grabado Láser
@@ -403,6 +424,9 @@
             </button>
             <button class="tab-btn" data-tab="vinil">
                 <i class="fas fa-cut"></i> Corte en Acrílico
+            </button>
+            <button class="tab-btn" data-tab="mdf">
+                <i class="fas fa-layer-group"></i> Corte en MDF
             </button>
             <button class="tab-btn" data-tab="dtfuv">
                 <i class="fas fa-sun"></i> DTF UV
@@ -440,8 +464,8 @@
                 </div>
                 <div class="tab-panel-info">
                     <span class="tab-label">Técnica 01</span>
-                    <h3>DTF, Serigrafía y Vinil Textil</h3>
-                    <p>Impresión directa en tela con colores vibrantes y alta durabilidad. Perfecta para prendas y uniformes con diseños full color sin límite de colores.</p>
+                    <h3>DTF (Direct to Film)</h3>
+                    <p>Impresión directa a película transferida en caliente a la tela. Full color, sin límite de tonos ni gradientes, ideal incluso para pedidos pequeños o diseños muy detallados.</p>
                     <div>
                         <p class="tab-materials-title">Artículos frecuentes</p>
                         <ul class="tab-chips">
@@ -449,10 +473,44 @@
                             <li>Sudaderas</li>
                             <li>Uniformes</li>
                             <li>Gorras</li>
-                            <li>Bolsas de Tela</li>
                         </ul>
                     </div>
                     <a href="contacto.html" class="tab-cta">Cotizar DTF <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- SERIGRAFÍA -->
+            <div class="tab-panel" data-panel="serigrafia">
+                <div class="tab-video-wrapper">
+                    <div class="video-placeholder">
+                        <i class="fab fa-youtube"></i>
+                        <p>Pega aquí tu video de Serigrafía.<br>
+                        Reemplaza <code>TU_VIDEO_SERIGRAFIA_ID</code> con el ID de tu video.</p>
+                    </div>
+                    <!-- DESCOMENTA Y USA ESTO cuando tengas el ID:
+                    <iframe
+                        src="https://www.youtube.com/embed/TU_VIDEO_SERIGRAFIA_ID?rel=0&modestbranding=1"
+                        title="Proceso Serigrafía - CreeatuTips"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    -->
+                </div>
+                <div class="tab-panel-info">
+                    <span class="tab-label">Técnica 02</span>
+                    <h3>Serigrafía Textil</h3>
+                    <p>Estampado tradicional por mallas, con colores planos y máxima durabilidad en tela. La opción más económica y resistente para pedidos en volumen.</p>
+                    <div>
+                        <p class="tab-materials-title">Artículos frecuentes</p>
+                        <ul class="tab-chips">
+                            <li>Playeras en Volumen</li>
+                            <li>Uniformes Corporativos</li>
+                            <li>Bolsas de Tela</li>
+                            <li>Delantales</li>
+                            <li>Gorras</li>
+                        </ul>
+                    </div>
+                    <a href="contacto.html" class="tab-cta">Cotizar Serigrafía <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
@@ -474,7 +532,7 @@
                     -->
                 </div>
                 <div class="tab-panel-info">
-                    <span class="tab-label">Técnica 02</span>
+                    <span class="tab-label">Técnica 03</span>
                     <h3>Grabado Láser de Alta Precisión</h3>
                     <p>Acabado premium, indeleble y elegante. Ideal para artículos corporativos y regalos de alta gama. Logotipos y textos finos sobre metal, madera y más.</p>
                     <div>
@@ -509,7 +567,7 @@
                     -->
                 </div>
                 <div class="tab-panel-info">
-                    <span class="tab-label">Técnica 03</span>
+                    <span class="tab-label">Técnica 04</span>
                     <h3>Sublimación Full Color</h3>
                     <p>Resolución fotográfica que no se desprende ni borra con el uso. La tinta se incrusta en el material para un acabado permanente y resistente al sol.</p>
                     <div>
@@ -543,7 +601,7 @@
                     -->
                 </div>
                 <div class="tab-panel-info">
-                    <span class="tab-label">Técnica 04</span>
+                    <span class="tab-label">Técnica 05</span>
                     <h3>Bordados</h3>
                     <p>Textura real y acabado de lujo que no destiñe ni se daña. La opción más duradera para uniformes corporativos y prendas de alta calidad.</p>
                     <div>
@@ -577,7 +635,7 @@
                     -->
                 </div>
                 <div class="tab-panel-info">
-                    <span class="tab-label">Técnica 05</span>
+                    <span class="tab-label">Técnica 06</span>
                     <h3>Impresión en Gran Formato</h3>
                     <p>Alta resolución para publicidad exterior e interior. Ideal para eventos, ferias y puntos de venta que necesitan impacto visual a gran escala.</p>
                     <div>
@@ -611,7 +669,7 @@
                     -->
                 </div>
                 <div class="tab-panel-info">
-                    <span class="tab-label">Técnica 06</span>
+                    <span class="tab-label">Técnica 07</span>
                     <h3>Corte en Acrílico</h3>
                     <p>Figuras, letras y logotipos cortados en acrílico con acabado translúcido o de colores sólidos. Ideal para señalética premium, rótulos, trofeos y decoración de interiores con presencia visual de alto impacto.</p>
                     <div>
@@ -626,6 +684,40 @@
                         </ul>
                     </div>
                     <a href="contacto.html" class="tab-cta">Cotizar Corte en Acrílico <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- CORTE EN MDF -->
+            <div class="tab-panel" data-panel="mdf">
+                <div class="tab-video-wrapper">
+                    <div class="video-placeholder">
+                        <i class="fab fa-youtube"></i>
+                        <p>Pega aquí tu video de Corte en MDF.<br>
+                        Reemplaza <code>TU_VIDEO_MDF_ID</code> con el ID de tu video.</p>
+                    </div>
+                    <!-- DESCOMENTA Y USA ESTO cuando tengas el ID:
+                    <iframe
+                        src="https://www.youtube.com/embed/TU_VIDEO_MDF_ID?rel=0&modestbranding=1"
+                        title="Proceso Corte en MDF - CreeatuTips"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    -->
+                </div>
+                <div class="tab-panel-info">
+                    <span class="tab-label">Técnica 08</span>
+                    <h3>Corte en MDF</h3>
+                    <p>Figuras, bases y letras cortadas en madera MDF con precisión láser. Ideal para piezas que se pintan, forran o decoran, displays y proyectos de gran volumen a bajo costo.</p>
+                    <div>
+                        <p class="tab-materials-title">Artículos frecuentes</p>
+                        <ul class="tab-chips">
+                            <li>Bases y Soportes</li>
+                            <li>Letras Decorativas</li>
+                            <li>Figuras para Eventos</li>
+                            <li>Displays de Punto de Venta</li>
+                        </ul>
+                    </div>
+                    <a href="contacto.html" class="tab-cta">Cotizar Corte en MDF <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
 
@@ -647,7 +739,7 @@
                     -->
                 </div>
                 <div class="tab-panel-info">
-                    <span class="tab-label">Técnica 07</span>
+                    <span class="tab-label">Técnica 09</span>
                     <h3>DTF UV — Impresión en Superficies Rígidas</h3>
                     <p>Impresión full color directa sobre superficies rígidas con tinta curada por luz UV. Colores vivos, acabado duradero y resistente al agua. Sin necesidad de calor — funciona sobre metal, vidrio, madera, acrílico y más.</p>
                     <div>
@@ -671,13 +763,13 @@
     <!-- FLIP CARDS -->
     <section class="process-section">
         <div class="process-header">
-            <h2>Las 7 Técnicas que Dominamos</h2>
+            <h2>Las 9 Técnicas que Dominamos</h2>
             <p>Pasa el cursor sobre cada tarjeta para ver en qué artículos aplicamos cada técnica.</p>
         </div>
 
         <div class="techniques-grid">
 
-            <div class="card-wrap">
+            <div class="card-wrap" data-card="dtf">
                 <div class="flip-card">
                     <div class="card-front">
                         <div class="card-accent"></div>
@@ -686,9 +778,9 @@
                             <div>
                                 <div class="card-icon-title">
                                     <div class="card-icon"><i class="fas fa-tshirt"></i></div>
-                                    <h3>DTF, Serigrafía y Vinil Textil</h3>
+                                    <h3>DTF</h3>
                                 </div>
-                                <p class="card-desc">Full color con alta durabilidad en prendas y uniformes. Sin límite de colores ni detalles.</p>
+                                <p class="card-desc">Full color con alta durabilidad en prendas. Sin límite de colores ni detalles, ideal para tirajes pequeños.</p>
                             </div>
                             <div class="card-hint"><i class="fas fa-sync-alt"></i> Voltear para ver artículos</div>
                         </div>
@@ -699,19 +791,48 @@
                             <li>Playeras de Algodón</li>
                             <li>Sudaderas</li>
                             <li>Uniformes</li>
-                            <li>Gorras y Bolsas</li>
+                            <li>Gorras</li>
                         </ul>
                         <a href="contacto.html" class="card-back-cta">Cotizar DTF</a>
                     </div>
                 </div>
             </div>
 
-            <div class="card-wrap">
+            <div class="card-wrap" data-card="serigrafia">
                 <div class="flip-card">
                     <div class="card-front">
                         <div class="card-accent"></div>
                         <div class="card-body">
                             <span class="card-number">02</span>
+                            <div>
+                                <div class="card-icon-title">
+                                    <div class="card-icon"><i class="fas fa-stamp"></i></div>
+                                    <h3>Serigrafía</h3>
+                                </div>
+                                <p class="card-desc">Estampado tradicional por mallas, colores planos y máxima durabilidad. La opción más económica para pedidos en volumen.</p>
+                            </div>
+                            <div class="card-hint"><i class="fas fa-sync-alt"></i> Voltear para ver artículos</div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <p class="card-back-title">Artículos que personalizamos</p>
+                        <ul class="card-materials">
+                            <li>Playeras en Volumen</li>
+                            <li>Uniformes Corporativos</li>
+                            <li>Bolsas de Tela</li>
+                            <li>Delantales</li>
+                        </ul>
+                        <a href="contacto.html" class="card-back-cta">Cotizar Serigrafía</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-wrap" data-card="laser">
+                <div class="flip-card">
+                    <div class="card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <span class="card-number">03</span>
                             <div>
                                 <div class="card-icon-title">
                                     <div class="card-icon"><i class="fas fa-vector-square"></i></div>
@@ -735,12 +856,12 @@
                 </div>
             </div>
 
-            <div class="card-wrap">
+            <div class="card-wrap" data-card="sublimacion">
                 <div class="flip-card">
                     <div class="card-front">
                         <div class="card-accent"></div>
                         <div class="card-body">
-                            <span class="card-number">03</span>
+                            <span class="card-number">04</span>
                             <div>
                                 <div class="card-icon-title">
                                     <div class="card-icon"><i class="fas fa-mug-hot"></i></div>
@@ -764,12 +885,12 @@
                 </div>
             </div>
 
-            <div class="card-wrap">
+            <div class="card-wrap" data-card="bordado">
                 <div class="flip-card">
                     <div class="card-front">
                         <div class="card-accent"></div>
                         <div class="card-body">
-                            <span class="card-number">04</span>
+                            <span class="card-number">05</span>
                             <div>
                                 <div class="card-icon-title">
                                     <div class="card-icon"><i class="fas fa-scissors"></i></div>
@@ -793,12 +914,12 @@
                 </div>
             </div>
 
-            <div class="card-wrap">
+            <div class="card-wrap" data-card="gran-formato">
                 <div class="flip-card">
                     <div class="card-front">
                         <div class="card-accent"></div>
                         <div class="card-body">
-                            <span class="card-number">05</span>
+                            <span class="card-number">06</span>
                             <div>
                                 <div class="card-icon-title">
                                     <div class="card-icon"><i class="fas fa-print"></i></div>
@@ -822,44 +943,12 @@
                 </div>
             </div>
 
-            <!-- DTF UV -->
-            <div class="card-wrap">
+            <div class="card-wrap" data-card="acrilico">
                 <div class="flip-card">
                     <div class="card-front">
                         <div class="card-accent"></div>
                         <div class="card-body">
                             <span class="card-number">07</span>
-                            <div>
-                                <div class="card-icon-title">
-                                    <div class="card-icon"><i class="fas fa-sun"></i></div>
-                                    <h3>DTF UV en Superficies Rígidas</h3>
-                                </div>
-                                <p class="card-desc">Full color sobre metal, vidrio, madera y acrílico. Tinta curada con UV para acabado duradero y resistente al agua.</p>
-                            </div>
-                            <div class="card-hint"><i class="fas fa-sync-alt"></i> Voltear para ver artículos</div>
-                        </div>
-                    </div>
-                    <div class="card-back">
-                        <p class="card-back-title">Artículos que personalizamos</p>
-                        <ul class="card-materials">
-                            <li>Termos y Vasos</li>
-                            <li>Plumas y Bolígrafos</li>
-                            <li>Libretas y Agendas</li>
-                            <li>Llaveros Metálicos</li>
-                            <li>Chapas y Distintivos</li>
-                        </ul>
-                        <a href="contacto.html" class="card-back-cta">Cotizar DTF UV</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CORTE EN ACRÍLICO -->
-            <div class="card-wrap">
-                <div class="flip-card">
-                    <div class="card-front">
-                        <div class="card-accent"></div>
-                        <div class="card-body">
-                            <span class="card-number">06</span>
                             <div>
                                 <div class="card-icon-title">
                                     <div class="card-icon"><i class="fas fa-cut"></i></div>
@@ -880,6 +969,65 @@
                             <li>Llaveros Acrílicos</li>
                         </ul>
                         <a href="contacto.html" class="card-back-cta">Cotizar Corte en Acrílico</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-wrap" data-card="mdf">
+                <div class="flip-card">
+                    <div class="card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <span class="card-number">08</span>
+                            <div>
+                                <div class="card-icon-title">
+                                    <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+                                    <h3>Corte en MDF</h3>
+                                </div>
+                                <p class="card-desc">Figuras, bases y letras cortadas en madera MDF con precisión láser. Ideal para displays y piezas decorativas.</p>
+                            </div>
+                            <div class="card-hint"><i class="fas fa-sync-alt"></i> Voltear para ver artículos</div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <p class="card-back-title">Artículos que personalizamos</p>
+                        <ul class="card-materials">
+                            <li>Bases y Soportes</li>
+                            <li>Letras Decorativas</li>
+                            <li>Figuras para Eventos</li>
+                            <li>Displays de Punto de Venta</li>
+                        </ul>
+                        <a href="contacto.html" class="card-back-cta">Cotizar Corte en MDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-wrap" data-card="dtfuv">
+                <div class="flip-card">
+                    <div class="card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <span class="card-number">09</span>
+                            <div>
+                                <div class="card-icon-title">
+                                    <div class="card-icon"><i class="fas fa-sun"></i></div>
+                                    <h3>DTF UV en Superficies Rígidas</h3>
+                                </div>
+                                <p class="card-desc">Full color sobre metal, vidrio, madera y acrílico. Tinta curada con UV para acabado duradero y resistente al agua.</p>
+                            </div>
+                            <div class="card-hint"><i class="fas fa-sync-alt"></i> Voltear para ver artículos</div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <p class="card-back-title">Artículos que personalizamos</p>
+                        <ul class="card-materials">
+                            <li>Termos y Vasos</li>
+                            <li>Plumas y Bolígrafos</li>
+                            <li>Libretas y Agendas</li>
+                            <li>Llaveros Metálicos</li>
+                            <li>Chapas y Distintivos</li>
+                        </ul>
+                        <a href="contacto.html" class="card-back-cta">Cotizar DTF UV</a>
                     </div>
                 </div>
             </div>
@@ -912,7 +1060,7 @@
             <h4>Síguenos</h4>
             <a href="https://www.facebook.com/share/1Cbu7zKQBa/" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/creeatutips?igsh=M3o4aG5yaXQ2NjRr" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="tel:+525593652128"><i class="fas fa-phone"></i></a>
+            <a href="tel:+525539652128"><i class="fas fa-phone"></i></a>
         </div>
     </div>
     <div class="footer-bottom">
@@ -935,5 +1083,9 @@
     });
 </script>
 <script src="js/main.js"></script>
+
+<a href="https://wa.me/525539652128?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20art%C3%ADculos%20promocionales" target="_blank" class="whatsapp-float" aria-label="Cotiza por WhatsApp" title="Cotiza por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 </body>
 </html>
