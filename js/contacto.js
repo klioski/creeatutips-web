@@ -7,6 +7,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const opcionesTermos = document.getElementById('opciones-termos');
     const opcionesTela = document.getElementById('opciones-tela');
     const color = document.getElementById('idcolor');
+    const successPanel = document.getElementById('form-success');
+    const successAgainBtn = document.getElementById('form-success-again');
+
+    if (successAgainBtn) {
+        successAgainBtn.addEventListener('click', function() {
+            successPanel.hidden = true;
+            form.style.display = '';
+        });
+    }
 
     // REEMPLAZA estos placeholders con tus IDs reales de EmailJS
     const SERVICE_ID = "service_du3r5mm";
@@ -66,13 +75,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(function() {
                     // Éxito:
                     console.log('¡Mensaje enviado con éxito!');
-                    // Reemplazar alert() con un mensaje en la interfaz
-                    alert('¡Cotización enviada con éxito! Te contactaremos pronto.');
                     form.reset(); // Limpia el formulario
                     // Volver a ocultar opciones dinámicas después de resetear
                     toggleArticulosAdicionales();
                     submitButton.textContent = 'Enviar Solicitud de Cotización';
                     submitButton.disabled = false;
+                    // Muestra el panel de confirmación con Tipi en vez de un alert()
+                    if (successPanel) {
+                        form.style.display = 'none';
+                        successPanel.hidden = false;
+                        successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
                 }, function(error) {
                     // Error:
                     console.error('Error al enviar el mensaje:', error);

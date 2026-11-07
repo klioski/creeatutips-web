@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
     <style>
 
         /* ══════════════════════════════════════
@@ -226,6 +226,26 @@
         .btn-hero-ghost:hover {
             border-color: rgba(255,255,255,0.6);
             color: white;
+        }
+
+        /* Tipi saludando en el hero */
+        .hero-tipi {
+            position: absolute;
+            right: 6%;
+            bottom: 40px;
+            width: 180px;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .hero-tipi svg { width: 100%; height: auto; display: block; }
+        @media (prefers-reduced-motion: no-preference) {
+            .hero-tipi .bodybounce { transform-origin: 150px 300px; animation: tipi-hero-breathe 2.6s ease-in-out infinite; }
+            .hero-tipi .waveArm { transform-box: fill-box; transform-origin: 0% 100%; animation: tipi-hero-wave .5s ease-in-out infinite alternate; }
+        }
+        @keyframes tipi-hero-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        @keyframes tipi-hero-wave { from { transform: rotate(-12deg); } to { transform: rotate(14deg); } }
+        @media (max-width: 992px) {
+            .hero-tipi { display: none; }
         }
 
         /* Scroll indicator */
@@ -461,6 +481,32 @@
             font-style: normal;
             color: var(--secondary-color);
         }
+
+        /* ===== TIPI — narrador en Por Qué Elegirnos ===== */
+        .why-tipi-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .why-tipi-row .tipi-stage {
+            width: 140px;
+            flex-shrink: 0;
+        }
+        .tipi-stage svg { width: 100%; height: auto; display: block; }
+        .tipi-stage .bodybounce { transform-origin: 150px 300px; transition: transform .09s; }
+        @media (prefers-reduced-motion: no-preference) {
+            .tipi-stage.idle .bodybounce { animation: why-tipi-breathe 2.6s ease-in-out infinite; }
+            .tipi-stage.talking .bodybounce { animation: why-tipi-talk .36s ease-in-out infinite; }
+        }
+        @keyframes why-tipi-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        @keyframes why-tipi-talk { 0%, 100% { transform: scale(1,1); } 50% { transform: scale(1.025,.975); } }
+
+        .why-text .word, .pillar-text .word { transition: color 0.15s ease; }
+        .why-text .word.read, .pillar-text .word.read {
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
         .why-text p {
             color: rgba(255,255,255,0.45);
             line-height: 1.8;
@@ -642,6 +688,45 @@
             <div class="scroll-line"></div>
             Scroll
         </div>
+
+        <div class="hero-tipi" aria-hidden="true">
+            <svg viewBox="-20 0 340 340" width="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tipi saludando">
+                <defs>
+                    <clipPath id="tipiHeroc"><path d="M150 28 C182 72 246 128 246 196 C246 258 202 296 150 296 C98 296 54 258 54 196 C54 128 118 72 150 28Z"/></clipPath>
+                    <linearGradient id="tipiHerog" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#00BFFF"/><stop offset=".55" stop-color="#5D54A4"/><stop offset="1" stop-color="#E91E63"/>
+                    </linearGradient>
+                </defs>
+                <circle cx="44" cy="96" r="9" fill="#FFC93C"/><circle cx="30" cy="120" r="5" fill="#00BFFF"/>
+                <circle cx="258" cy="84" r="8" fill="#E91E63"/><circle cx="272" cy="108" r="4.5" fill="#3DDC84"/>
+                <circle cx="244" cy="312" r="6" fill="#FFC93C"/><circle cx="60" cy="316" r="5" fill="#3DDC84"/>
+                <g class="bodybounce">
+                    <ellipse cx="118" cy="300" rx="22" ry="10" fill="#2a2462"/><ellipse cx="182" cy="300" rx="22" ry="10" fill="#2a2462"/>
+                    <g transform="translate(150 0)">
+                        <path d="M-86 178 q-22 12 -24 38" fill="none" stroke="#2a2462" stroke-width="7" stroke-linecap="round"/><circle cx="-110" cy="218" r="11" fill="#5D54A4" stroke="#2a2462" stroke-width="4"/>
+                        <g class="waveArm"><path d="M84 160 q30 -14 40 -54" fill="none" stroke="#2a2462" stroke-width="7" stroke-linecap="round"/><circle cx="124" cy="104" r="11" fill="#5D54A4" stroke="#2a2462" stroke-width="4"/></g>
+                    </g>
+                    <path d="M150 28 C182 72 246 128 246 196 C246 258 202 296 150 296 C98 296 54 258 54 196 C54 128 118 72 150 28Z" fill="url(#tipiHerog)"/>
+                    <g clip-path="url(#tipiHeroc)">
+                        <path d="M40 120 C80 104 110 132 150 118 C190 104 220 128 260 114 L260 80 L40 80Z" fill="#00BFFF" opacity=".55"/>
+                        <circle cx="226" cy="236" r="20" fill="#FFC93C"/>
+                        <circle cx="206" cy="258" r="9" fill="#3DDC84"/>
+                        <path d="M54 250 C90 236 120 262 160 250 C200 238 220 262 250 252 L250 300 L54 300Z" fill="#E91E63" opacity=".7"/>
+                        <circle cx="76" cy="230" r="10" fill="#FFC93C" opacity=".9"/>
+                        <ellipse cx="112" cy="110" rx="12" ry="26" transform="rotate(30 112 110)" fill="#fff" opacity=".7"/>
+                        <circle cx="96" cy="140" r="5" fill="#fff" opacity=".7"/>
+                    </g>
+                    <path d="M150 28 C182 72 246 128 246 196 C246 258 202 296 150 296 C98 296 54 258 54 196 C54 128 118 72 150 28Z" fill="none" stroke="#2a2462" stroke-width="6" stroke-linejoin="round"/>
+                    <g transform="translate(150 186)">
+                        <path d="M-46 -36 Q-32 -46 -18 -38" fill="none" stroke="#1d1847" stroke-width="5" stroke-linecap="round"/><path d="M18 -38 Q32 -46 46 -36" fill="none" stroke="#1d1847" stroke-width="5" stroke-linecap="round"/>
+                        <g class="eyes"><g class="eyesOpen"><g transform="translate(-32 0)"><ellipse rx="14" ry="17" fill="#fff" stroke="#2a2462" stroke-width="4"/><circle cx="2" cy="3" r="8" fill="#1d1847"/><circle cx="5" cy="-1" r="2.6" fill="#fff"/></g><g transform="translate(32 0)"><ellipse rx="14" ry="17" fill="#fff" stroke="#2a2462" stroke-width="4"/><circle cx="2" cy="3" r="8" fill="#1d1847"/><circle cx="5" cy="-1" r="2.6" fill="#fff"/></g></g></g>
+                        <ellipse cx="-52" cy="30" rx="11" ry="7" fill="#E91E63" opacity=".55"/>
+                        <ellipse cx="52" cy="30" rx="11" ry="7" fill="#E91E63" opacity=".55"/>
+                        <g class="mouth" transform="translate(0 40)"><path d="M-20 -6 Q0 -11 20 -6 Q18 28 0 30 Q-18 28 -20 -6Z" fill="#1d1847"/><ellipse cx="0" cy="20" rx="10" ry="6" fill="#E91E63"/><rect x="-12" y="-7" width="24" height="6" rx="2" fill="#fff"/></g>
+                    </g>
+                </g>
+            </svg>
+        </div>
     </section>
 
     <!-- ══ CINTA DE TÉCNICAS ══ -->
@@ -766,6 +851,10 @@
             <div class="why-text">
                 <p class="section-label">Por qué elegirnos</p>
                 <h2>Creatividad seria.<br><em>Resultados reales.</em></h2>
+                <div class="why-tipi-row">
+                    <div class="tipi-stage idle" id="whyTipiStage"></div>
+                    <button type="button" id="whyTipiPlayBtn" class="btn-dark">▶ Escuchar</button>
+                </div>
                 <p>No somos un catálogo de productos genéricos. Somos un equipo que entiende tu marca, domina las técnicas y se asegura de que cada pieza que entregues deje huella.</p>
                 <a href="nosotros.html" class="btn-dark">
                     Conoce nuestra historia <i class="fas fa-arrow-right"></i>
@@ -918,6 +1007,282 @@
     }
     revealOnScroll('.tech-card', '.tech-grid');
     revealOnScroll('.pillar', '.why-pillars');
+</script>
+<script>
+(function(){
+    const C = { purple:"#5D54A4", cyan:"#00BFFF", pink:"#E91E63", yellow:"#FFC93C", green:"#3DDC84", ink:"#1d1847", line:"#2a2462" };
+
+    const MOUTHS = {
+        rest:  `<path d="M-15 0 Q0 9 15 0" fill="none" stroke="${C.ink}" stroke-width="5" stroke-linecap="round"/>`,
+        A:     `<path d="M-20 -6 Q0 -11 20 -6 Q18 28 0 30 Q-18 28 -20 -6Z" fill="${C.ink}"/><ellipse cx="0" cy="20" rx="10" ry="6" fill="${C.pink}"/><rect x="-12" y="-7" width="24" height="6" rx="2" fill="#fff"/>`,
+        E:     `<path d="M-24 -4 Q0 -9 24 -4 Q20 15 0 16 Q-20 15 -24 -4Z" fill="${C.ink}"/><rect x="-17" y="-5" width="34" height="6" rx="2" fill="#fff"/>`,
+        O:     `<ellipse cx="0" cy="6" rx="12" ry="16" fill="${C.ink}"/><ellipse cx="0" cy="14" rx="7" ry="5" fill="${C.pink}"/>`,
+        U:     `<ellipse cx="0" cy="5" rx="7" ry="9" fill="${C.ink}"/>`,
+        MBP:   `<path d="M-17 2 Q0 6 17 2" fill="none" stroke="${C.ink}" stroke-width="7" stroke-linecap="round"/>`,
+        FV:    `<path d="M-18 -3 Q0 -6 18 -3 Q15 12 0 13 Q-15 12 -18 -3Z" fill="${C.ink}"/><rect x="-10" y="-4" width="20" height="8" rx="2" fill="#fff"/>`,
+        smile: `<path d="M-24 -4 Q0 -2 24 -4 Q20 28 0 28 Q-20 28 -24 -4Z" fill="${C.ink}"/><ellipse cx="0" cy="20" rx="11" ry="6" fill="${C.pink}"/><rect x="-16" y="-4" width="32" height="6" rx="2" fill="#fff"/>`,
+    };
+
+    function eyesSVG(){
+        const open = x => `<g transform="translate(${x} 0)"><ellipse rx="14" ry="17" fill="#fff" stroke="${C.line}" stroke-width="4"/><circle cx="2" cy="3" r="8" fill="${C.ink}"/><circle cx="5" cy="-1" r="2.6" fill="#fff"/></g>`;
+        return `<g class="eyesOpen">${open(-32)}${open(32)}</g>`;
+    }
+    function browsSVG(){
+        return `<g class="brows"><path d="M-44 -28 Q-32 -34 -20 -29" fill="none" stroke="${C.ink}" stroke-width="5" stroke-linecap="round"/><path d="M20 -29 Q32 -34 44 -28" fill="none" stroke="${C.ink}" stroke-width="5" stroke-linecap="round"/></g>`;
+    }
+    function armsSVG(){
+        const hand = (x,y) => `<circle cx="${x}" cy="${y}" r="11" fill="${C.purple}" stroke="${C.line}" stroke-width="4"/>`;
+        const arm = d => `<path d="${d}" fill="none" stroke="${C.line}" stroke-width="7" stroke-linecap="round"/>`;
+        const left = arm("M-86 178 q-22 12 -24 38") + hand(-110, 218);
+        const right = arm("M86 178 q22 12 24 38") + hand(110, 218);
+        return `<g class="armL">${left}</g><g class="armR">${right}</g>`;
+    }
+    function mascot(mouth){
+        const id = "tipiW";
+        const drop = "M150 28 C182 72 246 128 246 196 C246 258 202 296 150 296 C98 296 54 258 54 196 C54 128 118 72 150 28Z";
+        return `<svg viewBox="-20 0 340 340" width="220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tipi, la mascota gota de CreeatuTip's">
+            <defs>
+                <clipPath id="${id}c"><path d="${drop}"/></clipPath>
+                <linearGradient id="${id}g" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="${C.cyan}"/><stop offset=".55" stop-color="${C.purple}"/><stop offset="1" stop-color="${C.pink}"/>
+                </linearGradient>
+            </defs>
+            <circle cx="44" cy="96" r="9" fill="${C.yellow}"/><circle cx="30" cy="120" r="5" fill="${C.cyan}"/>
+            <circle cx="258" cy="84" r="8" fill="${C.pink}"/><circle cx="272" cy="108" r="4.5" fill="${C.green}"/>
+            <circle cx="244" cy="312" r="6" fill="${C.yellow}"/><circle cx="60" cy="316" r="5" fill="${C.green}"/>
+            <g class="bodybounce">
+                <ellipse cx="118" cy="300" rx="22" ry="10" fill="${C.line}"/><ellipse cx="182" cy="300" rx="22" ry="10" fill="${C.line}"/>
+                <g transform="translate(150 0)">${armsSVG()}</g>
+                <path d="${drop}" fill="url(#${id}g)"/>
+                <g clip-path="url(#${id}c)">
+                    <path d="M40 120 C80 104 110 132 150 118 C190 104 220 128 260 114 L260 80 L40 80Z" fill="${C.cyan}" opacity=".55"/>
+                    <circle cx="226" cy="236" r="20" fill="${C.yellow}"/>
+                    <circle cx="206" cy="258" r="9" fill="${C.green}"/>
+                    <path d="M54 250 C90 236 120 262 160 250 C200 238 220 262 250 252 L250 300 L54 300Z" fill="${C.pink}" opacity=".7"/>
+                    <circle cx="76" cy="230" r="10" fill="${C.yellow}" opacity=".9"/>
+                    <ellipse cx="112" cy="110" rx="12" ry="26" transform="rotate(30 112 110)" fill="#fff" opacity=".7"/>
+                    <circle cx="96" cy="140" r="5" fill="#fff" opacity=".7"/>
+                </g>
+                <path d="${drop}" fill="none" stroke="${C.line}" stroke-width="6" stroke-linejoin="round"/>
+                <g transform="translate(150 186)">
+                    ${browsSVG()}
+                    <g class="eyes">${eyesSVG()}</g>
+                    <ellipse cx="-52" cy="30" rx="11" ry="7" fill="${C.pink}" opacity=".55"/>
+                    <ellipse cx="52" cy="30" rx="11" ry="7" fill="${C.pink}" opacity=".55"/>
+                    <g class="mouth" transform="translate(0 40)">${MOUTHS[mouth]}</g>
+                </g>
+            </g>
+        </svg>`;
+    }
+    function escapeHTML(s){ return s.replace(/[&<>]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;" }[c])); }
+
+    const FPS = 25;
+    function analyze(buf){
+        const n = buf.length, sr = buf.sampleRate, x = new Float32Array(n);
+        for (let c = 0; c < buf.numberOfChannels; c++) { const d = buf.getChannelData(c); for (let i = 0; i < n; i++) x[i] += d[i] / buf.numberOfChannels; }
+        const aL = 1 - Math.exp(-2 * Math.PI * 700 / sr), aH = 1 - Math.exp(-2 * Math.PI * 3500 / sr);
+        const hop = Math.round(sr / FPS);
+        const feats = [];
+        let lp = 0, lp2 = 0;
+        for (let f = 0; f * hop < n; f++) {
+            let e = 0, eL = 0, eH = 0;
+            const end = Math.min(n, (f + 1) * hop);
+            for (let i = f * hop; i < end; i++) {
+                const v = x[i];
+                lp += aL * (v - lp); lp2 += aH * (v - lp2);
+                const hi = v - lp2;
+                e += v * v; eL += lp * lp; eH += hi * hi;
+            }
+            const len = end - f * hop || 1;
+            feats.push({ rms: Math.sqrt(e / len), low: eL / (e || 1e-9), high: eH / (e || 1e-9) });
+        }
+        const sorted = feats.map(f => f.rms).sort((a, b) => a - b);
+        const ref = sorted[Math.floor(sorted.length * .95)] || 1;
+        const energyTrack = feats.map(f => Math.min(1, f.rms / ref));
+        let shapes = feats.map((f, i) => {
+            const v = energyTrack[i];
+            if (v < .08) return "rest";
+            if (f.high > .35 && v < .75) return v < .35 ? "FV" : "E";
+            if (v < .22) return "MBP";
+            if (f.low > .7) return v > .55 ? "O" : "U";
+            if (v > .62) return "A";
+            return "E";
+        });
+        for (let i = 1; i < shapes.length - 1; i++) if (shapes[i] !== shapes[i - 1] && shapes[i] !== shapes[i + 1]) shapes[i] = shapes[i - 1];
+
+        const silent = energyTrack.map(v => v < .08);
+        const gestureTrack = new Array(shapes.length).fill("rest");
+        const starts = [];
+        let quiet = 99;
+        for (let i = 0; i < shapes.length; i++) {
+            if (silent[i]) { quiet++; continue; }
+            if (quiet >= 8 && (!starts.length || i - starts[starts.length - 1] >= FPS * 1.6)) starts.push(i);
+            quiet = 0;
+        }
+        starts.forEach((st, p) => {
+            const g = p === 0 ? "wave" : GESTURES[(p - 1) % GESTURES.length];
+            const end = Math.min(starts[p + 1] ?? shapes.length, st + FPS * 4);
+            for (let k = st; k < end; k++) gestureTrack[k] = g;
+        });
+        const browTrack = energyTrack.map((v, i) => {
+            const prev = ((energyTrack[i - 3] || 0) + (energyTrack[i - 4] || 0)) / 2;
+            return v * 4 + (v > .8 && v - prev > .35 ? 8 : 0);
+        });
+        for (let i = 1; i < browTrack.length; i++) browTrack[i] = Math.max(browTrack[i], browTrack[i - 1] * .9);
+
+        return { mouthTrack: shapes, energyTrack, gestureTrack, browTrack };
+    }
+
+    const GESTURE_ANGLES = { rest:[0,0], open:[72,-72], point:[96,0], think:[0,-105], wave:[0,-135], both:[120,-120] };
+    const GESTURES = ["open", "point", "think", "open", "both", "point"];
+    const life = { gesture:"rest", browLift:0, energy:0, aL:0, aR:0, brow:0, nextBlink:1500, blinkUntil:0, doubleBlink:false };
+    let rnd = Math.random;
+
+    function lifeStep(stageEl, now, k = .14){
+        const g = GESTURE_ANGLES[life.gesture] || GESTURE_ANGLES.rest;
+        const wiggle = life.gesture === "wave" ? Math.sin(now / 90) * 16 : 0;
+        const sway = Math.sin(now / 600) * 3;
+        const talk = life.energy * Math.sin(now / 110) * 6;
+        life.aL += ((g[0] + sway + (g[0] ? talk : 0)) - life.aL) * k;
+        life.aR += ((g[1] - sway + wiggle + (g[1] ? -talk : 0)) - life.aR) * k;
+        life.brow += (Math.min(12, life.browLift) - life.brow) * Math.min(1, k * 1.8);
+
+        if (now > life.nextBlink) {
+            life.blinkUntil = now + 120;
+            if (life.doubleBlink) { life.doubleBlink = false; life.nextBlink = now + 240; }
+            else { life.doubleBlink = rnd() < .2; life.nextBlink = now + 2000 + rnd() * 3000; }
+        }
+        const eyeScale = now < life.blinkUntil ? .1 : 1;
+
+        const armL = stageEl.querySelector(".armL"), armR = stageEl.querySelector(".armR");
+        if (armL) armL.setAttribute("transform", `rotate(${life.aL.toFixed(1)} -86 178)`);
+        if (armR) armR.setAttribute("transform", `rotate(${life.aR.toFixed(1)} 86 178)`);
+        const brows = stageEl.querySelector(".brows");
+        if (brows) brows.setAttribute("transform", `translate(0 ${(-life.brow).toFixed(1)})`);
+        const eyes = stageEl.querySelector(".eyes");
+        if (eyes) eyes.setAttribute("transform", `scale(1 ${eyeScale})`);
+    }
+
+    // El audio también narra "Por qué elegirnos" y el título antes del párrafo,
+    // pero esas dos líneas no están envueltas en spans (el <h2> tiene <br>/<em>), así que
+    // solo se usa su longitud para calcular cuánto tiempo del audio les toca, sin resaltarlas.
+    const LEAD_TEXT = "Por qué elegirnos. Creatividad seria. Resultados reales.";
+    const AUDIO_URL = "audio/por-que-elegirnos.mp3";
+
+    const stage = document.getElementById("whyTipiStage");
+    const playBtn = document.getElementById("whyTipiPlayBtn");
+    const whyText = document.querySelector(".why-text p:not(.section-label)");
+    const pillarTexts = document.querySelectorAll(".pillar-text");
+
+    if (stage && playBtn && whyText && pillarTexts.length) {
+        stage.innerHTML = mascot("rest");
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        function wrapWords(el){
+            const words = el.textContent.split(" ");
+            el.innerHTML = words.map(w => `<span class="word">${escapeHTML(w)}</span>`).join(" ");
+            return Array.from(el.querySelectorAll(".word"));
+        }
+        const targets = [whyText];
+        pillarTexts.forEach(pt => { targets.push(pt.querySelector("h4")); targets.push(pt.querySelector("p")); });
+        const wordSpans = targets.flatMap(wrapWords);
+
+        const wordOffsets = [];
+        let cursor = 0;
+        wordSpans.forEach(span => {
+            wordOffsets.push(cursor);
+            cursor += span.textContent.length + 1;
+        });
+        const introOffset = LEAD_TEXT.length + 1;
+        const fullTextLen = introOffset + cursor;
+
+        function highlightUpTo(fullTextIdx){
+            const localIdx = fullTextIdx - introOffset;
+            let readUpTo = -1;
+            for (let i = 0; i < wordOffsets.length; i++) {
+                if (wordOffsets[i] <= localIdx) readUpTo = i; else break;
+            }
+            wordSpans.forEach((span, i) => span.classList.toggle("read", i <= readUpTo));
+        }
+
+        if (!reducedMotion) {
+            (function lifeLoop(now){
+                lifeStep(stage, now);
+                requestAnimationFrame(lifeLoop);
+            })(performance.now());
+        }
+
+        let actx = null, audioBuf = null, tracks = null, src = null, playStart = 0, rafId = null;
+
+        async function loadAudio(){
+            const r = await fetch(AUDIO_URL);
+            const arr = await r.arrayBuffer();
+            actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+            audioBuf = await actx.decodeAudioData(arr);
+            tracks = analyze(audioBuf);
+        }
+
+        function resetStage(){
+            stage.classList.remove("talking");
+            stage.classList.add("idle");
+            const mouthEl = stage.querySelector(".mouth");
+            if (mouthEl) mouthEl.innerHTML = MOUTHS.smile;
+            life.gesture = "rest";
+            life.browLift = 0;
+            life.energy = 0;
+        }
+
+        function stopPlayback(){
+            if (src) { try { src.stop(); } catch (e) {} src = null; }
+            if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+            resetStage();
+            playBtn.disabled = false;
+        }
+
+        function tick(){
+            const t = actx.currentTime - playStart;
+            if (t >= audioBuf.duration) { playBtn.textContent = "🔁 Escuchar de nuevo"; stopPlayback(); wordSpans.forEach(span => span.classList.add("read")); return; }
+            const f = Math.floor(t * FPS);
+            const shape = tracks.mouthTrack[f] || "rest";
+            if (!reducedMotion) {
+                const mouthEl = stage.querySelector(".mouth");
+                if (mouthEl) mouthEl.innerHTML = MOUTHS[shape];
+                const body = stage.querySelector(".bodybounce");
+                const v = tracks.energyTrack[f] || 0;
+                if (body) body.style.transform = `translateY(${-v * 6}px) scale(${1 + v * .03}, ${1 - v * .03})`;
+            }
+            life.gesture = tracks.gestureTrack[f] || "rest";
+            life.browLift = tracks.browTrack[f] || 0;
+            life.energy = tracks.energyTrack[f] || 0;
+
+            const progress = t / audioBuf.duration;
+            const idx = Math.min(fullTextLen - 1, Math.floor(progress * fullTextLen));
+            highlightUpTo(idx);
+
+            rafId = requestAnimationFrame(tick);
+        }
+
+        playBtn.addEventListener("click", async () => {
+            if (src) { stopPlayback(); playBtn.textContent = "▶ Escuchar"; return; }
+            playBtn.disabled = true;
+            playBtn.textContent = "Cargando…";
+            if (!audioBuf) { try { await loadAudio(); } catch (e) { playBtn.textContent = "No se pudo cargar el audio"; return; } }
+            wordSpans.forEach(span => span.classList.remove("read"));
+            await actx.resume();
+            stage.classList.remove("idle");
+            stage.classList.add("talking");
+            src = actx.createBufferSource();
+            src.buffer = audioBuf;
+            src.connect(actx.destination);
+            src.onended = () => { src = null; };
+            playStart = actx.currentTime + .05;
+            src.start(playStart);
+            playBtn.disabled = false;
+            playBtn.textContent = "⏸ Pausar";
+            rafId = requestAnimationFrame(tick);
+        });
+    }
+})();
 </script>
 
 <a href="https://wa.me/525539652128?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20art%C3%ADculos%20promocionales" target="_blank" class="whatsapp-float" aria-label="Cotiza por WhatsApp" title="Cotiza por WhatsApp">
