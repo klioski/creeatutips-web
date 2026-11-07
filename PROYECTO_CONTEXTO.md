@@ -60,9 +60,11 @@ Definidas en `css/style.css` línea 1:
 
 ---
 
-## 4. Las 9 técnicas
+## 4. Las 10 técnicas
 
-> **Actualizado 2026-11-06:** antes se contaban 7 técnicas con "DTF & Serigrafía" fusionadas en una sola. El usuario aclaró que son dos técnicas distintas (→ 8), y luego agregó "Corte en MDF" como técnica independiente del "Corte en Acrílico" (→ 9), aunque ambas usan el mismo tipo de cortadora láser. El cambio se propagó a index.html (hero, stats, grid), servicios.html (tabs, flip cards), portafolio.html (filtro) y contacto.html (select).
+> **Actualizado 2026-11-07:** antes se contaban 7 técnicas con "DTF & Serigrafía" fusionadas en una sola. El usuario aclaró que son dos técnicas distintas (→ 8), agregó "Corte en MDF" como técnica independiente del "Corte en Acrílico" (→ 9), y finalmente agregó "Letreros con Luz" (acrílico + vinil + LED) como la 10ma. El cambio se propagó a index.html (hero, stats, grid), servicios.html (tabs, flip cards), portafolio.html (filtro) y contacto.html (select).
+>
+> **Ojo con "Letreros con Luz":** también existe como categoría de producto en `productos.html` (`data-cat="letreros-luz"`, color `#f59e0b`) — es intencional, igual que "Acrílico y MDF" existe como producto Y como técnicas separadas. El color de la técnica en servicios.html/index.html es distinto (`#0d9488`, teal) porque `#f59e0b` ya lo usa DTF UV ahí.
 
 | # | Nombre           | data-tab / data-filter | Color CSS         | Ícono FA           |
 |---|------------------|-------------------------|--------------------|---------------------|
@@ -75,12 +77,15 @@ Definidas en `css/style.css` línea 1:
 | 07 | Corte en Acrílico| `vinil` en servicios.html/portafolio.html, `acrilico` en index.html ← inconsistencia histórica intencional | `#16a34a` | `fa-cut` |
 | 08 | Corte en MDF    | `mdf` (value del select en contacto.html es `mdf_corte` para no chocar con el value `mdf` del select de Artículos) | `#78350f` | `fa-layer-group` |
 | 09 | DTF UV          | `dtfuv`                  | amber `#f59e0b`   | `fa-sun`            |
+| 10 | Letreros con Luz | `letreros-luz` (value en contacto.html es `letreros_luz`) | teal `#0d9488` | `fa-lightbulb` |
 
 > **Importante:** la técnica 07 se llama "Corte en Acrílico" en toda la UI, pero usa claves internas distintas según el archivo (`vinil` vs `acrilico`). Es intencional para mantener compatibilidad con el sistema de filtros existente — no unificar sin revisar todas las referencias cruzadas.
 >
-> **index.html `.tech-grid`:** con 9 tarjetas se usa grid de 3 columnas (3×3 exacto), manteniéndolo hasta los 600px de ancho (sin el paso intermedio a 2 columnas que tenía antes) para que nunca quede una tarjeta huérfana.
+> **index.html `.tech-grid`:** cambiado de grid fijo de 3 columnas a `repeat(auto-fit, minmax(240px, 1fr))` — ya no hace falta recalcular columnas cada vez que se agrega una técnica (ha pasado 3 veces en una sesión).
 >
 > **Nota de robustez:** los colores por técnica en index.html y servicios.html se aplican por atributo (`[data-tech="x"]`, `[data-card="x"]`), no por posición (`:nth-child`). Si agregas o reordenas una tarjeta, usa el mismo patrón para que los colores no se desincronicen.
+>
+> **Audios de Tipi desactualizados (2026-11-07):** los audios narrados de `nosotros.html` y de "Por Qué Elegirnos" en `index.html` dicen "9 técnicas" (grabados antes de agregar Letreros con Luz). El texto visible de la página ya dice 10. En `nosotros.html` esto **desactiva el resaltado de palabras** (el `indexOf` del texto completo contra el audio ya no encuentra coincidencia). El usuario planea regrabar los audios — cuando los pase, actualizar `FULL_TEXT` en ambos archivos para restaurar la sincronía.
 
 ---
 
@@ -198,9 +203,10 @@ Busca el comentario con el ID (ej: `TU_VIDEO_DTF_ID`) y descomenta el `<iframe>`
 ## 8. Tareas pendientes
 
 ### Alta prioridad
-- [ ] **Fotos reales** — subir fotos a `img/portfolio/` (ver tabla sección 6; ahora son 10 ítems/9 categorías tras agregar Serigrafía y Corte en MDF)
-- [ ] **Videos YouTube** — reemplazar los IDs de video en servicios.html para las 9 técnicas (el usuario está creando el canal de YouTube de CreeatuTips para resolver esto)
+- [ ] **Fotos reales** — subir fotos a `img/portfolio/` (ver tabla sección 6; ahora son 11 ítems/10 categorías)
+- [ ] **Videos YouTube** — faltan 9 de 10 (Corte en Acrílico ya tiene video real desde 2026-11-07). El usuario tiene canal de YouTube de CreeatuTips y va subiendo según los va grabando.
 - [ ] **Logos de clientes** — agregar PNGs en `img/clientes/`
+- [ ] **Audios de Tipi** — regrabar "Quiénes Somos" y "Por Qué Elegirnos" mencionando las 10 técnicas (ver nota en sección 4)
 
 ### Media prioridad
 - [ ] **Catálogo PDF** — integrar el PDF grande de productos en productos.html. Pendiente decidir: ¿solo botón de descarga o embed de visor? ¿qué peso tiene el archivo?

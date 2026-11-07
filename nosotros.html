@@ -84,7 +84,7 @@
                 <button type="button" id="tipiPlayBtn" class="btn btn-primary">▶ Escuchar</button>
             </div>
             <div class="about-text">
-                <p>En CreeatuTip's, somos un equipo de creadores y técnicos apasionados por la personalización. Nacimos de la necesidad de ofrecer un servicio de artículos promocionales que va más allá de lo básico, dominando 9 técnicas de personalización: DTF, serigrafía, grabado láser, sublimación, bordado, gran formato, corte en acrílico, corte en MDF y DTF UV.</p>
+                <p>En CreeatuTip's, somos un equipo de creadores y técnicos apasionados por la personalización. Nacimos de la necesidad de ofrecer un servicio de artículos promocionales que va más allá de lo básico, dominando 10 técnicas de personalización: DTF, serigrafía, grabado láser, sublimación, bordado, gran formato, corte en acrílico, corte en MDF, letreros con luz y DTF UV.</p>
                 <p>Nuestro compromiso es con tu marca: te asesoramos para que elijas la técnica y el artículo perfecto, asegurando que cada pieza comunique tu mensaje con la máxima calidad y precisión.</p>
             </div>
         </div>
@@ -274,6 +274,9 @@
 
     // Texto completo narrado en el audio (incluye el saludo que no está escrito en la página,
     // sirve solo para ubicar en qué momento resaltar las palabras — la boca ya no depende de esto)
+    // OJO: el audio todavía dice "9 técnicas" (sin "letreros con luz"); el párrafo visible ya dice 10.
+    // Mientras no se regrabe el audio, introOffset da -1 y el resaltado de palabras queda desactivado
+    // (el audio y la boca/vida siguen funcionando normal, solo no se resalta texto).
     const FULL_TEXT = "¡Hola! Soy Tipi de CreeatuTip's, quiero explicarte Quiénes Somos. En CreeatuTip's, somos un equipo de creadores y técnicos apasionados por la personalización. Nacimos de la necesidad de ofrecer un servicio de artículos promocionales que va más allá de lo básico, dominando 9 técnicas de personalización: DTF, serigrafía, grabado láser, sublimación, bordado, gran formato, corte en acrílico, corte en MDF y DTF UV. Nuestro compromiso es con tu marca: te asesoramos para que elijas la técnica y el artículo perfecto, asegurando que cada pieza comunique tu mensaje con la máxima calidad y precisión.";
     const AUDIO_URL = "audio/quienes-somos-tipi.mp3";
 

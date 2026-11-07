@@ -112,6 +112,7 @@
         .tab-btn[data-tab="vinil"].active    { background: #16a34a; }
         .tab-btn[data-tab="mdf"].active       { background: #78350f; }
         .tab-btn[data-tab="dtfuv"].active   { background: #f59e0b; }
+        .tab-btn[data-tab="letreros-luz"].active { background: #0d9488; }
 
         /* ===== PANELS ===== */
         .tab-panels { max-width: 1000px; margin: 0 auto; }
@@ -212,6 +213,8 @@
         .tab-panel[data-panel="mdf"]     .video-placeholder { background: linear-gradient(135deg, #4a2008, #78350f); }
         .tab-panel[data-panel="dtfuv"]   .tab-label, .tab-panel[data-panel="dtfuv"]   .tab-cta { background: #f59e0b; }
         .tab-panel[data-panel="dtfuv"]   .video-placeholder { background: linear-gradient(135deg, #b45309, #f59e0b); }
+        .tab-panel[data-panel="letreros-luz"] .tab-label, .tab-panel[data-panel="letreros-luz"] .tab-cta { background: #0d9488; }
+        .tab-panel[data-panel="letreros-luz"] .video-placeholder { background: linear-gradient(135deg, #0f766e, #0d9488); }
 
         /* ===== FLIP CARDS ===== */
         .process-section {
@@ -360,6 +363,12 @@
         .card-wrap[data-card="dtfuv"] .card-back   { background: linear-gradient(135deg, #b45309, #f59e0b); }
         .card-wrap[data-card="dtfuv"] .card-back-cta { color: #b45309; }
 
+        .card-wrap[data-card="letreros-luz"] .card-accent, .card-wrap[data-card="letreros-luz"] .card-number { color: #0d9488; }
+        .card-wrap[data-card="letreros-luz"] .card-accent { background: #0d9488; }
+        .card-wrap[data-card="letreros-luz"] .card-icon   { background: #0d9488; }
+        .card-wrap[data-card="letreros-luz"] .card-back   { background: linear-gradient(135deg, #0f766e, #0d9488); }
+        .card-wrap[data-card="letreros-luz"] .card-back-cta { color: #0f766e; }
+
         /* ===== CTA BOTTOM ===== */
         .services-cta {
             text-align: center; padding: 70px 5%;
@@ -419,7 +428,7 @@
     <!-- HERO -->
     <section class="services-hero">
         <h1>Nuestro Poder de Personalización</h1>
-        <p>9 técnicas dominadas. Un solo objetivo: que tu marca impacte.</p>
+        <p>10 técnicas dominadas. Un solo objetivo: que tu marca impacte.</p>
 
         <div class="services-hero-scene">
             <svg viewBox="0 20 800 560" role="img" aria-label="Taller de CreeatuTip's: una máquina personaliza una playera, una taza, una gorra y un termo con distintas técnicas">
@@ -545,6 +554,9 @@
             </button>
             <button class="tab-btn" data-tab="dtfuv">
                 <i class="fas fa-sun"></i> DTF UV
+            </button>
+            <button class="tab-btn" data-tab="letreros-luz">
+                <i class="fas fa-lightbulb"></i> Letreros con Luz
             </button>
         </div>
 
@@ -866,13 +878,47 @@
                 </div>
             </div>
 
+            <!-- LETREROS CON LUZ -->
+            <div class="tab-panel" data-panel="letreros-luz">
+                <div class="tab-video-wrapper">
+                    <div class="video-placeholder">
+                        <i class="fab fa-youtube"></i>
+                        <p>Pega aquí tu video de Letreros con Luz.<br>
+                        Reemplaza <code>TU_VIDEO_LETREROS_ID</code> con el ID de tu video.</p>
+                    </div>
+                    <!-- DESCOMENTA Y USA ESTO cuando tengas el ID:
+                    <iframe
+                        src="https://www.youtube.com/embed/TU_VIDEO_LETREROS_ID?rel=0&modestbranding=1"
+                        title="Proceso Letreros con Luz - CreeatuTips"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    -->
+                </div>
+                <div class="tab-panel-info">
+                    <span class="tab-label">Técnica 10</span>
+                    <h3>Letreros con Luz</h3>
+                    <p>Combinamos acrílico y vinil cortado con iluminación LED para letreros que destacan de día y de noche. Ideal para fachadas, cajas de luz y letras corpóreas con presencia premium.</p>
+                    <div>
+                        <p class="tab-materials-title">Artículos frecuentes</p>
+                        <ul class="tab-chips">
+                            <li>Letreros Luminosos</li>
+                            <li>Cajas de Luz</li>
+                            <li>Letras Corpóreas</li>
+                            <li>Displays Iluminados</li>
+                        </ul>
+                    </div>
+                    <a href="contacto.html" class="tab-cta">Cotizar Letreros con Luz <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <!-- FLIP CARDS -->
     <section class="process-section">
         <div class="process-header">
-            <h2>Las 9 Técnicas que Dominamos</h2>
+            <h2>Las 10 Técnicas que Dominamos</h2>
             <p>Pasa el cursor sobre cada tarjeta para ver en qué artículos aplicamos cada técnica.</p>
         </div>
 
@@ -1137,6 +1183,35 @@
                             <li>Chapas y Distintivos</li>
                         </ul>
                         <a href="contacto.html" class="card-back-cta">Cotizar DTF UV</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-wrap" data-card="letreros-luz">
+                <div class="flip-card">
+                    <div class="card-front">
+                        <div class="card-accent"></div>
+                        <div class="card-body">
+                            <span class="card-number">10</span>
+                            <div>
+                                <div class="card-icon-title">
+                                    <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+                                    <h3>Letreros con Luz</h3>
+                                </div>
+                                <p class="card-desc">Acrílico y vinil con iluminación LED. Letreros que destacan de día y de noche, con acabado premium.</p>
+                            </div>
+                            <div class="card-hint"><i class="fas fa-sync-alt"></i> Voltear para ver artículos</div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <p class="card-back-title">Artículos que personalizamos</p>
+                        <ul class="card-materials">
+                            <li>Letreros Luminosos</li>
+                            <li>Cajas de Luz</li>
+                            <li>Letras Corpóreas</li>
+                            <li>Displays Iluminados</li>
+                        </ul>
+                        <a href="contacto.html" class="card-back-cta">Cotizar Letreros con Luz</a>
                     </div>
                 </div>
             </div>

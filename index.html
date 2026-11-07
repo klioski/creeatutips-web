@@ -358,7 +358,7 @@
 
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 2px;
             max-width: 1100px;
         }
@@ -392,6 +392,7 @@
         .tech-card[data-tech="acrilico"]::before     { background: #16a34a; }
         .tech-card[data-tech="mdf"]::before          { background: #78350f; }
         .tech-card[data-tech="dtfuv"]::before        { background: #f59e0b; }
+        .tech-card[data-tech="letreros-luz"]::before { background: #0d9488; }
 
         .tech-num {
             font-family: var(--font-heading);
@@ -415,6 +416,7 @@
         .tech-card[data-tech="acrilico"] .tech-icon     { color: #16a34a; }
         .tech-card[data-tech="mdf"] .tech-icon          { color: #78350f; }
         .tech-card[data-tech="dtfuv"] .tech-icon        { color: #f59e0b; }
+        .tech-card[data-tech="letreros-luz"] .tech-icon { color: #0d9488; }
 
         .tech-card h3 {
             font-family: var(--font-heading);
@@ -674,7 +676,7 @@
             <span class="dynamic-line"><span class="typing-word" id="typing-word">DTF</span>.</span>
         </h1>
         <p class="hero-subtitle">
-            Dominamos 9 técnicas de personalización para que cada artículo que entregues comunique quién eres, con calidad que se nota.
+            Dominamos 10 técnicas de personalización para que cada artículo que entregues comunique quién eres, con calidad que se nota.
         </p>
         <div class="hero-actions">
             <a href="contacto.html" class="btn-hero-primary">
@@ -741,6 +743,7 @@
             <span>Corte en Acrílico</span><span class="dot">•</span>
             <span>Corte en MDF</span><span class="dot">•</span>
             <span>DTF UV</span><span class="dot">•</span>
+            <span>Letreros con Luz</span><span class="dot">•</span>
             <span>DTF</span><span class="dot">•</span>
             <span>Serigrafía</span><span class="dot">•</span>
             <span>Grabado Láser</span><span class="dot">•</span>
@@ -750,6 +753,7 @@
             <span>Corte en Acrílico</span><span class="dot">•</span>
             <span>Corte en MDF</span><span class="dot">•</span>
             <span>DTF UV</span><span class="dot">•</span>
+            <span>Letreros con Luz</span><span class="dot">•</span>
         </div>
     </div>
 
@@ -778,7 +782,7 @@
     <!-- ══ TÉCNICAS ══ -->
     <section class="techniques-section">
         <p class="section-label">Lo que hacemos</p>
-        <h2>9 técnicas.<br>Una sola dirección.</h2>
+        <h2>10 técnicas.<br>Una sola dirección.</h2>
         <p class="section-sub">Desde textil hasta metal. Del detalle más fino al gran formato. Tenemos la técnica exacta para tu proyecto.</p>
 
         <div class="tech-grid">
@@ -836,6 +840,12 @@
                 <h3>DTF UV</h3>
                 <p>Full color sobre termos, vasos, plumas y libretas. Tinta curada con UV sin calor.</p>
             </div>
+            <div class="tech-card" data-tech="letreros-luz">
+                <p class="tech-num">10</p>
+                <i class="fas fa-lightbulb tech-icon"></i>
+                <h3>Letreros con Luz</h3>
+                <p>Acrílico y vinil con iluminación LED para letreros, cajas de luz y letras corpóreas.</p>
+            </div>
         </div>
 
         <div class="techniques-cta">
@@ -885,7 +895,7 @@
                 <div class="pillar">
                     <div class="pillar-icon"><i class="fas fa-layer-group"></i></div>
                     <div class="pillar-text">
-                        <h4>9 técnicas bajo un solo techo</h4>
+                        <h4>10 técnicas bajo un solo techo</h4>
                         <p>Sin intermediarios. Todo lo hacemos nosotros, con control total del proceso y la calidad.</p>
                     </div>
                 </div>
@@ -936,7 +946,7 @@
 <script src="js/main.js"></script>
 <script>
     // ── Efecto typing en el hero ──
-    const words = ['DTF.', 'Serigrafía.', 'Láser.', 'Sublimación.', 'Bordado.', 'Gran Formato.', 'Acrílico.', 'MDF.', 'DTF UV.'];
+    const words = ['DTF.', 'Serigrafía.', 'Láser.', 'Sublimación.', 'Bordado.', 'Gran Formato.', 'Acrílico.', 'MDF.', 'DTF UV.', 'Letreros con Luz.'];
     const el = document.getElementById('typing-word');
     let wi = 0, ci = 0, deleting = false;
 
@@ -964,7 +974,7 @@
     const targets = [
         { id: 'stat1', end: 500, suffix: '+' },
         { id: 'stat2', end: 5,   suffix: '+' },
-        { id: 'stat3', end: 9,   suffix: ''  },
+        { id: 'stat3', end: 10,  suffix: ''  },
         { id: 'stat4', end: 100, suffix: '%' },
     ];
 
