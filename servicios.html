@@ -31,44 +31,22 @@
         }
         .services-hero-scene {
             margin: 30px auto 0;
-            max-width: 760px;
+            max-width: 900px;
+            aspect-ratio: 4 / 3;
             position: relative;
             z-index: 1;
+            border-radius: 20px;
+            overflow: hidden;
         }
-        .services-hero-scene svg { width: 100%; height: auto; display: block; }
-
-        @media (prefers-reduced-motion: no-preference) {
-            .t-blob { animation: taller-drift 13.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-            .t-blob:nth-of-type(2) { animation-duration: 6.8s; animation-delay: -3s; }
-            .t-blob:nth-of-type(3) { animation-duration: 13.6s; animation-delay: -6s; }
-            .t-blob:nth-of-type(4) { animation-duration: 6.8s; animation-delay: -2s; }
-            .t-light { animation: taller-blinky .85s steps(1) infinite; }
-            .t-light.t-l2 { animation-delay: .4s; } .t-light.t-l3 { animation-delay: .8s; }
-            .t-roller { animation: taller-spin .85s linear infinite paused; transform-box: fill-box; transform-origin: center; }
-            .t-moving .t-roller { animation-play-state: running; }
-            .t-belt-dash { stroke-dasharray: 18 22; animation: taller-beltmove .4s linear infinite paused; }
-            .t-moving .t-belt-dash { animation-play-state: running; }
-            .t-drop { animation: taller-fall .68s ease-in infinite; }
-            .t-drop:nth-child(2) { animation-delay: .14s; } .t-drop:nth-child(3) { animation-delay: .28s; }
-            .t-drop:nth-child(4) { animation-delay: .42s; } .t-drop:nth-child(5) { animation-delay: .56s; }
-            .t-heat { animation: taller-wave .85s ease-in-out infinite; }
-            .t-heat:nth-child(2) { animation-delay: .33s; } .t-heat:nth-child(3) { animation-delay: .66s; }
-            .t-needle { animation: taller-stitch .17s ease-in-out infinite alternate; }
-            .t-beam { animation: taller-flicker .136s steps(2) infinite; }
-            .t-spark { animation: taller-sparkle .68s ease-out infinite; }
-            .t-spark:nth-child(2) { animation-delay: .15s; } .t-spark:nth-child(3) { animation-delay: .3s; } .t-spark:nth-child(4) { animation-delay: .45s; }
+        .services-hero-scene iframe {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: 0;
         }
-        @keyframes taller-drift { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(18px,-22px) scale(1.15); } }
-        @keyframes taller-blinky { 0% { opacity: 1; } 50% { opacity: .25; } }
-        @keyframes taller-spin { to { transform: rotate(360deg); } }
-        @keyframes taller-beltmove { to { stroke-dashoffset: -40; } }
-        .t-fx { opacity: 0; transition: opacity .25s; }
-        .t-fx.t-on { opacity: 1; }
-        @keyframes taller-fall { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(95px); opacity: 0; } }
-        @keyframes taller-wave { 0% { transform: translateY(0); opacity: 0; } 40% { opacity: 1; } 100% { transform: translateY(60px); opacity: 0; } }
-        @keyframes taller-stitch { from { transform: translateY(0); } to { transform: translateY(34px); } }
-        @keyframes taller-flicker { 0% { opacity: 1; } 50% { opacity: .6; } }
-        @keyframes taller-sparkle { 0% { transform: translate(0,0); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)); opacity: 0; } }
+        @media (max-width: 600px) {
+            .services-hero-scene { aspect-ratio: 1 / 1; }
+        }
 
         /* ===== TABS ===== */
         .techniques-tabs-section {
@@ -226,11 +204,12 @@
         .process-header h2 { font-size: 2em; color: var(--primary-color); margin-bottom: 10px; }
         .process-header p { color: #666; font-size: 1.05em; }
         .techniques-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 28px;
         }
-        .card-wrap { perspective: 1000px; height: 300px; }
+        .card-wrap { flex: 1 1 280px; max-width: 320px; perspective: 1000px; height: 300px; }
         .flip-card {
             width: 100%; height: 100%;
             position: relative; transform-style: preserve-3d;
@@ -381,13 +360,10 @@
         .services-cta .btn:hover { background: transparent; color: var(--secondary-color); }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 900px) {
-            .techniques-grid { grid-template-columns: repeat(2, 1fr); }
-        }
         @media (max-width: 768px) {
             .services-hero h1 { font-size: 1.9em; }
             .tab-panel { grid-template-columns: 1fr; padding: 24px; }
-            .techniques-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .techniques-grid { gap: 16px; }
             .card-wrap { height: auto; perspective: none; }
             .flip-card { transform: none !important; height: auto; }
             .card-front, .card-back {
@@ -398,9 +374,6 @@
             .card-back { border-radius: 0 0 12px 12px; border-top: none; }
             .card-front { border-radius: 12px 12px 0 0; }
             .card-hint { display: none; }
-        }
-        @media (max-width: 480px) {
-            .techniques-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -431,94 +404,7 @@
         <p>10 técnicas dominadas. Un solo objetivo: que tu marca impacte.</p>
 
         <div class="services-hero-scene">
-            <svg viewBox="0 20 800 560" role="img" aria-label="Taller de CreeatuTip's: una máquina personaliza una playera, una taza, una gorra y un termo con distintas técnicas">
-                <defs>
-                    <filter id="tallerBlur"><feGaussianBlur stdDeviation="30"/></filter>
-                    <filter id="tallerGlow" x="-50%" y="-50%" width="200%" height="200%">
-                        <feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                    </filter>
-                    <clipPath id="tallerBeltClip"><rect x="30" y="0" width="740" height="600"/></clipPath>
-                    <g id="tallerBadge">
-                        <circle cx="-9" cy="-6" r="13" fill="#00BFFF"/>
-                        <circle cx="10" cy="-8" r="11" fill="#E91E63"/>
-                        <circle cx="9" cy="10" r="12" fill="#FFC93C"/>
-                        <circle cx="-10" cy="10" r="10" fill="#3DDC84"/>
-                        <circle cx="0" cy="1" r="12" fill="#5D54A4"/>
-                        <circle cx="21" cy="-17" r="3.5" fill="#E91E63"/>
-                        <circle cx="-22" cy="17" r="3" fill="#00BFFF"/>
-                        <path d="M0 -8 L2.6 -2.6 L8.5 -2 L4 2 L5.3 8 L0 5 L-5.3 8 L-4 2 L-8.5 -2 L-2.6 -2.6Z" fill="#fff"/>
-                    </g>
-                </defs>
-
-                <g opacity=".45" filter="url(#tallerBlur)">
-                    <circle class="t-blob" cx="120" cy="150" r="70" fill="#00BFFF"/>
-                    <circle class="t-blob" cx="690" cy="130" r="80" fill="#E91E63"/>
-                    <circle class="t-blob" cx="680" cy="520" r="70" fill="#FFC93C"/>
-                    <circle class="t-blob" cx="110" cy="510" r="75" fill="#5D54A4"/>
-                </g>
-
-                <rect x="70" y="80" width="660" height="14" rx="7" fill="#2f2870"/>
-                <g id="tallerMachine">
-                    <rect x="392" y="92" width="16" height="26" fill="#3d3590"/>
-                    <rect x="300" y="114" width="200" height="124" rx="20" fill="#5D54A4" stroke="#2a2462" stroke-width="5"/>
-                    <rect x="320" y="132" width="160" height="50" rx="10" fill="#0d0b26"/>
-                    <text id="tallerLabel" x="400" y="165" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="19" fill="#00BFFF" filter="url(#tallerGlow)">DTF</text>
-                    <circle class="t-light" cx="360" cy="212" r="7" fill="#00BFFF"/>
-                    <circle class="t-light t-l2" cx="400" cy="212" r="7" fill="#E91E63"/>
-                    <circle class="t-light t-l3" cx="440" cy="212" r="7" fill="#FFC93C"/>
-                    <g id="tallerHead">
-                        <path d="M378 238 h44 l-8 22 h-28z" fill="#3d3590" stroke="#2a2462" stroke-width="4" stroke-linejoin="round"/>
-                    </g>
-                </g>
-
-                <g id="taller-fx-dtf" class="t-fx" transform="translate(400 262)">
-                    <circle class="t-drop" cx="-12" r="6" fill="#00BFFF"/>
-                    <circle class="t-drop" cx="8" r="5" fill="#E91E63"/>
-                    <circle class="t-drop" cx="-2" r="6" fill="#FFC93C"/>
-                    <circle class="t-drop" cx="14" r="4" fill="#3DDC84"/>
-                    <circle class="t-drop" cx="-16" r="4" fill="#5D54A4"/>
-                </g>
-                <g id="taller-fx-sub" class="t-fx" transform="translate(400 262)" fill="none" stroke-width="4" stroke-linecap="round">
-                    <path class="t-heat" d="M-30 0 q7.5 -8 15 0 t15 0 t15 0 t15 0" stroke="#FF8A3D"/>
-                    <path class="t-heat" d="M-30 0 q7.5 -8 15 0 t15 0 t15 0 t15 0" stroke="#E91E63"/>
-                    <path class="t-heat" d="M-30 0 q7.5 -8 15 0 t15 0 t15 0 t15 0" stroke="#FFC93C"/>
-                </g>
-                <g id="taller-fx-bor" class="t-fx" transform="translate(400 258)">
-                    <path d="M0 0 C 30 30, -30 50, 0 80" fill="none" stroke="#E91E63" stroke-width="3" stroke-dasharray="6 5"/>
-                    <g class="t-needle">
-                        <line x1="0" y1="0" x2="0" y2="40" stroke="#e8e8f5" stroke-width="4" stroke-linecap="round"/>
-                        <circle cx="0" cy="6" r="2" fill="#2a2462"/>
-                    </g>
-                </g>
-                <g id="taller-fx-las" class="t-fx" transform="translate(400 260)">
-                    <line class="t-beam" x1="0" y1="0" x2="0" y2="120" stroke="#00BFFF" stroke-width="5" stroke-linecap="round" filter="url(#tallerGlow)"/>
-                    <g transform="translate(0 120)">
-                        <circle class="t-spark" r="3" fill="#FFC93C" style="--dx:-26px;--dy:-18px"/>
-                        <circle class="t-spark" r="3" fill="#fff" style="--dx:24px;--dy:-22px"/>
-                        <circle class="t-spark" r="2.5" fill="#00BFFF" style="--dx:-14px;--dy:-30px"/>
-                        <circle class="t-spark" r="2.5" fill="#FFC93C" style="--dx:18px;--dy:-10px"/>
-                    </g>
-                </g>
-
-                <g id="tallerBelt">
-                    <rect x="40" y="440" width="720" height="30" rx="15" fill="#2f2870" stroke="#1d1847" stroke-width="4"/>
-                    <line class="t-belt-dash" x1="58" y1="455" x2="742" y2="455" stroke="#4a41a8" stroke-width="6" stroke-linecap="round"/>
-                    <g fill="#1d1847">
-                        <rect x="80" y="470" width="14" height="40" rx="4"/>
-                        <rect x="706" y="470" width="14" height="40" rx="4"/>
-                    </g>
-                    <g class="t-roller"><circle cx="55" cy="455" r="12" fill="#5D54A4" stroke="#1d1847" stroke-width="3"/><line x1="45" y1="455" x2="65" y2="455" stroke="#1d1847" stroke-width="3"/></g>
-                    <g class="t-roller"><circle cx="745" cy="455" r="12" fill="#5D54A4" stroke="#1d1847" stroke-width="3"/><line x1="735" y1="455" x2="755" y2="455" stroke="#1d1847" stroke-width="3"/></g>
-                </g>
-
-                <g clip-path="url(#tallerBeltClip)">
-                    <g id="tallerItems"></g>
-                </g>
-
-                <g clip-path="url(#tallerBeltClip)">
-                    <text id="tallerMarquee" y="548" font-family="Montserrat,sans-serif" font-weight="800" font-size="17" fill="#ffffff" opacity=".9"></text>
-                </g>
-            </svg>
+            <iframe src="taller-3d.html" title="Taller animado de CreeatuTip's en 3D" loading="lazy"></iframe>
         </div>
     </section>
 
@@ -1265,118 +1151,6 @@
             if (panel) panel.classList.add('active');
         });
     });
-</script>
-<script>
-(function(){
-    const heroScene = document.querySelector('.services-hero-scene');
-    if (!heroScene) return;
-    const NS = "http://www.w3.org/2000/svg";
-    const BELT_Y = 440, CENTER = 400, SPACING = 260;
-
-    const shapes = {
-        shirt: `<path d="M-30 -122 L-56 -112 L-80 -86 L-60 -70 L-46 -80 L-46 0 L46 0 L46 -80 L60 -70 L80 -86 L56 -112 L30 -122 Q0 -102 -30 -122Z" fill="#fff" stroke="#c9c5ec" stroke-width="4" stroke-linejoin="round"/>`,
-        mug:   `<path d="M38 -78 q32 0 32 26 q0 26 -32 26" fill="none" stroke="#fff" stroke-width="10"/><rect x="-42" y="-100" width="84" height="100" rx="12" fill="#fff" stroke="#c9c5ec" stroke-width="4"/>`,
-        cap:   `<path d="M-52 -16 Q-52 -92 0 -92 Q52 -92 52 -16Z" fill="#fff" stroke="#c9c5ec" stroke-width="4"/><path d="M40 -16 Q92 -18 104 0 L30 0Z" fill="#e9e7fb" stroke="#c9c5ec" stroke-width="4" stroke-linejoin="round"/><rect x="-54" y="-18" width="96" height="18" rx="5" fill="#e9e7fb" stroke="#c9c5ec" stroke-width="4"/><circle cx="0" cy="-92" r="5" fill="#c9c5ec"/>`,
-        thermo:`<rect x="-24" y="-138" width="48" height="20" rx="6" fill="#3a3a52"/><rect x="-27" y="-120" width="54" height="120" rx="16" fill="#cfd3e6" stroke="#9fa3c2" stroke-width="4"/><rect x="-18" y="-108" width="8" height="90" rx="4" fill="#fff" opacity=".6"/>`
-    };
-    const items = [
-        { shape: "shirt",  name: "DTF",           fx: "dtf", logoY: -66, logoS: 1.05 },
-        { shape: "mug",    name: "SUBLIMACIÓN",   fx: "sub", logoY: -50, logoS: 1 },
-        { shape: "cap",    name: "BORDADO",       fx: "bor", logoY: -50, logoS: .9 },
-        { shape: "thermo", name: "GRABADO LÁSER", fx: "las", logoY: -60, logoS: .75 },
-    ];
-    const N = items.length;
-
-    const layer = document.getElementById("tallerItems");
-    items.forEach(it => {
-        const g = document.createElementNS(NS, "g");
-        g.innerHTML = shapes[it.shape] +
-            `<g class="logo" transform="translate(0 ${it.logoY})"><g class="logoScale"><use href="#tallerBadge"/></g></g>`;
-        layer.appendChild(g);
-        it.el = g;
-        it.logo = g.querySelector(".logoScale");
-    });
-
-    const label = document.getElementById("tallerLabel");
-    const head = document.getElementById("tallerHead");
-    const belt = document.getElementById("tallerBelt");
-    function fxEl(k){ return document.getElementById("taller-fx-" + k); }
-    const fx = { dtf: fxEl("dtf"), sub: fxEl("sub"), bor: fxEl("bor"), las: fxEl("las") };
-
-    const techs = ["DTF","Serigrafía","Grabado Láser","Sublimación","Bordado","Gran Formato","Corte en Acrílico","Corte en MDF","DTF UV"];
-    const colors = ["#00BFFF","#E91E63","#FFC93C","#3DDC84","#a79cff"];
-    const marquee = document.getElementById("tallerMarquee");
-    const seq = [...techs, ...techs, ...techs];
-    seq.forEach((t, i) => {
-        const s = document.createElementNS(NS, "tspan");
-        s.textContent = t;
-        marquee.appendChild(s);
-        const dot = document.createElementNS(NS, "tspan");
-        dot.textContent = "  •  ";
-        dot.setAttribute("fill", colors[i % colors.length]);
-        marquee.appendChild(dot);
-    });
-    let loopW = 0;
-
-    const CYCLE = 3.4, MOVE = 1.3, PRINT_START = 1.5, PRINT_END = 3.0;
-    const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
-    const clamp = v => Math.max(0, Math.min(1, v));
-    let label_current = "";
-    const t0 = performance.now();
-    const LOOP = CYCLE * N;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    function frame(now){
-        const t = (now - t0) / 1000;
-        const cycle = Math.floor(t / CYCLE);
-        const tt = t - cycle * CYCLE;
-        const moving = tt < MOVE;
-        const s = cycle + ease(clamp(tt / MOVE));
-        belt.classList.toggle("t-moving", moving);
-
-        let nearest = null, nearestD = 99;
-        items.forEach((it, i) => {
-            let raw = ((s - i) % N + N) % N;
-            const m = raw >= 2 ? raw - 4 : raw;
-            const x = CENTER + m * SPACING;
-            const bob = moving ? Math.sin(t * 18 + i) * 1.5 : 0;
-            it.el.setAttribute("transform", `translate(${x.toFixed(1)} ${BELT_Y + bob})`);
-
-            let sc;
-            if (m > 0.001) sc = 1;
-            else if (Math.abs(m) <= 0.001) sc = moving ? 0 : clamp((tt - PRINT_START - .3) / 1.0);
-            else sc = 0;
-            const pop = sc > 0 && sc < 1 ? 1 + Math.sin(sc * Math.PI) * .25 : 1;
-            it.logo.setAttribute("transform", `scale(${(sc * pop * it.logoS).toFixed(3)})`);
-            it.logo.style.opacity = sc;
-
-            const d = Math.abs(m);
-            if (d < nearestD) { nearestD = d; nearest = it; }
-        });
-
-        if (nearest.name !== label_current) {
-            label_current = nearest.name;
-            label.textContent = nearest.name;
-            label.setAttribute("font-size", nearest.name.length > 10 ? 15 : 19);
-        }
-
-        const printing = !moving && tt > PRINT_START && tt < PRINT_END;
-        Object.entries(fx).forEach(([k, el]) => el.classList.toggle("t-on", printing && nearest.fx === k));
-        const down = printing ? 6 : 0;
-        head.setAttribute("transform", `translate(0 ${down})`);
-
-        if (!loopW && marquee.getComputedTextLength) loopW = marquee.getComputedTextLength() / 3;
-        if (loopW) marquee.setAttribute("x", (40 - ((t / LOOP) % 1) * loopW).toFixed(1));
-
-        if (!reducedMotion) requestAnimationFrame(frame);
-    }
-
-    if (reducedMotion) {
-        frame(t0);
-    } else {
-        requestAnimationFrame(frame);
-    }
-})();
 </script>
 <script src="js/main.js"></script>
 

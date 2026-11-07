@@ -98,14 +98,17 @@
         }
 
         .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 22px;
         }
 
         /* ===== ITEM ===== */
         .portfolio-item {
             position: relative;
+            flex: 1 1 32%;
+            max-width: 420px;
             border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
@@ -214,10 +217,6 @@
         .no-results-tipi { width: 130px; margin: 0 auto 14px; }
         .no-results-tipi svg { width: 100%; height: auto; display: block; }
         .no-results p { color: #777; }
-        @media (prefers-reduced-motion: no-preference) {
-            .no-results-tipi .bodybounce { transform-origin: 150px 300px; animation: noresults-tipi-breathe 2.6s ease-in-out infinite; }
-        }
-        @keyframes noresults-tipi-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
         /* ===== CÓMO AGREGAR FOTOS (instrucción colapsable) ===== */
         .add-photos-hint {
@@ -349,11 +348,11 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
-            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+            .portfolio-item { flex-basis: 48%; }
         }
         @media (max-width: 576px) {
             .portfolio-hero h1 { font-size: 1.9em; }
-            .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .portfolio-grid { gap: 12px; }
         }
     </style>
 </head>
@@ -659,44 +658,7 @@
         <p class="results-count" id="results-count"></p>
 
         <div id="no-results" class="no-results" hidden>
-            <div class="no-results-tipi" aria-hidden="true">
-                <svg viewBox="-20 0 340 340" width="130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tipi buscando">
-                    <defs>
-                        <clipPath id="tipiNrc"><path d="M150 28 C182 72 246 128 246 196 C246 258 202 296 150 296 C98 296 54 258 54 196 C54 128 118 72 150 28Z"/></clipPath>
-                        <linearGradient id="tipiNrg" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0" stop-color="#00BFFF"/><stop offset=".55" stop-color="#5D54A4"/><stop offset="1" stop-color="#E91E63"/>
-                        </linearGradient>
-                    </defs>
-                    <circle cx="44" cy="96" r="9" fill="#FFC93C"/><circle cx="30" cy="120" r="5" fill="#00BFFF"/>
-                    <circle cx="258" cy="84" r="8" fill="#E91E63"/><circle cx="272" cy="108" r="4.5" fill="#3DDC84"/>
-                    <circle cx="244" cy="312" r="6" fill="#FFC93C"/><circle cx="60" cy="316" r="5" fill="#3DDC84"/>
-                    <g class="bodybounce">
-                        <ellipse cx="118" cy="300" rx="22" ry="10" fill="#2a2462"/><ellipse cx="182" cy="300" rx="22" ry="10" fill="#2a2462"/>
-                        <g transform="translate(150 0)">
-                            <path d="M-86 178 q-22 12 -24 38" fill="none" stroke="#2a2462" stroke-width="7" stroke-linecap="round"/><circle cx="-110" cy="218" r="11" fill="#5D54A4" stroke="#2a2462" stroke-width="4"/>
-                            <path d="M86 178 q22 12 24 38" fill="none" stroke="#2a2462" stroke-width="7" stroke-linecap="round"/><circle cx="110" cy="218" r="11" fill="#5D54A4" stroke="#2a2462" stroke-width="4"/>
-                        </g>
-                        <path d="M150 28 C182 72 246 128 246 196 C246 258 202 296 150 296 C98 296 54 258 54 196 C54 128 118 72 150 28Z" fill="url(#tipiNrg)"/>
-                        <g clip-path="url(#tipiNrc)">
-                            <path d="M40 120 C80 104 110 132 150 118 C190 104 220 128 260 114 L260 80 L40 80Z" fill="#00BFFF" opacity=".55"/>
-                            <circle cx="226" cy="236" r="20" fill="#FFC93C"/>
-                            <circle cx="206" cy="258" r="9" fill="#3DDC84"/>
-                            <path d="M54 250 C90 236 120 262 160 250 C200 238 220 262 250 252 L250 300 L54 300Z" fill="#E91E63" opacity=".7"/>
-                            <circle cx="76" cy="230" r="10" fill="#FFC93C" opacity=".9"/>
-                            <ellipse cx="112" cy="110" rx="12" ry="26" transform="rotate(30 112 110)" fill="#fff" opacity=".7"/>
-                            <circle cx="96" cy="140" r="5" fill="#fff" opacity=".7"/>
-                        </g>
-                        <path d="M150 28 C182 72 246 128 246 196 C246 258 202 296 150 296 C98 296 54 258 54 196 C54 128 118 72 150 28Z" fill="none" stroke="#2a2462" stroke-width="6" stroke-linejoin="round"/>
-                        <g transform="translate(150 186)">
-                            <path d="M-45 -32 L-20 -25" fill="none" stroke="#1d1847" stroke-width="5" stroke-linecap="round"/><path d="M20 -25 L45 -32" fill="none" stroke="#1d1847" stroke-width="5" stroke-linecap="round"/>
-                            <g class="eyes"><g transform="translate(-32 0)"><ellipse rx="14" ry="17" fill="#fff" stroke="#2a2462" stroke-width="4"/><circle cx="2" cy="3" r="8" fill="#1d1847"/><circle cx="5" cy="-1" r="2.6" fill="#fff"/></g><g transform="translate(32 0)"><ellipse rx="14" ry="17" fill="#fff" stroke="#2a2462" stroke-width="4"/><circle cx="2" cy="3" r="8" fill="#1d1847"/><circle cx="5" cy="-1" r="2.6" fill="#fff"/></g></g>
-                            <ellipse cx="-52" cy="30" rx="11" ry="7" fill="#E91E63" opacity=".55"/>
-                            <ellipse cx="52" cy="30" rx="11" ry="7" fill="#E91E63" opacity=".55"/>
-                            <g class="mouth" transform="translate(0 40)"><path d="M-17 2 Q0 6 17 2" fill="none" stroke="#1d1847" stroke-width="7" stroke-linecap="round"/></g>
-                        </g>
-                    </g>
-                </svg>
-            </div>
+            <div class="no-results-tipi" id="noResultsTipi" aria-hidden="true"></div>
             <p>Aún no tenemos fotos de esta técnica, pero muy pronto las subimos.</p>
         </div>
     </section>
@@ -843,6 +805,96 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 <script src="js/main.js"></script>
+<script>
+(function(){
+    // ---------- Tipi 3D (mismo motor que nosotros.html / index.html) ----------
+    const IMG3D = "img/tipi3d/";
+    const T3 = {
+        s: .26, W: 1229, H: 1280,
+        armL: { x: 44, y: 660, w: 241, h: 316, px: 255, py: 760 },
+        armR: { x: 988, y: 660, w: 207, h: 269, px: 985, py: 760 },
+        browL: [357, 340, 122, 85], browR: [752, 339, 122, 81],
+        mouth: [617, 676, 3.87], eyes: [[432, 530], [805, 530]], armK: .62, browK: 3.8, LID: 225,
+    };
+    const MOUTHS3D = { MBP: `<path d="M-14 -4 Q0 0 14 -4" fill="none" stroke="#2b0a22" stroke-width="6" stroke-linecap="round"/>
+        <path d="M-14 -4 Q0 0 14 -4" transform="translate(0 4.5)" fill="none" stroke="#c7a2ff" stroke-width="2.7" stroke-linecap="round" opacity=".55"/>` };
+    function lid3(cx, cy, id, close = 0){
+        const r = 130, ry = 92;
+        return `<clipPath id="${id}c"><ellipse cx="${cx}" cy="${cy}" rx="106" ry="105"/></clipPath>
+            <linearGradient id="${id}g" gradientUnits="userSpaceOnUse" x1="0" y1="${cy - 120}" x2="0" y2="${cy + 105}">
+                <stop offset="0" stop-color="#2f5ae8"/><stop offset="1" stop-color="#7b3ad8"/></linearGradient>
+            <g clip-path="url(#${id}c)"><g class="lid3d" data-base="0" transform="translate(0 ${(-(1 - close) * T3.LID).toFixed(1)})">
+                <path d="M${cx - r} ${cy - 260} H${cx + r} V${cy} A${r} ${ry} 0 0 1 ${cx - r} ${cy}Z" fill="url(#${id}g)"/>
+                <path d="M${cx + r} ${cy} A${r} ${ry} 0 0 1 ${cx - r} ${cy}" fill="none" stroke="#120a2a" stroke-width="16" stroke-linecap="round"/>
+                <path d="M${cx + r - 30} ${cy + 40} A${r} ${ry} 0 0 1 ${cx - r + 30} ${cy + 40}" fill="none" stroke="#fff" stroke-width="6" opacity=".18"/>
+            </g></g>`;
+    }
+    let tipiUid = 0;
+    function mascot3D({ mouth = "MBP", brows = "focus", armL = 0, armR = 0, lids = [0, 0], width = 300 } = {}){
+        const id = "tipiNr" + (tipiUid++), A = T3;
+        const browT = { neutral: ["", ""],
+            focus: [`translate(0 14) rotate(14 ${A.browL[0] + 61} ${A.browL[1] + 42})`, `translate(0 14) rotate(-14 ${A.browR[0] + 61} ${A.browR[1] + 40})`] }[brows] || ["", ""];
+        const armG = (side, ang) => { const a = A["arm" + side], f = side === "L" ? "izq" : "der";
+            return `<g class="arm${side}" data-px="${a.px}" data-py="${a.py}" data-k="${A.armK}" transform="rotate(${ang * A.armK} ${a.px} ${a.py})">
+                <image href="${IMG3D}brazo-${f}.png" x="${a.x}" y="${a.y}" width="${a.w}" height="${a.h}"/></g>`; };
+        return `<svg viewBox="-24 -6 368 344" width="${width}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Tipi buscando">
+            <g class="bodybounce" style="transform-origin:160px 332px"><g transform="scale(${A.s})">
+                ${armG("L", armL)}${armG("R", armR)}
+                <image href="${IMG3D}cuerpo.png" x="0" y="0" width="${A.W}" height="${A.H}"/>
+                <g class="lids">${lid3(...A.eyes[0], id + "a", lids[0])}${lid3(...A.eyes[1], id + "b", lids[1])}</g>
+                <g class="brows" data-k="${A.browK}">
+                    <g transform="${browT[0]}"><image href="${IMG3D}ceja-izq.png" x="${A.browL[0]}" y="${A.browL[1]}" width="${A.browL[2]}" height="${A.browL[3]}"/></g>
+                    <g transform="${browT[1]}"><image href="${IMG3D}ceja-der.png" x="${A.browR[0]}" y="${A.browR[1]}" width="${A.browR[2]}" height="${A.browR[3]}"/></g>
+                </g>
+                <g transform="translate(${A.mouth[0]} ${A.mouth[1]}) scale(${A.mouth[2]})"><g class="mouth">${MOUTHS3D[mouth]}</g></g>
+            </g></g>
+        </svg>`;
+    }
+
+    const GESTURE_ANGLES = { rest:[0,0], open:[72,-72], point:[96,0], think:[0,-105], wave:[0,-135], both:[120,-120] };
+    function newLife(){ return { gesture:"rest", browLift:0, energy:0, aL:0, aR:0, brow:0, nextBlink:1500 + Math.random() * 1000, blinkUntil:0, doubleBlink:false }; }
+    let rnd = Math.random;
+
+    function lifeStep(stageEl, life, now, k = .14){
+        const g = GESTURE_ANGLES[life.gesture] || GESTURE_ANGLES.rest;
+        const sway = Math.sin(now / 600) * 3;
+        life.aL += ((g[0] + sway) - life.aL) * k;
+        life.aR += ((g[1] - sway) - life.aR) * k;
+        life.brow += (Math.min(14, life.browLift) - life.brow) * Math.min(1, k * 1.8);
+
+        if (now > life.nextBlink) {
+            life.blinkUntil = now + 120;
+            if (life.doubleBlink) { life.doubleBlink = false; life.nextBlink = now + 240; }
+            else { life.doubleBlink = rnd() < .2; life.nextBlink = now + 2000 + rnd() * 3000; }
+        }
+        const eyeScale = now < life.blinkUntil ? .1 : 1;
+
+        const rot = (el, a, dx, dy) => el && el.setAttribute("transform",
+            `rotate(${(a * (+el.dataset.k || 1)).toFixed(1)} ${el.dataset.px || dx} ${el.dataset.py || dy})`);
+        rot(stageEl.querySelector(".armL"), life.aL, -86, 178);
+        rot(stageEl.querySelector(".armR"), life.aR, 86, 178);
+        const brows = stageEl.querySelector(".brows");
+        if (brows) brows.setAttribute("transform", `translate(0 ${(-life.brow * (+brows.dataset.k || 1)).toFixed(1)})`);
+        stageEl.querySelectorAll(".lid3d").forEach(elLid => {
+            const c = Math.max(+elLid.dataset.base || 0, (1 - eyeScale) / .9);
+            elLid.setAttribute("transform", `translate(0 ${(-(1 - c) * T3.LID).toFixed(1)})`);
+        });
+    }
+
+    const stage = document.getElementById("noResultsTipi");
+    if (stage) {
+        stage.innerHTML = mascot3D({ mouth: "MBP", brows: "focus", armL: 96, width: 130 });
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            const life = newLife();
+            life.gesture = "think";
+            (function loop(now){
+                lifeStep(stage, life, now);
+                requestAnimationFrame(loop);
+            })(performance.now());
+        }
+    }
+})();
+</script>
 
 <a href="https://wa.me/525539652128?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20art%C3%ADculos%20promocionales" target="_blank" class="whatsapp-float" aria-label="Cotiza por WhatsApp" title="Cotiza por WhatsApp">
     <i class="fab fa-whatsapp"></i>

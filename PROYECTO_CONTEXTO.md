@@ -85,7 +85,7 @@ Definidas en `css/style.css` línea 1:
 >
 > **Nota de robustez:** los colores por técnica en index.html y servicios.html se aplican por atributo (`[data-tech="x"]`, `[data-card="x"]`), no por posición (`:nth-child`). Si agregas o reordenas una tarjeta, usa el mismo patrón para que los colores no se desincronicen.
 >
-> **Audios de Tipi desactualizados (2026-11-07):** los audios narrados de `nosotros.html` y de "Por Qué Elegirnos" en `index.html` dicen "9 técnicas" (grabados antes de agregar Letreros con Luz). El texto visible de la página ya dice 10. En `nosotros.html` esto **desactiva el resaltado de palabras** (el `indexOf` del texto completo contra el audio ya no encuentra coincidencia). El usuario planea regrabar los audios — cuando los pase, actualizar `FULL_TEXT` en ambos archivos para restaurar la sincronía.
+> **Audios de Tipi regrabados (2026-11-07):** el usuario regrabó ambos audios mencionando las 10 técnicas. El de "Quiénes Somos" ahora empieza directo con el párrafo (ya no tiene el saludo "¡Hola! Soy Tipi..."), por lo que `FULL_TEXT` en `nosotros.html` coincide exacto con el texto de la página (`indexOf` da 0). El de "Por Qué Elegirnos" solo cambió el conteo, sin afectar el código (usa offset por longitud, no por coincidencia exacta).
 
 ---
 
@@ -206,7 +206,6 @@ Busca el comentario con el ID (ej: `TU_VIDEO_DTF_ID`) y descomenta el `<iframe>`
 - [ ] **Fotos reales** — subir fotos a `img/portfolio/` (ver tabla sección 6; ahora son 11 ítems/10 categorías)
 - [ ] **Videos YouTube** — faltan 9 de 10 (Corte en Acrílico ya tiene video real desde 2026-11-07). El usuario tiene canal de YouTube de CreeatuTips y va subiendo según los va grabando.
 - [ ] **Logos de clientes** — agregar PNGs en `img/clientes/`
-- [ ] **Audios de Tipi** — regrabar "Quiénes Somos" y "Por Qué Elegirnos" mencionando las 10 técnicas (ver nota en sección 4)
 
 ### Media prioridad
 - [ ] **Catálogo PDF** — integrar el PDF grande de productos en productos.html. Pendiente decidir: ¿solo botón de descarga o embed de visor? ¿qué peso tiene el archivo?

@@ -55,13 +55,16 @@
             margin-bottom: 40px;
         }
         .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 28px;
             max-width: 1200px;
             margin: 0 auto;
         }
         .product-card {
+            flex: 1 1 300px;
+            max-width: 340px;
             background: white;
             border-radius: 16px;
             padding: 32px 28px;

@@ -119,66 +119,53 @@
 (function(){
     const C = { purple:"#5D54A4", cyan:"#00BFFF", pink:"#E91E63", yellow:"#FFC93C", green:"#3DDC84", ink:"#1d1847", line:"#2a2462" };
 
-    const MOUTHS = {
-        rest:  `<path d="M-15 0 Q0 9 15 0" fill="none" stroke="${C.ink}" stroke-width="5" stroke-linecap="round"/>`,
-        A:     `<path d="M-20 -6 Q0 -11 20 -6 Q18 28 0 30 Q-18 28 -20 -6Z" fill="${C.ink}"/><ellipse cx="0" cy="20" rx="10" ry="6" fill="${C.pink}"/><rect x="-12" y="-7" width="24" height="6" rx="2" fill="#fff"/>`,
-        E:     `<path d="M-24 -4 Q0 -9 24 -4 Q20 15 0 16 Q-20 15 -24 -4Z" fill="${C.ink}"/><rect x="-17" y="-5" width="34" height="6" rx="2" fill="#fff"/>`,
-        O:     `<ellipse cx="0" cy="6" rx="12" ry="16" fill="${C.ink}"/><ellipse cx="0" cy="14" rx="7" ry="5" fill="${C.pink}"/>`,
-        U:     `<ellipse cx="0" cy="5" rx="7" ry="9" fill="${C.ink}"/>`,
-        MBP:   `<path d="M-17 2 Q0 6 17 2" fill="none" stroke="${C.ink}" stroke-width="7" stroke-linecap="round"/>`,
-        FV:    `<path d="M-18 -3 Q0 -6 18 -3 Q15 12 0 13 Q-15 12 -18 -3Z" fill="${C.ink}"/><rect x="-10" y="-4" width="20" height="8" rx="2" fill="#fff"/>`,
-        smile: `<path d="M-24 -4 Q0 -2 24 -4 Q20 28 0 28 Q-20 28 -24 -4Z" fill="${C.ink}"/><ellipse cx="0" cy="20" rx="11" ry="6" fill="${C.pink}"/><rect x="-16" y="-4" width="32" height="6" rx="2" fill="#fff"/>`,
+    // ---------- Tipi 3D (imágenes reales, igual que mascota-gota.html) ----------
+    const IMG3D = "img/tipi3d/";
+    const T3 = {
+        s: .26, W: 1229, H: 1280,
+        armL: { x: 44, y: 660, w: 241, h: 316, px: 255, py: 760 },
+        armR: { x: 988, y: 660, w: 207, h: 269, px: 985, py: 760 },
+        browL: [357, 340, 122, 85], browR: [752, 339, 122, 81],
+        mouth: [617, 676, 3.87], eyes: [[432, 530], [805, 530]], armK: .62, browK: 3.8, LID: 225,
     };
-
-    function eyesSVG(){
-        const open = x => `<g transform="translate(${x} 0)"><ellipse rx="14" ry="17" fill="#fff" stroke="${C.line}" stroke-width="4"/><circle cx="2" cy="3" r="8" fill="${C.ink}"/><circle cx="5" cy="-1" r="2.6" fill="#fff"/></g>`;
-        return `<g class="eyesOpen">${open(-32)}${open(32)}</g>`;
+    const boca3 = (sx, sy) => `<g transform="translate(0 -12) scale(${sx} ${sy}) translate(0 12)"><image href="${IMG3D}boca.png" x="-30" y="-19.5" width="60" height="39"/></g>`;
+    const closed3 = (d, w) => `<path d="${d}" fill="none" stroke="#2b0a22" stroke-width="${w}" stroke-linecap="round"/>
+        <path d="${d}" transform="translate(0 ${w * .75})" fill="none" stroke="#c7a2ff" stroke-width="${w * .45}" stroke-linecap="round" opacity=".55"/>`;
+    const MOUTHS3D = {
+        rest: closed3("M-17 -8 Q0 4 17 -8", 4.2),
+        A: boca3(.92, 1.15), E: boca3(1.04, .62), O: boca3(.6, 1.05), U: boca3(.42, .62),
+        MBP: closed3("M-14 -4 Q0 0 14 -4", 6), FV: boca3(.95, .42), smile: boca3(1, 1),
+    };
+    function lid3(cx, cy, id, close = 0){
+        const r = 130, ry = 92;
+        return `<clipPath id="${id}c"><ellipse cx="${cx}" cy="${cy}" rx="106" ry="105"/></clipPath>
+            <linearGradient id="${id}g" gradientUnits="userSpaceOnUse" x1="0" y1="${cy - 120}" x2="0" y2="${cy + 105}">
+                <stop offset="0" stop-color="#2f5ae8"/><stop offset="1" stop-color="#7b3ad8"/></linearGradient>
+            <g clip-path="url(#${id}c)"><g class="lid3d" data-base="0" transform="translate(0 ${(-(1 - close) * T3.LID).toFixed(1)})">
+                <path d="M${cx - r} ${cy - 260} H${cx + r} V${cy} A${r} ${ry} 0 0 1 ${cx - r} ${cy}Z" fill="url(#${id}g)"/>
+                <path d="M${cx + r} ${cy} A${r} ${ry} 0 0 1 ${cx - r} ${cy}" fill="none" stroke="#120a2a" stroke-width="16" stroke-linecap="round"/>
+                <path d="M${cx + r - 30} ${cy + 40} A${r} ${ry} 0 0 1 ${cx - r + 30} ${cy + 40}" fill="none" stroke="#fff" stroke-width="6" opacity=".18"/>
+            </g></g>`;
     }
-    function browsSVG(){
-        return `<g class="brows"><path d="M-44 -28 Q-32 -34 -20 -29" fill="none" stroke="${C.ink}" stroke-width="5" stroke-linecap="round"/><path d="M20 -29 Q32 -34 44 -28" fill="none" stroke="${C.ink}" stroke-width="5" stroke-linecap="round"/></g>`;
-    }
-    function armsSVG(){
-        const hand = (x,y) => `<circle cx="${x}" cy="${y}" r="11" fill="${C.purple}" stroke="${C.line}" stroke-width="4"/>`;
-        const arm = d => `<path d="${d}" fill="none" stroke="${C.line}" stroke-width="7" stroke-linecap="round"/>`;
-        const left = arm("M-86 178 q-22 12 -24 38") + hand(-110, 218);
-        const right = arm("M86 178 q22 12 24 38") + hand(110, 218);
-        return `<g class="armL">${left}</g><g class="armR">${right}</g>`;
-    }
-    function mascot(mouth){
-        const id = "tipiN";
-        const drop = "M150 28 C182 72 246 128 246 196 C246 258 202 296 150 296 C98 296 54 258 54 196 C54 128 118 72 150 28Z";
-        return `<svg viewBox="-20 0 340 340" width="220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tipi, la mascota gota de CreeatuTip's">
-            <defs>
-                <clipPath id="${id}c"><path d="${drop}"/></clipPath>
-                <linearGradient id="${id}g" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="${C.cyan}"/><stop offset=".55" stop-color="${C.purple}"/><stop offset="1" stop-color="${C.pink}"/>
-                </linearGradient>
-            </defs>
-            <circle cx="44" cy="96" r="9" fill="${C.yellow}"/><circle cx="30" cy="120" r="5" fill="${C.cyan}"/>
-            <circle cx="258" cy="84" r="8" fill="${C.pink}"/><circle cx="272" cy="108" r="4.5" fill="${C.green}"/>
-            <circle cx="244" cy="312" r="6" fill="${C.yellow}"/><circle cx="60" cy="316" r="5" fill="${C.green}"/>
-            <g class="bodybounce">
-                <ellipse cx="118" cy="300" rx="22" ry="10" fill="${C.line}"/><ellipse cx="182" cy="300" rx="22" ry="10" fill="${C.line}"/>
-                <g transform="translate(150 0)">${armsSVG()}</g>
-                <path d="${drop}" fill="url(#${id}g)"/>
-                <g clip-path="url(#${id}c)">
-                    <path d="M40 120 C80 104 110 132 150 118 C190 104 220 128 260 114 L260 80 L40 80Z" fill="${C.cyan}" opacity=".55"/>
-                    <circle cx="226" cy="236" r="20" fill="${C.yellow}"/>
-                    <circle cx="206" cy="258" r="9" fill="${C.green}"/>
-                    <path d="M54 250 C90 236 120 262 160 250 C200 238 220 262 250 252 L250 300 L54 300Z" fill="${C.pink}" opacity=".7"/>
-                    <circle cx="76" cy="230" r="10" fill="${C.yellow}" opacity=".9"/>
-                    <ellipse cx="112" cy="110" rx="12" ry="26" transform="rotate(30 112 110)" fill="#fff" opacity=".7"/>
-                    <circle cx="96" cy="140" r="5" fill="#fff" opacity=".7"/>
+    let tipiUid = 0;
+    function mascot3D({ mouth = "smile", brows = "neutral", armL = 0, armR = 0, lids = [0, 0], width = 300 } = {}){
+        const id = "tipiN" + (tipiUid++), A = T3;
+        const browT = { neutral: ["", ""], up: ["translate(0 -34)", "translate(0 -34)"],
+            focus: [`translate(0 14) rotate(14 ${A.browL[0] + 61} ${A.browL[1] + 42})`, `translate(0 14) rotate(-14 ${A.browR[0] + 61} ${A.browR[1] + 40})`] }[brows] || ["", ""];
+        const armG = (side, ang) => { const a = A["arm" + side], f = side === "L" ? "izq" : "der";
+            return `<g class="arm${side}" data-px="${a.px}" data-py="${a.py}" data-k="${A.armK}" transform="rotate(${ang * A.armK} ${a.px} ${a.py})">
+                <image href="${IMG3D}brazo-${f}.png" x="${a.x}" y="${a.y}" width="${a.w}" height="${a.h}"/></g>`; };
+        return `<svg viewBox="-24 -6 368 344" width="${width}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Tipi, la mascota gota de CreeatuTip's">
+            <g class="bodybounce" style="transform-origin:160px 332px"><g transform="scale(${A.s})">
+                ${armG("L", armL)}${armG("R", armR)}
+                <image href="${IMG3D}cuerpo.png" x="0" y="0" width="${A.W}" height="${A.H}"/>
+                <g class="lids">${lid3(...A.eyes[0], id + "a", lids[0])}${lid3(...A.eyes[1], id + "b", lids[1])}</g>
+                <g class="brows" data-k="${A.browK}">
+                    <g transform="${browT[0]}"><image href="${IMG3D}ceja-izq.png" x="${A.browL[0]}" y="${A.browL[1]}" width="${A.browL[2]}" height="${A.browL[3]}"/></g>
+                    <g transform="${browT[1]}"><image href="${IMG3D}ceja-der.png" x="${A.browR[0]}" y="${A.browR[1]}" width="${A.browR[2]}" height="${A.browR[3]}"/></g>
                 </g>
-                <path d="${drop}" fill="none" stroke="${C.line}" stroke-width="6" stroke-linejoin="round"/>
-                <g transform="translate(150 186)">
-                    ${browsSVG()}
-                    <g class="eyes">${eyesSVG()}</g>
-                    <ellipse cx="-52" cy="30" rx="11" ry="7" fill="${C.pink}" opacity=".55"/>
-                    <ellipse cx="52" cy="30" rx="11" ry="7" fill="${C.pink}" opacity=".55"/>
-                    <g class="mouth" transform="translate(0 40)">${MOUTHS[mouth]}</g>
-                </g>
-            </g>
+                <g transform="translate(${A.mouth[0]} ${A.mouth[1]}) scale(${A.mouth[2]})"><g class="mouth">${MOUTHS3D[mouth]}</g></g>
+            </g></g>
         </svg>`;
     }
     function escapeHTML(s){ return s.replace(/[&<>]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;" }[c])); }
@@ -234,11 +221,30 @@
         });
         const browTrack = energyTrack.map((v, i) => {
             const prev = ((energyTrack[i - 3] || 0) + (energyTrack[i - 4] || 0)) / 2;
-            return v * 4 + (v > .8 && v - prev > .35 ? 8 : 0);
+            return v > .8 && v - prev > .35 ? 7 : 0;
         });
-        for (let i = 1; i < browTrack.length; i++) browTrack[i] = Math.max(browTrack[i], browTrack[i - 1] * .9);
+        for (let i = 1; i < browTrack.length; i++) browTrack[i] = Math.max(browTrack[i], browTrack[i - 1] * .95);
 
-        return { mouthTrack: shapes, energyTrack, gestureTrack, browTrack };
+        // Sorpresa: los golpes de voz más fuertes hacen que la boca se redondee más (cara de sorpresa)
+        const surpriseTrack = new Array(shapes.length).fill(false);
+        const cands = [];
+        for (let i = 12; i < shapes.length; i++) {
+            let prev = 0; for (let k = 4; k <= 12; k++) prev += energyTrack[i - k] / 9;
+            if (energyTrack[i] > .85 && energyTrack[i] - prev > .5) cands.push({ i, s: energyTrack[i] - prev });
+        }
+        cands.sort((a, b) => b.s - a.s);
+        const peaks = [];
+        const maxN = Math.max(1, Math.round(shapes.length / FPS / 12));
+        for (const c of cands) if (peaks.length < maxN && peaks.every(p => Math.abs(p - c.i) > FPS * 6)) peaks.push(c.i);
+        for (const p of peaks) for (let k = Math.max(0, p - 2); k < Math.min(shapes.length, p + FPS * .9); k++) surpriseTrack[k] = true;
+
+        return { mouthTrack: shapes, energyTrack, gestureTrack, browTrack, surpriseTrack };
+    }
+    // boca del cuadro f: en sorpresa, las bocas abiertas se vuelven «O»
+    function faceShape(tracks, f){
+        const s = tracks.mouthTrack[f] || "rest";
+        if (!tracks.surpriseTrack[f]) return s;
+        return s === "rest" || s === "MBP" ? "U" : "O";
     }
 
     // ---------- Vida: brazos, cejas y parpadeo continuos ----------
@@ -251,10 +257,9 @@
         const g = GESTURE_ANGLES[life.gesture] || GESTURE_ANGLES.rest;
         const wiggle = life.gesture === "wave" ? Math.sin(now / 90) * 16 : 0;
         const sway = Math.sin(now / 600) * 3;
-        const talk = life.energy * Math.sin(now / 110) * 6;
-        life.aL += ((g[0] + sway + (g[0] ? talk : 0)) - life.aL) * k;
-        life.aR += ((g[1] - sway + wiggle + (g[1] ? -talk : 0)) - life.aR) * k;
-        life.brow += (Math.min(12, life.browLift) - life.brow) * Math.min(1, k * 1.8);
+        life.aL += ((g[0] + sway) - life.aL) * k;
+        life.aR += ((g[1] - sway + wiggle) - life.aR) * k;
+        life.brow += (Math.min(14, life.browLift) - life.brow) * Math.min(1, k * 1.8);
 
         if (now > life.nextBlink) {
             life.blinkUntil = now + 120;
@@ -263,21 +268,21 @@
         }
         const eyeScale = now < life.blinkUntil ? .1 : 1;
 
-        const armL = stageEl.querySelector(".armL"), armR = stageEl.querySelector(".armR");
-        if (armL) armL.setAttribute("transform", `rotate(${life.aL.toFixed(1)} -86 178)`);
-        if (armR) armR.setAttribute("transform", `rotate(${life.aR.toFixed(1)} 86 178)`);
+        const rot = (el, a, dx, dy) => el && el.setAttribute("transform",
+            `rotate(${(a * (+el.dataset.k || 1)).toFixed(1)} ${el.dataset.px || dx} ${el.dataset.py || dy})`);
+        rot(stageEl.querySelector(".armL"), life.aL, -86, 178);
+        rot(stageEl.querySelector(".armR"), life.aR, 86, 178);
         const brows = stageEl.querySelector(".brows");
-        if (brows) brows.setAttribute("transform", `translate(0 ${(-life.brow).toFixed(1)})`);
-        const eyes = stageEl.querySelector(".eyes");
-        if (eyes) eyes.setAttribute("transform", `scale(1 ${eyeScale})`);
+        if (brows) brows.setAttribute("transform", `translate(0 ${(-life.brow * (+brows.dataset.k || 1)).toFixed(1)})`);
+        stageEl.querySelectorAll(".lid3d").forEach(elLid => {
+            const c = Math.max(+elLid.dataset.base || 0, (1 - eyeScale) / .9);
+            elLid.setAttribute("transform", `translate(0 ${(-(1 - c) * T3.LID).toFixed(1)})`);
+        });
     }
 
-    // Texto completo narrado en el audio (incluye el saludo que no está escrito en la página,
+    // Texto completo narrado en el audio (incluye el saludo de Tipi que no está escrito en la página,
     // sirve solo para ubicar en qué momento resaltar las palabras — la boca ya no depende de esto)
-    // OJO: el audio todavía dice "9 técnicas" (sin "letreros con luz"); el párrafo visible ya dice 10.
-    // Mientras no se regrabe el audio, introOffset da -1 y el resaltado de palabras queda desactivado
-    // (el audio y la boca/vida siguen funcionando normal, solo no se resalta texto).
-    const FULL_TEXT = "¡Hola! Soy Tipi de CreeatuTip's, quiero explicarte Quiénes Somos. En CreeatuTip's, somos un equipo de creadores y técnicos apasionados por la personalización. Nacimos de la necesidad de ofrecer un servicio de artículos promocionales que va más allá de lo básico, dominando 9 técnicas de personalización: DTF, serigrafía, grabado láser, sublimación, bordado, gran formato, corte en acrílico, corte en MDF y DTF UV. Nuestro compromiso es con tu marca: te asesoramos para que elijas la técnica y el artículo perfecto, asegurando que cada pieza comunique tu mensaje con la máxima calidad y precisión.";
+    const FULL_TEXT = "¡Hola! Soy Tipi de CreeatuTip's, quiero explicarte Quiénes Somos. En CreeatuTip's, somos un equipo de creadores y técnicos apasionados por la personalización. Nacimos de la necesidad de ofrecer un servicio de artículos promocionales que va más allá de lo básico, dominando 10 técnicas de personalización: DTF, serigrafía, grabado láser, sublimación, bordado, gran formato, corte en acrílico, corte en MDF, letreros con luz y DTF UV. Nuestro compromiso es con tu marca: te asesoramos para que elijas la técnica y el artículo perfecto, asegurando que cada pieza comunique tu mensaje con la máxima calidad y precisión.";
     const AUDIO_URL = "audio/quienes-somos-tipi.mp3";
 
     const stage = document.getElementById("tipiStage");
@@ -285,7 +290,7 @@
     const aboutText = document.querySelector(".about-text");
 
     if (stage && playBtn && aboutText) {
-        stage.innerHTML = mascot("rest");
+        stage.innerHTML = mascot3D({ mouth: "rest" });
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         // Envuelve cada palabra de los párrafos visibles en un <span> para poder resaltarla
@@ -338,7 +343,7 @@
             stage.classList.remove("talking");
             stage.classList.add("idle");
             const mouthEl = stage.querySelector(".mouth");
-            if (mouthEl) mouthEl.innerHTML = MOUTHS.smile;
+            if (mouthEl) mouthEl.innerHTML = MOUTHS3D.smile;
             life.gesture = "rest";
             life.browLift = 0;
             life.energy = 0;
@@ -355,10 +360,10 @@
             const t = actx.currentTime - playStart;
             if (t >= audioBuf.duration) { playBtn.textContent = "🔁 Escuchar de nuevo"; stopPlayback(); wordSpans.forEach(span => span.classList.add("read")); return; }
             const f = Math.floor(t * FPS);
-            const shape = tracks.mouthTrack[f] || "rest";
+            const shape = faceShape(tracks, f);
             if (!reducedMotion) {
                 const mouthEl = stage.querySelector(".mouth");
-                if (mouthEl) mouthEl.innerHTML = MOUTHS[shape];
+                if (mouthEl) mouthEl.innerHTML = MOUTHS3D[shape];
                 const body = stage.querySelector(".bodybounce");
                 const v = tracks.energyTrack[f] || 0;
                 if (body) body.style.transform = `translateY(${-v * 6}px) scale(${1 + v * .03}, ${1 - v * .03})`;
