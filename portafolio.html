@@ -386,7 +386,7 @@
     <!-- FILTROS + GALERÍA -->
     <section class="filter-section">
         <h2>Nuestros Trabajos</h2>
-        <p>Filtra por técnica para ver proyectos específicos.</p>
+        <p>Filtra por técnica o categoría para ver proyectos específicos.</p>
         <div class="filter-bar">
             <button class="filter-btn active" data-filter="all">
                 <i class="fas fa-th"></i> Todos
@@ -421,6 +421,33 @@
             <button class="filter-btn" data-filter="letreros-luz">
                 <i class="fas fa-lightbulb"></i> Letreros con Luz
             </button>
+            <button class="filter-btn" data-filter="vinil-textil">
+                <i class="fas fa-swatchbook"></i> Vinil Textil
+            </button>
+            <button class="filter-btn" data-filter="sellos">
+                <i class="fas fa-certificate"></i> Sellos
+            </button>
+            <button class="filter-btn" data-filter="llaveros">
+                <i class="fas fa-key"></i> Llaveros
+            </button>
+            <button class="filter-btn" data-filter="pines">
+                <i class="fas fa-thumbtack"></i> Pines
+            </button>
+            <button class="filter-btn" data-filter="vinil-adhesivo">
+                <i class="fas fa-tags"></i> Vinil Adhesivo
+            </button>
+            <button class="filter-btn" data-filter="vinil-imprimible">
+                <i class="fas fa-palette"></i> Vinil Imprimible
+            </button>
+            <button class="filter-btn" data-filter="stickers">
+                <i class="fas fa-shapes"></i> Stickers
+            </button>
+            <button class="filter-btn" data-filter="impresion-digital">
+                <i class="fas fa-image"></i> Impresión Digital
+            </button>
+            <button class="filter-btn" data-filter="esmerilado">
+                <i class="fas fa-gem"></i> Esmerilado
+            </button>
         </div>
     </section>
 
@@ -447,7 +474,15 @@
             ║   • data-category: dtf | serigrafia | laser  ║
             ║                    sublimacion | bordado     ║
             ║                    gran-formato | vinil |    ║
-            ║                    mdf | dtfuv               ║
+            ║                    mdf | dtfuv |             ║
+            ║                    letreros-luz |            ║
+            ║                    vinil-textil | sellos |   ║
+            ║                    llaveros | pines |        ║
+            ║                    vinil-adhesivo |          ║
+            ║                    vinil-imprimible |        ║
+            ║                    stickers |                ║
+            ║                    impresion-digital |       ║
+            ║                    esmerilado                ║
             ║   • src: ruta a tu foto                      ║
             ║   • alt, h4, p: nombre y descripción         ║
             ╚══════════════════════════════════════════════╝
@@ -651,6 +686,168 @@
                 </div>
             </div>
 
+            <!-- ITEM 12 — VINIL TEXTIL -->
+            <div class="portfolio-item" data-category="vinil-textil">
+                <img src="img/portfolio/vinil-textil-playera.jpg"
+                     alt="Playera con aplicación de vinil textil"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-swatchbook"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/vinil-textil-playera.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                <div class="portfolio-overlay">
+                    <span class="item-tag">Vinil Textil</span>
+                    <h4>Playera con Vinil Textil</h4>
+                    <p>Vinil Textil · Aplicado a Calor</p>
+                </div>
+            </div>
+
+            <!-- ITEM 13 — SELLOS -->
+            <div class="portfolio-item" data-category="sellos">
+                <img src="img/portfolio/sellos-sello.jpg"
+                     alt="Sello personalizado"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-certificate"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/sellos-sello.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                <div class="portfolio-overlay">
+                    <span class="item-tag">Sellos</span>
+                    <h4>Sello Personalizado</h4>
+                    <p>Sello de Goma · Diseño a Medida</p>
+                </div>
+            </div>
+
+            <!-- ITEM 14 — LLAVEROS -->
+            <div class="portfolio-item" data-category="llaveros">
+                <img src="img/portfolio/llaveros-set.jpg"
+                     alt="Set de llaveros personalizados"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-key"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/llaveros-set.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                <div class="portfolio-overlay">
+                    <span class="item-tag">Llaveros</span>
+                    <h4>Set de Llaveros</h4>
+                    <p>Acrílico · Personalizados</p>
+                </div>
+            </div>
+
+            <!-- ITEM 15 — PINES -->
+            <div class="portfolio-item" data-category="pines">
+                <img src="img/portfolio/pines-set.jpg"
+                     alt="Pines promocionales personalizados"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-thumbtack"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/pines-set.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                <div class="portfolio-overlay">
+                    <span class="item-tag">Pines</span>
+                    <h4>Pines Promocionales</h4>
+                    <p>Metal · Full Color</p>
+                </div>
+            </div>
+
+            <!-- ITEM 16 — VINIL ADHESIVO -->
+            <div class="portfolio-item" data-category="vinil-adhesivo">
+                <img src="img/portfolio/vinil-adhesivo-rotulo.jpg"
+                     alt="Rótulo en vinil adhesivo de corte"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-tags"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/vinil-adhesivo-rotulo.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                <div class="portfolio-overlay">
+                    <span class="item-tag">Vinil Adhesivo</span>
+                    <h4>Rótulo en Vinil Adhesivo</h4>
+                    <p>Vinil Adhesivo · Corte de Precisión</p>
+                </div>
+            </div>
+
+            <!-- ITEM 17 — VINIL IMPRIMIBLE -->
+            <div class="portfolio-item" data-category="vinil-imprimible">
+                <img src="img/portfolio/vinil-imprimible-grafico.jpg"
+                     alt="Gráfico impreso en vinil imprimible"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-palette"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/vinil-imprimible-grafico.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                <div class="portfolio-overlay">
+                    <span class="item-tag">Vinil Imprimible</span>
+                    <h4>Gráfico en Vinil Imprimible</h4>
+                    <p>Vinil Imprimible · Full Color</p>
+                </div>
+            </div>
+
+            <!-- ITEM 18 — STICKERS -->
+            <div class="portfolio-item" data-category="stickers">
+                <img src="img/portfolio/stickers-set.jpg"
+                     alt="Set de stickers personalizados troquelados"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-shapes"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/stickers-set.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                <div class="portfolio-overlay">
+                    <span class="item-tag">Stickers</span>
+                    <h4>Stickers Personalizados</h4>
+                    <p>Vinil · Troquelados</p>
+                </div>
+            </div>
+
+            <!-- ITEM 19 — IMPRESIÓN DIGITAL -->
+            <div class="portfolio-item" data-category="impresion-digital">
+                <img src="img/portfolio/impresion-digital-lona.jpg"
+                     alt="Impresión digital de alta resolución"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-image"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/impresion-digital-lona.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                <div class="portfolio-overlay">
+                    <span class="item-tag">Impresión Digital</span>
+                    <h4>Impresión Digital</h4>
+                    <p>Full Color · Alta Resolución</p>
+                </div>
+            </div>
+
+            <!-- ITEM 20 — ESMERILADO -->
+            <div class="portfolio-item" data-category="esmerilado">
+                <img src="img/portfolio/esmerilado-vidrio.jpg"
+                     alt="Vidrio con acabado esmerilado"
+                     loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="portfolio-placeholder" style="display:none">
+                    <i class="fas fa-gem"></i>
+                    <span>Agrega tu foto aquí<br>img/portfolio/esmerilado-vidrio.jpg</span>
+                </div>
+                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                <div class="portfolio-overlay">
+                    <span class="item-tag">Esmerilado</span>
+                    <h4>Vidrio Esmerilado</h4>
+                    <p>Esmerilado · Acabado Translúcido</p>
+                </div>
+            </div>
+
             <!-- ════ AGREGA MÁS FOTOS AQUÍ copiando el bloque de arriba ════ -->
 
         </div>
@@ -659,7 +856,7 @@
 
         <div id="no-results" class="no-results" hidden>
             <div class="no-results-tipi" id="noResultsTipi" aria-hidden="true"></div>
-            <p>Aún no tenemos fotos de esta técnica, pero muy pronto las subimos.</p>
+            <p>Aún no tenemos fotos de esta categoría, pero muy pronto las subimos.</p>
         </div>
     </section>
 
