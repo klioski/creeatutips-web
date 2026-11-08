@@ -44,51 +44,112 @@
             z-index: 1;
         }
 
-        /* ===== FILTROS ===== */
-        .filter-section {
+        /* ===== CARRUSEL DESTACADO ===== */
+        .featured-section {
             padding: 50px 5% 10px;
             text-align: center;
         }
-        .filter-section h2 {
+        .featured-section h2 {
             color: var(--primary-color);
             font-size: 1.8em;
             margin-bottom: 8px;
         }
-        .filter-section > p {
+        .featured-section > p {
             color: #777;
             margin-bottom: 28px;
         }
-        .filter-bar {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
+        .featured-carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 16px 50px rgba(0,0,0,0.18);
         }
-        .filter-btn {
-            padding: 10px 22px;
-            border-radius: 25px;
-            border: 2px solid #ddd;
-            background: white;
+        .carousel-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .carousel-track::-webkit-scrollbar { display: none; }
+        .carousel-slide {
+            position: relative;
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            aspect-ratio: 16 / 9;
+            background: #141026;
+        }
+        .carousel-slide img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
             cursor: pointer;
+        }
+        .carousel-caption {
+            position: absolute;
+            inset: auto 0 0 0;
+            padding: 20px 26px 22px;
+            background: linear-gradient(to top, rgba(10,8,30,0.92) 0%, rgba(10,8,30,0.55) 55%, transparent 100%);
+            color: white;
+            text-align: left;
+        }
+        .carousel-caption .item-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.75em;
+            margin-bottom: 8px;
+            color: white;
+            text-decoration: none;
+        }
+        .carousel-caption .item-tag:hover { background: rgba(255,255,255,0.3); }
+        .carousel-caption h3 {
             font-family: var(--font-heading);
-            font-weight: 600;
-            font-size: 0.88em;
-            color: #666;
-            transition: all 0.25s;
+            font-size: 1.25em;
+            margin: 0 0 4px;
+        }
+        .carousel-caption p { opacity: 0.85; margin: 0; font-size: 0.9em; }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.9);
+            color: var(--primary-color);
+            font-size: 1.05em;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 7px;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 2;
         }
-        .filter-btn:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
+        .carousel-arrow:hover { background: white; }
+        .carousel-arrow.prev { left: 14px; }
+        .carousel-arrow.next { right: 14px; }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 0 4px;
         }
-        .filter-btn.active {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-            color: white;
-            box-shadow: 0 4px 14px rgba(93,84,164,0.35);
+        .carousel-dot {
+            width: 9px; height: 9px;
+            border-radius: 50%;
+            background: #ddd;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
         }
+        .carousel-dot.active { background: var(--primary-color); transform: scale(1.3); }
 
         /* ===== GRID ===== */
         .portfolio-section {
@@ -121,7 +182,6 @@
             transform: scale(1.03);
             box-shadow: 0 12px 30px rgba(0,0,0,0.16);
         }
-        .portfolio-item.hidden { display: none; }
 
         .portfolio-item img {
             width: 100%; height: 100%;
@@ -195,43 +255,6 @@
             transition: opacity 0.3s;
         }
         .portfolio-item:hover .zoom-icon { opacity: 1; }
-
-        /* Contador de resultados */
-        .results-count {
-            text-align: center;
-            color: #999;
-            font-size: 0.9em;
-            margin: 20px 0 0;
-        }
-
-        /* ===== Estado vacío con Tipi ===== */
-        .no-results {
-            max-width: 420px;
-            margin: 30px auto 0;
-            text-align: center;
-            padding: 32px 24px;
-            background: var(--light-bg);
-            border-radius: 16px;
-        }
-        .no-results[hidden] { display: none; }
-        .no-results-tipi { width: 130px; margin: 0 auto 14px; }
-        .no-results-tipi svg { width: 100%; height: auto; display: block; }
-        .no-results p { color: #777; }
-
-        /* ===== CÓMO AGREGAR FOTOS (instrucción colapsable) ===== */
-        .add-photos-hint {
-            background: #fffbf0;
-            border: 1px dashed #f0c040;
-            border-radius: 10px;
-            padding: 16px 22px;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-        .add-photos-hint i { color: #d4a017; font-size: 1.2em; margin-top: 2px; flex-shrink: 0; }
-        .add-photos-hint p { margin: 0; font-size: 0.88em; color: #7a6010; line-height: 1.6; }
-        .add-photos-hint strong { color: #5a4000; }
 
         /* ===== CLIENTES ===== */
         .clients-section {
@@ -352,6 +375,8 @@
         }
         @media (max-width: 576px) {
             .portfolio-hero h1 { font-size: 1.9em; }
+            .carousel-caption h3 { font-size: 1.05em; }
+            .carousel-caption p { font-size: 0.82em; }
             .portfolio-grid { gap: 12px; }
         }
     </style>
@@ -383,151 +408,127 @@
         <p>Cada pieza cuenta una historia. Aquí mostramos algunas de las que más nos enorgullecen.</p>
     </section>
 
-    <!-- FILTROS + GALERÍA -->
-    <section class="filter-section">
+    <!-- CARRUSEL DESTACADO -->
+    <section class="featured-section">
         <h2>Nuestros Trabajos</h2>
-        <p>Filtra por técnica o categoría para ver proyectos específicos.</p>
-        <div class="filter-bar">
-            <button class="filter-btn active" data-filter="all">
-                <i class="fas fa-th"></i> Todos
-            </button>
-            <button class="filter-btn" data-filter="dtf">
-                <i class="fas fa-tshirt"></i> DTF
-            </button>
-            <button class="filter-btn" data-filter="serigrafia">
-                <i class="fas fa-stamp"></i> Serigrafía
-            </button>
-            <button class="filter-btn" data-filter="laser">
-                <i class="fas fa-vector-square"></i> Grabado Láser
-            </button>
-            <button class="filter-btn" data-filter="sublimacion">
-                <i class="fas fa-mug-hot"></i> Sublimación
-            </button>
-            <button class="filter-btn" data-filter="bordado">
-                <i class="fas fa-scissors"></i> Bordado
-            </button>
-            <button class="filter-btn" data-filter="gran-formato">
-                <i class="fas fa-print"></i> Gran Formato
-            </button>
-            <button class="filter-btn" data-filter="vinil">
-                <i class="fas fa-cut"></i> Corte en Acrílico
-            </button>
-            <button class="filter-btn" data-filter="mdf">
-                <i class="fas fa-layer-group"></i> Corte en MDF
-            </button>
-            <button class="filter-btn" data-filter="dtfuv">
-                <i class="fas fa-sun"></i> DTF UV
-            </button>
-            <button class="filter-btn" data-filter="letreros-luz">
-                <i class="fas fa-lightbulb"></i> Letreros con Luz
-            </button>
-            <button class="filter-btn" data-filter="vinil-textil">
-                <i class="fas fa-swatchbook"></i> Vinil Textil
-            </button>
-            <button class="filter-btn" data-filter="sellos">
-                <i class="fas fa-certificate"></i> Sellos
-            </button>
-            <button class="filter-btn" data-filter="llaveros">
-                <i class="fas fa-key"></i> Llaveros
-            </button>
-            <button class="filter-btn" data-filter="pines">
-                <i class="fas fa-thumbtack"></i> Pines
-            </button>
-            <button class="filter-btn" data-filter="vinil-adhesivo">
-                <i class="fas fa-tags"></i> Vinil Adhesivo
-            </button>
-            <button class="filter-btn" data-filter="vinil-imprimible">
-                <i class="fas fa-palette"></i> Vinil Imprimible
-            </button>
-            <button class="filter-btn" data-filter="stickers">
-                <i class="fas fa-shapes"></i> Stickers
-            </button>
-            <button class="filter-btn" data-filter="impresion-digital">
-                <i class="fas fa-image"></i> Impresión Digital
-            </button>
-            <button class="filter-btn" data-filter="esmerilado">
-                <i class="fas fa-gem"></i> Esmerilado
-            </button>
+        <p>Un vistazo a los proyectos que más nos enorgullecen.</p>
+        <div class="featured-carousel">
+            <div class="carousel-track" id="carousel-track">
+                <div class="carousel-slide">
+                    <img src="img/portfolio/dtf-sudadera.jpg" alt="Sudadera de voleibol TAE con impresión DTF textil" loading="lazy">
+                    <div class="carousel-caption">
+                        <span class="item-tag">DTF</span>
+                        <h3>Sudadera TAE Volleyball</h3>
+                        <p>DTF Textil · Sudadera Deportiva</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/portfolio/serigrafia-balones.jpg" alt="Balones promocionales Totalplay con serigrafía" loading="lazy">
+                    <div class="carousel-caption">
+                        <span class="item-tag">Serigrafía</span>
+                        <h3>Balones Totalplay</h3>
+                        <p>Serigrafía · Pelotas Promocionales</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/portfolio/sublimacion-tazas.jpg" alt="Tazas ISDIN con sublimación full color" loading="lazy">
+                    <div class="carousel-caption">
+                        <span class="item-tag">Sublimación</span>
+                        <h3>Tazas ISDIN</h3>
+                        <p>Sublimación · Full Color</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/portfolio/letreros-luz-letrero.jpg" alt="Letrero iluminado Onypod Podología en acrílico" loading="lazy">
+                    <div class="carousel-caption">
+                        <span class="item-tag">Letreros con Luz</span>
+                        <h3>Letrero Onypod Podología</h3>
+                        <p>Acrílico Iluminado · LED</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/portfolio/vinil-textil-playera.jpg" alt="Playeras negras con vinil textil holográfico aplicadas con prensa térmica" loading="lazy">
+                    <div class="carousel-caption">
+                        <span class="item-tag">Vinil Textil</span>
+                        <h3>Playeras a Juego Mamá e Hija</h3>
+                        <p>Vinil Textil · Aplicado con Prensa Térmica</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/portfolio/impresion-digital-lona.jpg" alt="Invitaciones personalizadas estilo Harry Potter impresas en digital" loading="lazy">
+                    <div class="carousel-caption">
+                        <span class="item-tag">Impresión Digital</span>
+                        <h3>Invitaciones Temática Harry Potter</h3>
+                        <p>Impresión Digital · Full Color</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/portfolio/esmerilado-vidrio.jpg" alt="Vaso de vidrio con grabado esmerilado personalizado para Todo's Bar" loading="lazy">
+                    <div class="carousel-caption">
+                        <span class="item-tag">Esmerilado</span>
+                        <h3>Vaso Esmerilado Todo's Bar</h3>
+                        <p>Esmerilado · Acabado Translúcido</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/portfolio/pines-set.jpg" alt="Pines personalizados metálicos y circulares para torneo CODEMAR" loading="lazy">
+                    <div class="carousel-caption">
+                        <span class="item-tag">Pines</span>
+                        <h3>Pines CODEMAR Torneo Volleyball</h3>
+                        <p>Pines Metálicos · Full Color</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-arrow prev" id="carousel-prev" aria-label="Foto anterior"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-arrow next" id="carousel-next" aria-label="Foto siguiente"><i class="fas fa-chevron-right"></i></button>
         </div>
+        <div class="carousel-dots" id="carousel-dots"></div>
     </section>
 
     <section class="portfolio-section">
 
-        <!-- INSTRUCCIÓN PARA AGREGAR FOTOS -->
-        <div class="add-photos-hint">
-            <i class="fas fa-lightbulb"></i>
-            <p>
-                <strong>¿Cómo agregar tus fotos?</strong> Guarda tus imágenes en la carpeta <strong>img/portfolio/</strong>
-                y en el HTML cambia <code>src="img/portfolio/TU-FOTO.jpg"</code> en cada tarjeta.
-                También puedes agregar nuevas tarjetas copiando el bloque de una existente.
-                Tamaño recomendado: <strong>800×800 px</strong> o mayor.
-            </p>
-        </div>
-
-        <div class="portfolio-grid" id="portfolio-grid">
-
-            <!--
-            ╔══════════════════════════════════════════════╗
-            ║  PLANTILLA PARA AGREGAR NUEVAS FOTOS         ║
-            ║                                              ║
-            ║  Copia este bloque y cambia:                 ║
-            ║   • data-category: dtf | serigrafia | laser  ║
-            ║                    sublimacion | bordado     ║
-            ║                    gran-formato | vinil |    ║
-            ║                    mdf | dtfuv |             ║
-            ║                    letreros-luz |            ║
-            ║                    vinil-textil | sellos |   ║
-            ║                    llaveros | pines |        ║
-            ║                    vinil-adhesivo |          ║
-            ║                    vinil-imprimible |        ║
-            ║                    stickers |                ║
-            ║                    impresion-digital |       ║
-            ║                    esmerilado                ║
-            ║   • src: ruta a tu foto                      ║
-            ║   • alt, h4, p: nombre y descripción         ║
-            ╚══════════════════════════════════════════════╝
-            -->
+        <div class="portfolio-grid">
 
             <!-- ITEM 1 — DTF -->
-            <div class="portfolio-item" data-category="dtf">
-                <img src="img/portfolio/dtf-playera.jpg"
-                     alt="Playera Corporativa con impresión DTF"
+            <div class="portfolio-item">
+                <img src="img/portfolio/dtf-sudadera.jpg"
+                     alt="Sudadera de voleibol TAE con impresión DTF textil"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
                     <i class="fas fa-tshirt"></i>
-                    <span>Agrega tu foto aquí<br>img/portfolio/dtf-playera.jpg</span>
+                    <span>Agrega tu foto aquí<br>img/portfolio/dtf-sudadera.jpg</span>
                 </div>
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">DTF</span>
-                    <h4>Playera Corporativa</h4>
-                    <p>Algodón Peinado 100% · Full Color</p>
+                    <h4>Sudadera TAE Volleyball</h4>
+                    <p>DTF Textil · Sudadera Deportiva</p>
                 </div>
             </div>
 
             <!-- ITEM 2 — SERIGRAFÍA -->
-            <div class="portfolio-item" data-category="serigrafia">
-                <img src="img/portfolio/serigrafia-playera.jpg"
-                     alt="Playeras en volumen con estampado serigráfico"
+            <div class="portfolio-item">
+                <img src="img/portfolio/serigrafia-balones.jpg"
+                     alt="Balones promocionales Totalplay con serigrafía"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
                     <i class="fas fa-stamp"></i>
-                    <span>Agrega tu foto aquí<br>img/portfolio/serigrafia-playera.jpg</span>
+                    <span>Agrega tu foto aquí<br>img/portfolio/serigrafia-balones.jpg</span>
                 </div>
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Serigrafía</span>
-                    <h4>Playeras en Volumen</h4>
-                    <p>Algodón · Estampado por Mallas</p>
+                    <h4>Balones Totalplay</h4>
+                    <p>Serigrafía · Pelotas Promocionales</p>
                 </div>
             </div>
 
             <!-- ITEM 3 — GRABADO LÁSER -->
-            <div class="portfolio-item" data-category="laser">
+            <div class="portfolio-item">
                 <img src="img/portfolio/laser-termo.jpg"
-                     alt="Termo con grabado láser"
+                     alt="Termo con grabado láser para Creaciones Me&You"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
@@ -537,51 +538,51 @@
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Grabado Láser</span>
-                    <h4>Termo para Evento</h4>
-                    <p>Acero Inoxidable · Acabado Premium</p>
+                    <h4>Termo Creaciones Me&amp;You</h4>
+                    <p>Grabado Láser · Acero Inoxidable</p>
                 </div>
             </div>
 
             <!-- ITEM 4 — SUBLIMACIÓN -->
-            <div class="portfolio-item" data-category="sublimacion">
-                <img src="img/portfolio/sublimacion-taza.jpg"
-                     alt="Taza con sublimación full color"
+            <div class="portfolio-item">
+                <img src="img/portfolio/sublimacion-tazas.jpg"
+                     alt="Tazas ISDIN con sublimación full color"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
                     <i class="fas fa-mug-hot"></i>
-                    <span>Agrega tu foto aquí<br>img/portfolio/sublimacion-taza.jpg</span>
+                    <span>Agrega tu foto aquí<br>img/portfolio/sublimacion-tazas.jpg</span>
                 </div>
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Sublimación</span>
-                    <h4>Taza Promocional</h4>
-                    <p>Taza Cerámica · Resolución Fotográfica</p>
+                    <h4>Tazas ISDIN</h4>
+                    <p>Sublimación · Full Color</p>
                 </div>
             </div>
 
             <!-- ITEM 5 — BORDADO -->
-            <div class="portfolio-item" data-category="bordado">
-                <img src="img/portfolio/bordado-gorra.jpg"
-                     alt="Gorra estructurada con bordado corporativo"
+            <div class="portfolio-item">
+                <img src="img/portfolio/bordado-conejitos.jpg"
+                     alt="Pants deportivo con bordado de conejitos"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
                     <i class="fas fa-scissors"></i>
-                    <span>Agrega tu foto aquí<br>img/portfolio/bordado-gorra.jpg</span>
+                    <span>Agrega tu foto aquí<br>img/portfolio/bordado-conejitos.jpg</span>
                 </div>
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Bordado</span>
-                    <h4>Gorra de Uniforme</h4>
-                    <p>Gorra Estructurada · Acabado de Lujo</p>
+                    <h4>Bordado de Conejitos</h4>
+                    <p>Pants Deportivo · Bordado Fino</p>
                 </div>
             </div>
 
             <!-- ITEM 6 — GRAN FORMATO -->
-            <div class="portfolio-item" data-category="gran-formato">
+            <div class="portfolio-item">
                 <img src="img/portfolio/granformato-lona.jpg"
-                     alt="Lona de gran formato para evento"
+                     alt="Lona de gran formato para Nutrias Pumitas"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
@@ -591,51 +592,33 @@
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Gran Formato</span>
-                    <h4>Publicidad Exterior</h4>
-                    <p>Lona Vinílica · Alta Resolución</p>
+                    <h4>Lona Nutrias Pumitas</h4>
+                    <p>Gran Formato · Lona Publicitaria</p>
                 </div>
             </div>
 
-            <!-- ITEM 7 — GRABADO LÁSER -->
-            <div class="portfolio-item" data-category="laser">
-                <img src="img/portfolio/laser-llavero.jpg"
-                     alt="Llaveros metálicos con grabado láser"
-                     loading="lazy"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                <div class="portfolio-placeholder" style="display:none">
-                    <i class="fas fa-key"></i>
-                    <span>Agrega tu foto aquí<br>img/portfolio/laser-llavero.jpg</span>
-                </div>
-                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
-                <div class="portfolio-overlay">
-                    <span class="item-tag">Grabado Láser</span>
-                    <h4>Llaveros Premium</h4>
-                    <p>Metal · Acero Inoxidable</p>
-                </div>
-            </div>
-
-            <!-- ITEM 8 — CORTE EN ACRÍLICO -->
-            <div class="portfolio-item" data-category="vinil">
-                <img src="img/portfolio/acrilico-letras.jpg"
-                     alt="Letras en acrílico para señalética"
+            <!-- ITEM 7 — CORTE EN ACRÍLICO -->
+            <div class="portfolio-item">
+                <img src="img/portfolio/acrilico-reloj-perros.jpg"
+                     alt="Reloj de pared con siluetas de perros en acrílico"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
                     <i class="fas fa-cut"></i>
-                    <span>Agrega tu foto aquí<br>img/portfolio/acrilico-letras.jpg</span>
+                    <span>Agrega tu foto aquí<br>img/portfolio/acrilico-reloj-perros.jpg</span>
                 </div>
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Corte en Acrílico</span>
-                    <h4>Señalética Corporativa</h4>
-                    <p>Acrílico de Colores · Acabado Premium</p>
+                    <h4>Reloj de Perros en Acrílico</h4>
+                    <p>Corte en Acrílico · Decoración</p>
                 </div>
             </div>
 
-            <!-- ITEM 9 — CORTE EN MDF -->
-            <div class="portfolio-item" data-category="mdf">
+            <!-- ITEM 8 — CORTE EN MDF -->
+            <div class="portfolio-item">
                 <img src="img/portfolio/mdf-figura.jpg"
-                     alt="Figura decorativa cortada en MDF"
+                     alt="Robot articulado cortado en MDF"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
@@ -645,33 +628,33 @@
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Corte en MDF</span>
-                    <h4>Figura Decorativa</h4>
-                    <p>MDF · Corte Láser de Precisión</p>
+                    <h4>Robot Articulado en MDF</h4>
+                    <p>Corte en MDF · Figura Decorativa</p>
                 </div>
             </div>
 
-            <!-- ITEM 10 — DTF UV -->
-            <div class="portfolio-item" data-category="dtfuv">
-                <img src="img/portfolio/dtfuv-termos.jpg"
-                     alt="Termos personalizados con DTF UV"
+            <!-- ITEM 9 — DTF UV -->
+            <div class="portfolio-item">
+                <img src="img/portfolio/dtfuv-plumas.jpg"
+                     alt="Plumas Totalplay personalizadas con DTF UV"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
                     <i class="fas fa-sun"></i>
-                    <span>Agrega tu foto aquí<br>img/portfolio/dtfuv-termos.jpg</span>
+                    <span>Agrega tu foto aquí<br>img/portfolio/dtfuv-plumas.jpg</span>
                 </div>
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">DTF UV</span>
-                    <h4>Termos Personalizados</h4>
-                    <p>Acero Inoxidable · Full Color UV</p>
+                    <h4>Plumas Totalplay</h4>
+                    <p>DTF UV · Plumas Personalizadas</p>
                 </div>
             </div>
 
-            <!-- ITEM 11 — LETREROS CON LUZ -->
-            <div class="portfolio-item" data-category="letreros-luz">
+            <!-- ITEM 10 — LETREROS CON LUZ -->
+            <div class="portfolio-item">
                 <img src="img/portfolio/letreros-luz-letrero.jpg"
-                     alt="Letrero iluminado en acrílico y vinil"
+                     alt="Letrero iluminado Onypod Podología en acrílico"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
@@ -681,15 +664,15 @@
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Letreros con Luz</span>
-                    <h4>Letrero Iluminado</h4>
-                    <p>Acrílico y Vinil · LED</p>
+                    <h4>Letrero Onypod Podología</h4>
+                    <p>Acrílico Iluminado · LED</p>
                 </div>
             </div>
 
-            <!-- ITEM 12 — VINIL TEXTIL -->
-            <div class="portfolio-item" data-category="vinil-textil">
+            <!-- ITEM 11 — VINIL TEXTIL -->
+            <div class="portfolio-item">
                 <img src="img/portfolio/vinil-textil-playera.jpg"
-                     alt="Playera con aplicación de vinil textil"
+                     alt="Playeras negras con vinil textil holográfico aplicadas con prensa térmica"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
@@ -699,15 +682,15 @@
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Vinil Textil</span>
-                    <h4>Playera con Vinil Textil</h4>
-                    <p>Vinil Textil · Aplicado a Calor</p>
+                    <h4>Playeras a Juego Mamá e Hija</h4>
+                    <p>Vinil Textil · Aplicado con Prensa Térmica</p>
                 </div>
             </div>
 
-            <!-- ITEM 13 — SELLOS -->
-            <div class="portfolio-item" data-category="sellos">
+            <!-- ITEM 12 — SELLOS -->
+            <div class="portfolio-item">
                 <img src="img/portfolio/sellos-sello.jpg"
-                     alt="Sello personalizado"
+                     alt="Sello personalizado de madera para Equilibris Kids con tampón"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
@@ -717,33 +700,15 @@
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Sellos</span>
-                    <h4>Sello Personalizado</h4>
+                    <h4>Sello Equilibris Kids</h4>
                     <p>Sello de Goma · Diseño a Medida</p>
                 </div>
             </div>
 
-            <!-- ITEM 14 — LLAVEROS -->
-            <div class="portfolio-item" data-category="llaveros">
-                <img src="img/portfolio/llaveros-set.jpg"
-                     alt="Set de llaveros personalizados"
-                     loading="lazy"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                <div class="portfolio-placeholder" style="display:none">
-                    <i class="fas fa-key"></i>
-                    <span>Agrega tu foto aquí<br>img/portfolio/llaveros-set.jpg</span>
-                </div>
-                <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
-                <div class="portfolio-overlay">
-                    <span class="item-tag">Llaveros</span>
-                    <h4>Set de Llaveros</h4>
-                    <p>Acrílico · Personalizados</p>
-                </div>
-            </div>
-
-            <!-- ITEM 15 — PINES -->
-            <div class="portfolio-item" data-category="pines">
+            <!-- ITEM 13 — PINES -->
+            <div class="portfolio-item">
                 <img src="img/portfolio/pines-set.jpg"
-                     alt="Pines promocionales personalizados"
+                     alt="Pines personalizados metálicos y circulares para torneo CODEMAR"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
@@ -753,15 +718,15 @@
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Pines</span>
-                    <h4>Pines Promocionales</h4>
-                    <p>Metal · Full Color</p>
+                    <h4>Pines CODEMAR Torneo Volleyball</h4>
+                    <p>Pines Metálicos · Full Color</p>
                 </div>
             </div>
 
-            <!-- ITEM 16 — VINIL ADHESIVO -->
-            <div class="portfolio-item" data-category="vinil-adhesivo">
+            <!-- ITEM 14 — VINIL ADHESIVO -->
+            <div class="portfolio-item">
                 <img src="img/portfolio/vinil-adhesivo-rotulo.jpg"
-                     alt="Rótulo en vinil adhesivo de corte"
+                     alt="Calcomanías de vinil adhesivo P80 Residente para auto"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
@@ -771,15 +736,15 @@
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Vinil Adhesivo</span>
-                    <h4>Rótulo en Vinil Adhesivo</h4>
+                    <h4>Calcomanías P80 Residente</h4>
                     <p>Vinil Adhesivo · Corte de Precisión</p>
                 </div>
             </div>
 
-            <!-- ITEM 17 — VINIL IMPRIMIBLE -->
-            <div class="portfolio-item" data-category="vinil-imprimible">
+            <!-- ITEM 15 — VINIL IMPRIMIBLE -->
+            <div class="portfolio-item">
                 <img src="img/portfolio/vinil-imprimible-grafico.jpg"
-                     alt="Gráfico impreso en vinil imprimible"
+                     alt="Bolsas de tela navideñas con diseños en vinil imprimible full color"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
@@ -789,15 +754,15 @@
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Vinil Imprimible</span>
-                    <h4>Gráfico en Vinil Imprimible</h4>
+                    <h4>Bolsas Navideñas con Vinil Imprimible</h4>
                     <p>Vinil Imprimible · Full Color</p>
                 </div>
             </div>
 
-            <!-- ITEM 18 — STICKERS -->
-            <div class="portfolio-item" data-category="stickers">
+            <!-- ITEM 16 — STICKERS -->
+            <div class="portfolio-item">
                 <img src="img/portfolio/stickers-set.jpg"
-                     alt="Set de stickers personalizados troquelados"
+                     alt="Stickers institucionales troquelados aplicados en libreta"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
@@ -807,15 +772,15 @@
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Stickers</span>
-                    <h4>Stickers Personalizados</h4>
+                    <h4>Stickers Institucionales INADEJ</h4>
                     <p>Vinil · Troquelados</p>
                 </div>
             </div>
 
-            <!-- ITEM 19 — IMPRESIÓN DIGITAL -->
-            <div class="portfolio-item" data-category="impresion-digital">
+            <!-- ITEM 17 — IMPRESIÓN DIGITAL -->
+            <div class="portfolio-item">
                 <img src="img/portfolio/impresion-digital-lona.jpg"
-                     alt="Impresión digital de alta resolución"
+                     alt="Invitaciones personalizadas estilo Harry Potter impresas en digital"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
@@ -825,15 +790,15 @@
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Impresión Digital</span>
-                    <h4>Impresión Digital</h4>
-                    <p>Full Color · Alta Resolución</p>
+                    <h4>Invitaciones Temática Harry Potter</h4>
+                    <p>Impresión Digital · Full Color</p>
                 </div>
             </div>
 
-            <!-- ITEM 20 — ESMERILADO -->
-            <div class="portfolio-item" data-category="esmerilado">
+            <!-- ITEM 18 — ESMERILADO -->
+            <div class="portfolio-item">
                 <img src="img/portfolio/esmerilado-vidrio.jpg"
-                     alt="Vidrio con acabado esmerilado"
+                     alt="Vaso de vidrio con grabado esmerilado personalizado para Todo's Bar"
                      loading="lazy"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="portfolio-placeholder" style="display:none">
@@ -843,20 +808,13 @@
                 <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                 <div class="portfolio-overlay">
                     <span class="item-tag">Esmerilado</span>
-                    <h4>Vidrio Esmerilado</h4>
+                    <h4>Vaso Esmerilado Todo's Bar</h4>
                     <p>Esmerilado · Acabado Translúcido</p>
                 </div>
             </div>
 
             <!-- ════ AGREGA MÁS FOTOS AQUÍ copiando el bloque de arriba ════ -->
 
-        </div>
-
-        <p class="results-count" id="results-count"></p>
-
-        <div id="no-results" class="no-results" hidden>
-            <div class="no-results-tipi" id="noResultsTipi" aria-hidden="true"></div>
-            <p>Aún no tenemos fotos de esta categoría, pero muy pronto las subimos.</p>
         </div>
     </section>
 
@@ -937,34 +895,69 @@
 </footer>
 
 <script>
-    // ── Filtros ──
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    // ── Carrusel destacado ──
     const items = document.querySelectorAll('.portfolio-item');
-    const resultsCount = document.getElementById('results-count');
-    const noResults = document.getElementById('no-results');
+    const track = document.getElementById('carousel-track');
+    const dotsWrap = document.getElementById('carousel-dots');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
 
-    function updateCount() {
-        const visible = document.querySelectorAll('.portfolio-item:not(.hidden)').length;
-        resultsCount.textContent = visible + ' proyecto' + (visible !== 1 ? 's' : '') + ' mostrado' + (visible !== 1 ? 's' : '');
-        if (noResults) noResults.hidden = visible !== 0;
-    }
+    if (track) {
+        const slides = track.children;
+        const count = slides.length;
+        let index = 0;
+        let autoTimer;
 
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.dataset.filter;
-            items.forEach(item => {
-                if (filter === 'all' || item.dataset.category === filter) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-            updateCount();
+        for (let i = 0; i < count; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Ir a foto ' + (i + 1));
+            dot.addEventListener('click', () => { goTo(i); resetAuto(); });
+            dotsWrap.appendChild(dot);
+        }
+        const dots = dotsWrap.children;
+
+        function goTo(i) {
+            index = (i + count) % count;
+            track.scrollTo({ left: track.clientWidth * index, behavior: 'smooth' });
+            Array.from(dots).forEach((d, di) => d.classList.toggle('active', di === index));
+        }
+
+        prevBtn.addEventListener('click', () => { goTo(index - 1); resetAuto(); });
+        nextBtn.addEventListener('click', () => { goTo(index + 1); resetAuto(); });
+
+        let scrollTimeout;
+        track.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                index = Math.round(track.scrollLeft / track.clientWidth);
+                Array.from(dots).forEach((d, di) => d.classList.toggle('active', di === index));
+            }, 100);
         });
-    });
-    updateCount();
+
+        function startAuto() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            autoTimer = setInterval(() => goTo(index + 1), 4500);
+        }
+        function resetAuto() { clearInterval(autoTimer); startAuto(); }
+
+        track.addEventListener('mouseenter', () => clearInterval(autoTimer));
+        track.addEventListener('mouseleave', startAuto);
+        window.addEventListener('resize', () => goTo(index));
+
+        // Clic en una foto del carrusel también abre el lightbox
+        Array.from(slides).forEach(slide => {
+            const img = slide.querySelector('img');
+            img.addEventListener('click', () => {
+                const caption = slide.querySelector('.carousel-caption');
+                const title = caption ? caption.querySelector('h3').textContent : '';
+                const desc = caption ? caption.querySelector('p').textContent : '';
+                openLightbox(img.src, img.alt, title + ' · ' + desc);
+            });
+        });
+
+        startAuto();
+    }
 
     // ── Lightbox ──
     const lightbox = document.getElementById('lightbox');
@@ -1002,96 +995,6 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 <script src="js/main.js"></script>
-<script>
-(function(){
-    // ---------- Tipi 3D (mismo motor que nosotros.html / index.html) ----------
-    const IMG3D = "img/tipi3d/";
-    const T3 = {
-        s: .26, W: 1229, H: 1280,
-        armL: { x: 44, y: 660, w: 241, h: 316, px: 255, py: 760 },
-        armR: { x: 988, y: 660, w: 207, h: 269, px: 985, py: 760 },
-        browL: [357, 340, 122, 85], browR: [752, 339, 122, 81],
-        mouth: [617, 676, 3.87], eyes: [[432, 530], [805, 530]], armK: .62, browK: 3.8, LID: 225,
-    };
-    const MOUTHS3D = { MBP: `<path d="M-14 -4 Q0 0 14 -4" fill="none" stroke="#2b0a22" stroke-width="6" stroke-linecap="round"/>
-        <path d="M-14 -4 Q0 0 14 -4" transform="translate(0 4.5)" fill="none" stroke="#c7a2ff" stroke-width="2.7" stroke-linecap="round" opacity=".55"/>` };
-    function lid3(cx, cy, id, close = 0){
-        const r = 130, ry = 92;
-        return `<clipPath id="${id}c"><ellipse cx="${cx}" cy="${cy}" rx="106" ry="105"/></clipPath>
-            <linearGradient id="${id}g" gradientUnits="userSpaceOnUse" x1="0" y1="${cy - 120}" x2="0" y2="${cy + 105}">
-                <stop offset="0" stop-color="#2f5ae8"/><stop offset="1" stop-color="#7b3ad8"/></linearGradient>
-            <g clip-path="url(#${id}c)"><g class="lid3d" data-base="0" transform="translate(0 ${(-(1 - close) * T3.LID).toFixed(1)})">
-                <path d="M${cx - r} ${cy - 260} H${cx + r} V${cy} A${r} ${ry} 0 0 1 ${cx - r} ${cy}Z" fill="url(#${id}g)"/>
-                <path d="M${cx + r} ${cy} A${r} ${ry} 0 0 1 ${cx - r} ${cy}" fill="none" stroke="#120a2a" stroke-width="16" stroke-linecap="round"/>
-                <path d="M${cx + r - 30} ${cy + 40} A${r} ${ry} 0 0 1 ${cx - r + 30} ${cy + 40}" fill="none" stroke="#fff" stroke-width="6" opacity=".18"/>
-            </g></g>`;
-    }
-    let tipiUid = 0;
-    function mascot3D({ mouth = "MBP", brows = "focus", armL = 0, armR = 0, lids = [0, 0], width = 300 } = {}){
-        const id = "tipiNr" + (tipiUid++), A = T3;
-        const browT = { neutral: ["", ""],
-            focus: [`translate(0 14) rotate(14 ${A.browL[0] + 61} ${A.browL[1] + 42})`, `translate(0 14) rotate(-14 ${A.browR[0] + 61} ${A.browR[1] + 40})`] }[brows] || ["", ""];
-        const armG = (side, ang) => { const a = A["arm" + side], f = side === "L" ? "izq" : "der";
-            return `<g class="arm${side}" data-px="${a.px}" data-py="${a.py}" data-k="${A.armK}" transform="rotate(${ang * A.armK} ${a.px} ${a.py})">
-                <image href="${IMG3D}brazo-${f}.png" x="${a.x}" y="${a.y}" width="${a.w}" height="${a.h}"/></g>`; };
-        return `<svg viewBox="-24 -6 368 344" width="${width}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Tipi buscando">
-            <g class="bodybounce" style="transform-origin:160px 332px"><g transform="scale(${A.s})">
-                ${armG("L", armL)}${armG("R", armR)}
-                <image href="${IMG3D}cuerpo.png" x="0" y="0" width="${A.W}" height="${A.H}"/>
-                <g class="lids">${lid3(...A.eyes[0], id + "a", lids[0])}${lid3(...A.eyes[1], id + "b", lids[1])}</g>
-                <g class="brows" data-k="${A.browK}">
-                    <g transform="${browT[0]}"><image href="${IMG3D}ceja-izq.png" x="${A.browL[0]}" y="${A.browL[1]}" width="${A.browL[2]}" height="${A.browL[3]}"/></g>
-                    <g transform="${browT[1]}"><image href="${IMG3D}ceja-der.png" x="${A.browR[0]}" y="${A.browR[1]}" width="${A.browR[2]}" height="${A.browR[3]}"/></g>
-                </g>
-                <g transform="translate(${A.mouth[0]} ${A.mouth[1]}) scale(${A.mouth[2]})"><g class="mouth">${MOUTHS3D[mouth]}</g></g>
-            </g></g>
-        </svg>`;
-    }
-
-    const GESTURE_ANGLES = { rest:[0,0], open:[72,-72], point:[96,0], think:[0,-105], wave:[0,-135], both:[120,-120] };
-    function newLife(){ return { gesture:"rest", browLift:0, energy:0, aL:0, aR:0, brow:0, nextBlink:1500 + Math.random() * 1000, blinkUntil:0, doubleBlink:false }; }
-    let rnd = Math.random;
-
-    function lifeStep(stageEl, life, now, k = .14){
-        const g = GESTURE_ANGLES[life.gesture] || GESTURE_ANGLES.rest;
-        const sway = Math.sin(now / 600) * 3;
-        life.aL += ((g[0] + sway) - life.aL) * k;
-        life.aR += ((g[1] - sway) - life.aR) * k;
-        life.brow += (Math.min(14, life.browLift) - life.brow) * Math.min(1, k * 1.8);
-
-        if (now > life.nextBlink) {
-            life.blinkUntil = now + 120;
-            if (life.doubleBlink) { life.doubleBlink = false; life.nextBlink = now + 240; }
-            else { life.doubleBlink = rnd() < .2; life.nextBlink = now + 2000 + rnd() * 3000; }
-        }
-        const eyeScale = now < life.blinkUntil ? .1 : 1;
-
-        const rot = (el, a, dx, dy) => el && el.setAttribute("transform",
-            `rotate(${(a * (+el.dataset.k || 1)).toFixed(1)} ${el.dataset.px || dx} ${el.dataset.py || dy})`);
-        rot(stageEl.querySelector(".armL"), life.aL, -86, 178);
-        rot(stageEl.querySelector(".armR"), life.aR, 86, 178);
-        const brows = stageEl.querySelector(".brows");
-        if (brows) brows.setAttribute("transform", `translate(0 ${(-life.brow * (+brows.dataset.k || 1)).toFixed(1)})`);
-        stageEl.querySelectorAll(".lid3d").forEach(elLid => {
-            const c = Math.max(+elLid.dataset.base || 0, (1 - eyeScale) / .9);
-            elLid.setAttribute("transform", `translate(0 ${(-(1 - c) * T3.LID).toFixed(1)})`);
-        });
-    }
-
-    const stage = document.getElementById("noResultsTipi");
-    if (stage) {
-        stage.innerHTML = mascot3D({ mouth: "MBP", brows: "focus", armL: 96, width: 130 });
-        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            const life = newLife();
-            life.gesture = "think";
-            (function loop(now){
-                lifeStep(stage, life, now);
-                requestAnimationFrame(loop);
-            })(performance.now());
-        }
-    }
-})();
-</script>
 
 <a href="https://wa.me/525539652128?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20art%C3%ADculos%20promocionales" target="_blank" class="whatsapp-float" aria-label="Cotiza por WhatsApp" title="Cotiza por WhatsApp">
     <i class="fab fa-whatsapp"></i>
